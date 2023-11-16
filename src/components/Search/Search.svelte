@@ -18,6 +18,8 @@
 	import institutionIcon from '$lib/images/institution.svg';
   import partyIcon from '$lib/images/party.svg';
 
+
+
   export let searchOpen = true;
   
   let value;
@@ -62,6 +64,8 @@
       }
     }
   }
+
+  const prefix = '<p class="test">'
 
 </script>
 <div class="container" in:fly>

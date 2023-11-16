@@ -12,6 +12,7 @@
 		"update_data": "node data/update_data.js"
 	},
 	"devDependencies": {
+		"@smui-extra/accordion": "^7.0.0-beta.15",
 		"@smui-extra/autocomplete": "^7.0.0-beta.15",
 		"@smui/button": "^7.0.0-beta.15",
 		"@smui/icon-button": "^7.0.0-beta.15",
@@ -20,11 +21,17 @@
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/adapter-static": "^2.0.3",
 		"@sveltejs/kit": "^1.27.4",
+		"d3-drag": "^3.0.0",
+		"d3-force": "^3.0.0",
+		"d3-scale": "^4.0.2",
+		"d3-selection": "^3.0.0",
 		"gh-pages": "^6.0.0",
+		"layercake": "^8.0.2",
 		"moment": "^2.29.4",
 		"sass": "^1.69.5",
 		"smui-theme": "^7.0.0-beta.15",
 		"svelte": "^4.0.5",
+		"svelte-typewriter": "^3.2.2",
 		"vite": "^4.4.2",
 		"vite-imagetools": "^6.2.4"
 	},
