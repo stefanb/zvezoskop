@@ -158,9 +158,9 @@
 	
 
 	:global(.mdc-button__label) {
-		color: #fff;
-		text-transform: capitalize;
-  font-family: IBM Plex Sans;
+		color: #fff !important;
+		text-transform: capitalize !important;
+  font-family: IBM Plex Sans !important;
 	}
 
 	:global(.mdc-deprecated-list.mobile-menu) {
