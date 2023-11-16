@@ -7,18 +7,44 @@
 	import { base } from '$app/paths';
 	import { page } from '$app/stores';
 	// import { currentPage, previousPage } from '../stores'
-	// import MediaQuery, { platform } from '../components/MediaQuerySsr.svelte';
+	import MediaQuery, { platform } from '../components/MediaQuerySsr.svelte';
 
-	// const images = import.meta.glob('$lib/img/**.png', { 
- //  query: { w: '100', h: '100', format: 'webp', grayscale: 'true' },
-	// 	eager: true
-	// });
+	const images = import.meta.glob('$lib/img/**.png', { 
+  query: { w: '100', h: '100', format: 'webp', grayscale: 'true' },
+		eager: true
+	});
 
-	// setContext("images", images)
+	setContext("images", images)
 
+	let password = '';
+	const hash = (s) =>
+		s.split('').reduce((a, b) => {
+			a = (a << 5) - a + b.charCodeAt(0);
+			return a & a;
+		}, 0);
 
+	$: passwordProtected = process.env.NODE_ENV === 'production' && hash(password) !== -1258221729;
+
+	// $: {
+	// 	if ($currentPage?.data?.route !== $page.data.route) {
+	// 		$currentPage = $page
+	// 	}
+	// }
+
+	// $: console.log($currentPage, $previousPage)
 </script>
 
+<MediaQuery />
+{#if passwordProtected}
+	<div class="password-container">
+		<label for="password">Password:</label>
+		<input id="password" bind:value={password} type="password" />
+	</div>
+{:else}
+	<div class="app">
+		<!-- {#if $platform === 'mobile'}
+			<MobileHeader />
+		{:else} -->
 			<Header />
 		<!-- {/if} -->
 		
@@ -26,6 +52,8 @@
 			<slot />
 		</main>
 		<!-- <footer /> -->
+	</div>
+{/if}
 
 <svelte:head>
 	<!-- <html lang="en" /> -->

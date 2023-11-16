@@ -6,9 +6,9 @@
   import { platform } from '../MediaQuerySsr.svelte';
   import { translate, locale } from '$lib/translations';
 
-  // import people from '$lib/data/people.json';
-  // import institutions from '$lib/data/institutions.json';
-  // import parties from '$lib/data/parties.json';
+  import people from '$lib/data/people.json';
+  import institutions from '$lib/data/institutions.json';
+  import parties from '$lib/data/parties.json';
   import { slugify, tField } from "../../utils";
 	import { goto } from '$app/navigation';
   import { page } from '$app/stores';  
@@ -18,56 +18,50 @@
 	import institutionIcon from '$lib/images/institution.svg';
   import partyIcon from '$lib/images/party.svg';
 
-
-
   export let searchOpen = true;
   
   let value;
 
-  // $: options = [
-  //  ...people.map(({ name, ...rest }) => ({ type: 'person', label: name, name, ...rest })),
+  $: options = [
+   ...people.map(({ name, ...rest }) => ({ type: 'person', label: name, name, ...rest })),
 
-  //  ...Object.entries(institutions).map(([slug, affiliations]) => ({ 
-  //   slug, 
-  //   type: !!parties.find(({ id }) => id === slug) ? 'party' : 'institution', 
-  //   label: tField(affiliations[0], 'institution', $locale),
-  // }))
-  // ]
+   ...Object.entries(institutions).map(([slug, affiliations]) => ({ 
+    slug, 
+    type: !!parties.find(({ id }) => id === slug) ? 'party' : 'institution', 
+    label: tField(affiliations[0], 'institution', $locale),
+  }))
+  ]
 
-  // $: {
-  //   if (value && (value.id || value.slug.length)) {
-  //     if (value?.type === 'person') {
-  //       if ($platform === 'mobile') {
-  //         searchOpen = false
-  //         goto(`${base}/${$locale}/people/${value.id}`)
-  //       } else {
-  //         $hovered = value.id
-  //         if ($selected.includes(value.id)) {
-  //           $selected = $selected.filter(sId => sId !== value.id)
-  //         } else {
-  //           if ($selected.length > 1) {
-  //             $selected.shift()
-  //           }
-  //           $selected = [...$selected, value.id]
-  //         }
+  $: {
+    if (value && (value.id || value.slug.length)) {
+      if (value?.type === 'person') {
+        if ($platform === 'mobile') {
+          searchOpen = false
+          goto(`${base}/${$locale}/people/${value.id}`)
+        } else {
+          $hovered = value.id
+          if ($selected.includes(value.id)) {
+            $selected = $selected.filter(sId => sId !== value.id)
+          } else {
+            if ($selected.length > 1) {
+              $selected.shift()
+            }
+            $selected = [...$selected, value.id]
+          }
 
-  //         // if ($page.url.pathname !== `${base}/${$locale}`) {
-  //           // console.log('navigating', $page.url.pathname, `${base}/${$locale}`)
-  //         goto(`${base}/${$locale}#skip-intro`)
-  //         // }
+          // if ($page.url.pathname !== `${base}/${$locale}`) {
+            // console.log('navigating', $page.url.pathname, `${base}/${$locale}`)
+          goto(`${base}/${$locale}#skip-intro`)
+          // }
 
-  //       }
-  //     }
-  //     if (value?.type === 'institution' || value?.type === 'party') {
-  //       goto(`${base}/${$locale}/institutions/${value.slug}`)
-  //       searchOpen = false;
-  //     }
-  //   }
-  // }
-
-  const prefix = '<p class="test">'
-
-  const options = []
+        }
+      }
+      if (value?.type === 'institution' || value?.type === 'party') {
+        goto(`${base}/${$locale}/institutions/${value.slug}`)
+        searchOpen = false;
+      }
+    }
+  }
 
 </script>
 <div class="container" in:fly>

@@ -8,7 +8,8 @@
 		"preview": "vite preview",
 		"prepare": "npm run smui-theme",
 		"smui-theme": "smui-theme compile static/smui.css -i src/theme",
-		"deploy": "npm run build && gh-pages -d build -t true"
+		"deploy": "npm run build && gh-pages -d build -t true",
+		"update_data": "node data/update_data.js"
 	},
 	"devDependencies": {
 		"@smui-extra/autocomplete": "^7.0.0-beta.15",
@@ -24,7 +25,8 @@
 		"sass": "^1.69.5",
 		"smui-theme": "^7.0.0-beta.15",
 		"svelte": "^4.0.5",
-		"vite": "^4.4.2"
+		"vite": "^4.4.2",
+		"vite-imagetools": "^6.2.4"
 	},
 	"type": "module",
 	"dependencies": {
