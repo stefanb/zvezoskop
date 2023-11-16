@@ -1,0 +1,28 @@
+{
+ "app_title": "Zvezoskop",
+ "header": {
+  "home": "Home",
+  "about": "O nas",
+  "search": "Iskanje",
+  "the_project": "O projektu",
+  "methodology": "Metodologija",
+  "stories": "Zgodbe",
+  "asset_tracker": "Detektor premoženja",
+  "asset_tracker_help_text": "Detektor premoženja je projekt Oštra, ki prikazuje podatke o premoženju političnih funkcionarjev."
+ },
+ "help_text": {
+  "time_in_office": "Datum, ko je bila oseba prvič izvoljena na splošnih volitvah ali imenovana za člana vlade ali državnega sekretarja."
+ },
+ "minister": "minister",
+ "secretary": "sekretar",
+ "Party": "Party",
+ "Birth year": "Birth year",
+ "Time in office": "Time in office",
+ "Assets": "Assets",
+ "Link": "Link",
+ "View CV": "View CV",
+ "Search for people, political parties, or institutions":"Search for people, political parties, or institutions",
+ "Skip": "Skip",
+ "Back to": "Back to",
+ "Network view": "Network view"
+}

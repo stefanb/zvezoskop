@@ -1,0 +1,28 @@
+/* Write your global styles here, in SCSS syntax. Variables and mixins from the src/variables.scss file are available here without importing */
+/* Write your global styles here, in SCSS syntax. Variables and mixins from the src/variables.scss file are available here without importing */
+
+.mobile-hide {
+ @media (max-width: $mobile) {
+  display: none !important;
+ }
+}
+
+.mobile-show {
+ @media (min-width: $mobile) {
+  display: none !important;
+ }
+}
+
+// @mixin mobile {
+//  @include content;
+// // }
+
+// @font-face {
+//  font-family: 'Noe Display';
+//  font-style: normal;
+//  font-weight: 500;
+//  src: url('/fonts/NoeDisplay-Bold.eot'); /* IE9 Compat Modes */
+//  src: local(''), url('/fonts/NoeDisplay-Bold.eot?#iefix') format('embedded-opentype'),
+//      /* IE6-IE8 */ url('/fonts/NoeDisplay-Bold.woff2') format('woff2'),
+//      /* Super Modern Browsers */ url('/fonts/NoeDisplay-Bold.woff') format('woff'),
+// }

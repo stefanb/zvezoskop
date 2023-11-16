@@ -1,0 +1,22 @@
+{
+ "app_title": "Zvezoskop",
+ "header": {
+  "home": "Home",
+  "about": "About",
+  "search": "Search",
+  "the_project": "The Project",
+  "methodology": "Methodology",
+  "stories": "Stories",
+  "asset_tracker": "Asset Detector",
+  "asset_tracker_help_text": "The Asset Detector is a project by Oštro that presents information about the assets of political office holders."
+ },
+ "help_text": {
+  "time_in_office": "The date on which the person was initially elected in a general election or appointed as a member of the government or as state secretary."
+ },
+ "izobraževanje": "education",
+ "delovne izkušnje": "work experience",
+ "lastništvo podjetja": "company ownership",
+ "strankarska pozicija": "party position",
+ "svetovalne in nadzorne funkcije etc.": "advisory and supervisory functions, etc.",
+ "prostočasne aktivnosti": "leisure activities"
+}
