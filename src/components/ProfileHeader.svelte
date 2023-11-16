@@ -3,7 +3,7 @@ import { translate } from '$lib/translations';
 import { platform } from "./MediaQuerySsr.svelte";
 import NotesTooltip from './NotesTooltip.svelte';
 import Image from '../components/Image.svelte'
-import BackButton from './BackButton.svelte';
+// import BackButton from './BackButton.svelte';
 
  export let imageLink = undefined;
  export let title = undefined;
@@ -33,7 +33,7 @@ $: collapsed = scrollY && scrollY !== 0;
 
 <div class="ProfileHeader" style="--background-color: {background}; --text-color: {textColor}" class:collapsed={collapsed} class:mobile={$platform === 'mobile'} bind:clientHeight={h}>
   <div class="ProfileHeader__back-button">
-    <BackButton />
+    <!-- <BackButton /> -->
   </div>
   <div class="inner-container">
  

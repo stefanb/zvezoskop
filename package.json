@@ -31,6 +31,7 @@
 		"sass": "^1.69.5",
 		"smui-theme": "^7.0.0-beta.15",
 		"svelte": "^4.0.5",
+		"svelte-portal": "^2.2.0",
 		"svelte-typewriter": "^3.2.2",
 		"vite": "^4.4.2",
 		"vite-imagetools": "^6.2.4"
