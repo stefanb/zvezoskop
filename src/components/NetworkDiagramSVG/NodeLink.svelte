@@ -145,7 +145,7 @@ const selectingForce = () => {
     simulation.force('center', forceCenter($width / 2, $height / 2).strength(1))
       .force("boundary", forceBoundary())
       .force('collide', forceCollide().radius(d => $rGet(d)+ 10).strength(2))
-      .force('charge', forceManyBody().strength(-20))
+      .force('charge', forceManyBody().strength(-35))
 
     tick();
   } else if ($width > 100) {

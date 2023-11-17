@@ -145,6 +145,7 @@
 			font-style: normal;
 			// font-weight: 700;
 			line-height: normal;
+			margin: 13px 0;
 		}
 	}
 

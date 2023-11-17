@@ -239,7 +239,8 @@ async function main() {
 
     let links = {}
     allConnections.forEach(({ person_id, institution_si, institution_en, show_in_network }) => {
-      if (show_in_network) {
+      console.log(show_in_network === "TRUE")
+      if (show_in_network === "TRUE" ) {
         const englishValue = !institution_en || institution_en.length === 0 ? institution_si : institution_en
 
         if (person_id in links) {
