@@ -26,6 +26,7 @@
 		"d3-scale": "^4.0.2",
 		"d3-selection": "^3.0.0",
 		"gh-pages": "^6.0.0",
+		"googleapis": "^128.0.0",
 		"layercake": "^8.0.2",
 		"moment": "^2.29.4",
 		"sass": "^1.69.5",
