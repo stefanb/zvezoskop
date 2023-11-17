@@ -1,20 +1,18 @@
-export function tooltip(element) {
+export function tooltip(element, params) {
 	let div;
 	let title;
 	function mouseOver(event) {
-		// NOTE: remove the `title` attribute, to prevent showing the default browser tooltip
-		// remember to set it back on `mouseleave`
-		title = element.getAttribute('title');
-		element.removeAttribute('title');
+		title = params
 		
 		const rightAlign = event.pageX > 500
-		
-		div = document.createElement('div');
+		if (!div) {
+			div = document.createElement('div');
+		}
 		div.innerHTML = title;
 		div.style = `
 			border: 1px solid #ddd;
 			box-shadow: 1px 1px 1px #ddd;
-			background: white;
+			background: white;s
 			border-radius: 4px;
 			padding: 4px;
 			position: absolute;
@@ -34,12 +32,10 @@ export function tooltip(element) {
 	}
 	function mouseLeave() {
 		document.body.removeChild(div);
-		// NOTE: restore the `title` attribute
-		element.setAttribute('title', title);
 	}
 	
 	element.addEventListener('mouseover', mouseOver);
-  element.addEventListener('mouseleave', mouseLeave);
+ element.addEventListener('mouseleave', mouseLeave);
 	element.addEventListener('mousemove', mouseMove);
 	
 	return {

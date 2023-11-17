@@ -68,7 +68,7 @@
 	{/if}
 	<div class="header__right mobile-hide">
 		<div>
-			<span title={[$translate('header.asset_tracker_help_text')]} use:tooltip>
+			<span use:tooltip={[$translate('header.asset_tracker_help_text')]}>
 				<a href="//detektorpremozenja.si/">{$translate('header.asset_tracker')}</a>
 			</span>
 		</div>
