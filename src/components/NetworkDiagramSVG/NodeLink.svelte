@@ -54,13 +54,16 @@
   simulation = forceSimulation(initialNodes)
 
   simulation
-    .force('collide', forceCollide().radius(d => $rGet(d) + 10).strength(0.2))
+    .force('collide', forceCollide().radius(d => $rGet(d) + 10).strength(2))
     .force('center', forceCenter($width / 2, $height / 2).strength(1))
-    // .force('charge', forceManyBody().strength(manyBodyStrength))
+    .force('charge', forceManyBody().strength(-35))
     .force("boundary", forceBoundary())
     .stop()
-  
-  // recenterSimulation()
+
+
+  recenterSimulation()
+  recenterSimulation()
+  recenterSimulation()
     
 
     // .alpha(0.8)
@@ -80,11 +83,17 @@
 const forceBoundary = () => {
   simulation?.nodes().forEach((node) => {
     const radius = $rGet(node);
-    const y = Math.max(radius + 50, Math.min($height - 50 - radius, node.y));
-    node.y = y;
+    if (node.y < 0 || node.y > ($height - radius)) {
+      node.y = Math.random() * ($height - radius)
+    }
+    // const y = Math.max(radius + 50, Math.min($height - 50 - radius, node.y));
+    // node.y = y;
 
-    const x = Math.max(radius + 50, Math.min($width - 50 - radius, node.x));
-    node.x = x
+    if (node.x < 0 || node.x > ($width - radius)) {
+      node.x = Math.random() * ($width - radius)
+    }
+    // const x = Math.max(radius + 50, Math.min($width - 50 - radius, node.x));
+    // node.x = x
   });
 
   // nodes = simulation?.nodes()
@@ -132,6 +141,7 @@ const selectingForce = () => {
 
  const recenterSimulation = () => {
   if (simulation) {
+    console.log('calling recenter')
     simulation.force('center', forceCenter($width / 2, $height / 2).strength(1))
       .force("boundary", forceBoundary())
       .force('collide', forceCollide().radius(d => $rGet(d)+ 10).strength(2))
@@ -139,6 +149,7 @@ const selectingForce = () => {
 
     tick();
   } else if ($width > 100) {
+
     runInitialSimulation();
 
     tick();
@@ -160,7 +171,6 @@ const selectingForce = () => {
     }
   })
  }
-
 
 
  const selectItem = () => {
