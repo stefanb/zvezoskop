@@ -35,9 +35,9 @@
 			<img src={logo} alt="Home" />
 		</LocalizedLink>
 		<div>
-			<LocalizedLink href="/about">{$translate('header.about')}</LocalizedLink>
+			<LocalizedLink component="a" href="/about">{$translate('header.about')}</LocalizedLink>
 		</div>
-		<div>
+		<div style:margin-top="-1px">
 			<a href="//ostro.si/si/zgodbe/zvezoskop">{$translate('header.stories')}</a>
 		</div>
 		<div>
