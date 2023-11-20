@@ -4,6 +4,12 @@
   import { fade } from 'svelte/transition';
   import { page, navigating } from '$app/stores';  
   import { translate } from '$lib/translations';
+  import IntroFirstSlide from './IntroFirstSlide.svelte';
+  import slide1 from '$lib/images/intro/slide-1.svg';
+  import slide2 from '$lib/images/intro/slide-2.svg';
+  import slide3 from '$lib/images/intro/slide-3.svg';
+  import slide4 from '$lib/images/intro/slide-4.svg';
+  import slide5 from '$lib/images/intro/slide-5.svg';
 
 
   // import { scrollto } from "svelte-scrollto";
@@ -24,55 +30,89 @@
   let sectionProgress;
   let typing = false;
 
+  let stepHeight;
 
   const sections = [
-    {
-      id: '1',
-      text: 'There are 160 people currently in government.',
-      domain: [undefined],
-      range: [defaultColor]
+    { 
+      id: '0',
     },
-    {
-      id: '2',
-      variable: 'position',
-      text: '1 prime minister, 20 ministers, 49 secretaries and 90 members of parliament.',
-      domain: Object.keys(colors),
-      range: Object.values(colors)
-    },
-    {
-      id: '3',
-      variable: 'is_first_time_in_office',
-      text: '90 of those never held a political position before coming into office. 10 have been there since the 90s.',
-      domain: ['TRUE', 'FALSE'],
-      range: ['#00E63C', defaultColor]
-    },
-    {
-      id: '4',
-      text: 'Explore the project to learn about the innterconnected blah blah blah',
-    }
+    // { 
+    //   id: '1',
+    //   background: slide1,
+    //   text: {
+    //     center: [
+    //       $translate("There are 158 members of the government, state secretaries and MPs now in the office.")
+    //     ]
+    //   }
+    // },
+    // { 
+    //   id: '2',
+    //   background: slide2,
+    //   text: {
+    //     left: [
+    //       $translate("1 prime minister + 17 ministers."),
+    //       $translate("50 state secretaries.")
+    //     ],
+    //     right: [
+    //       $translate("90 members of parliament.")
+    //     ]
+    //   }
+    // },
+    // { 
+    //   id: '3',
+    //   background: slide3,
+    //   text: {
+    //     left: [
+    //       $translate("74 are newcomers."),
+    //     ],
+    //     right: [
+    //       $translate("XY were present in the first the national assembly."),
+    //       $translate("XY were part of the political establishment since 90’s.")
+    //     ]
+    //   }
+    // },
+    // { 
+    //   id: '5',
+    //   background: slide5,
+    //   text: {
+    //     left: [
+    //       $translate("There are 63 women"),
+    //       $translate("6 ministers"),
+    //       $translate("23 state secretarie"),
+    //       $translate("34 members of parliament"),
+    //     ],
+    //     right: [
+    //       $translate("and 95 men"),
+    //       $translate("11 ministers"),
+    //       $translate("27 state secretarie"),
+    //       $translate("56 members of parliament"),
+    //     ]
+    //   }
+    // },
   ]
 
   $: activeSection = sections[scrollSectionIndex] || sections[0]
-  $: showPoints = scrollSectionIndex < sections.length - 1 && !$hideIntro;
   $: scrollSectionIndex, typing = true;
-  $: {
-    if ($page.url.hash === '#skip-intro' || (scrollSectionIndex > 0 && scrollSectionIndex === sections.length)) {
-      $hideIntro = true
-    }
-  }
+  // $: {
+  //   if ($page.url.hash === '#skip-intro' || (scrollSectionIndex > 0 && scrollSectionIndex === sections.length)) {
+  //     $hideIntro = true
+  //   }
+  // }
 
   let colorCounts;
   let h;
 
- $: {
-  const varGroupings = groupBy(people, activeSection.variable)
+  $: console.log(activeSection)
 
-  colorCounts = activeSection.domain?.map((key, i) => {
-   const grouped = varGroupings[key]
-   const color = activeSection.range[i]
-   return Array(grouped.length).fill(color)
-  }).flat()
- }
+//  $: {
+//   const varGroupings = groupBy(people, activeSection.variable)
+
+//   colorCounts = activeSection.domain?.map((key, i) => {
+//    const grouped = varGroupings[key]
+//    const color = activeSection.range[i]
+//    return Array(grouped.length).fill(color)
+//   }).flat()
+//  }
 
  const skipAhead = () => {
   window.scrollTo({
@@ -81,8 +121,18 @@
   })
  }
 
- $: console.log($hideIntro)
+//  let chartTopPosition = 1000;
 
+//   if (scrollSectionIndex === 0) {
+//     chartTopPosition = sectionProgress * stepHeight;
+//   } else if (scrollSectionIndex === 1) {
+//     chartTopPosition = (1 - sectionProgress) * stepHeight;
+//   } else {
+//     chartTopPosition = 0;
+//   }
+
+//   chartTopPosition += 200;
+//   // chartTopPosition = scrollSectionIndex < 1 ? `${(sectionProgress) * stepHeight}px` : 0;
 </script>
 
 <!-- https://svelte.dev/repl/2bdbf66371a3418e9e3eda076df6e32d?version=3.18.1 -->
@@ -90,43 +140,63 @@
   <div class="scroll-tracker">
     <Scrolly bind:value={scrollSectionIndex} bind:progress={sectionProgress} >
       {#if !$hideIntro}
-        {#each sections as section (section.id)}
-          <div class="step" class:active={section.id === activeSection.id}>
-            <div class="step__text">
-                {#if showPoints}
-                  <Typewriter disabled={section.id !== activeSection.id} cursor={false} interval={30} on:done={(i) => { typing = false }}>
-                    <h5>{section.text}</h5>
+        {#each sections as { id, background, text }}
+          <div class="step">
+            {#if id === '0'}
+              <IntroFirstSlide />
+            {:else}
+              <img src={background} />
+              {#if text.left}
+                <div>
+                  <div>
+                    {#each text.left as textItem}
+                    <Typewriter disabled={id !== activeSection.id} cursor={false} interval={30} on:done={(i) => { typing = false }}>
+                      <h5>{textItem}</h5>
+                    </Typewriter>
+                    {/each}
+                  </div>
+                  <div>
+                    {#each text.right as textItem}
+                      <Typewriter disabled={id !== activeSection.id} cursor={false} interval={30} on:done={(i) => { typing = false }}>
+                        <h5>{textItem}</h5>
+                      </Typewriter>
+                    {/each}
+                  </div>
+                </div>
+              {:else}
+                {#each text.center as textItem}
+                  <Typewriter disabled={id !== activeSection.id} cursor={false} interval={30} on:done={(i) => { typing = false }}>
+                    <h5>{textItem}</h5>
                   </Typewriter>
-                {:else}
-                  <h5>{section.text}</h5>
-                {/if}
-              </div>
+                {/each}
+              {/if}
+
+            {/if}
           </div>
         {/each}
       {/if}
-      <div>
+
+      <div style:margin-top="60px">
         <slot />
-
       </div>
-
     </Scrolly>
   </div>
+<!-- 
+{#if activeSection.showPoints}
+  <div class="chart-container" in:fade>
+    <LayerCake
+      data={people}
+    >
+      <Svg>
+        <IntroPoints settings={activeSection.showPoints ? activeSection : sections[1]} bind:h />
+      </Svg>
+    </LayerCake>
+  </div>
+{/if} -->
 
-  {#if showPoints}
-    <div class="chart-container" style:height={`${h}px`} in:fade>
-        <LayerCake
-          data={people}
-        >
-          <Canvas>
-            <IntroPoints {colorCounts} bind:h />
-          </Canvas>
-      </LayerCake>
-    </div>
-
-    <div class="skip-ahead" on:click={() => skipAhead()}>
-      <span class="skip-ahead__text">{$translate('Skip')}</span>
-    </div>
-  {/if}
+  <div class="skip-ahead" on:click={() => skipAhead()}>
+    <span class="skip-ahead__text">{$translate('Skip')}</span>
+  </div>
 
   <!-- <a use:scrollto={'#scroll-element'}> Scroll to element </a> -->
 
@@ -134,6 +204,7 @@
 <style lang="scss">
  .chart-container {
    width: 100%;
+   height: 300px;
    position: fixed;
    background: #fff;
    padding: 30px;
@@ -143,7 +214,7 @@
   position: relative;
   /* top: 60vh; */
   /* transform: translateY(90vh); */
-  height: 120vh;
+  height: calc(100vh - 60px);
   text-align: center;
   font-family: Noe Display;
   font-size: 20px;
