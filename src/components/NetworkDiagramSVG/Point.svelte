@@ -51,7 +51,7 @@
  cy={$tY}
  r={$tR}
 	fill={allActive || hovered || selected ? (hasImage ? `url(#${id})` : stroke) : "#c3c3c3"}
- stroke={selected ? "#ffb700" : (allActive || hovered ? stroke : "none")}
+ stroke={selected ? "#FA0" : (allActive || hovered ? stroke : "none")}
  stroke-width='{strokeWidth}'
 	on:mouseover={() => {onMouseover(id)}}
 	on:mouseout={() => {onMouseout()}}
@@ -70,7 +70,7 @@
 				y={-5}
 				width={labelWidth}
 				height="15"
-				fill={selected ? "#ffb700" : stroke} rx="7"
+				fill={selected ? "#FA0" : stroke} rx="7"
 			/>
 			<text
 				x={0}
@@ -95,14 +95,14 @@
 				y={-14}
 				width={50}
 				height="15"
-				fill="#fff"
-				stroke={selected ? "#ffb700" : stroke} rx="7"
+				fill="#00001E"
+				stroke={selected ? "#00001E" : stroke} rx="7"
 		/>
 	<text
 			class="label link"
 			x={0}
 			y={-5}
-			fill={"#ffb700"}
+			fill={"#FFF"}
 		>
 			{$translate("View CV")}
 		</text>

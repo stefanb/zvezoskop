@@ -38,7 +38,7 @@
 			<LocalizedLink href="/about">{$translate('header.about')}</LocalizedLink>
 		</div>
 		<div>
-			<LocalizedLink href="/about">{$translate('header.stories')}</LocalizedLink>
+			<a href="//ostro.si/si/zgodbe/zvezoskop">{$translate('header.stories')}</a>
 		</div>
 		<div>
 			{#if searchOpen}
@@ -95,11 +95,15 @@
 		</Item>
 		<Separator />
 		<Item>
-			<LocalizedLink href="/about">{$translate('header.stories')}</LocalizedLink>
+			<LocalizedLink href="/about">{$translate('header.about')}</LocalizedLink>
 		</Item>
 		<Separator />
 		<Item>
-				<a href="//detektorpremozenja.si/">{$translate('header.asset_tracker')}</a>
+			<a class="mobile-link" href="//ostro.si/si/zgodbe/zvezoskop">{$translate('header.stories')}</a>
+		</Item>
+		<Separator />
+		<Item>
+				<a class="mobile-link" href="//detektorpremozenja.si/">{$translate('header.asset_tracker')}</a>
 		</Item>
 		<Separator />
 		<Item>
@@ -195,7 +199,12 @@
 	:global(a) {
 		color: white !important;
 		font-size: 14px;
-	font-weight: normal;
-	text-decoration: none !important;
+		font-weight: normal;
+		text-decoration: none !important;
+		padding: 0 8px;
+
+		&.mobile-link {
+			padding: 0;
+		}
 	}
 </style>
