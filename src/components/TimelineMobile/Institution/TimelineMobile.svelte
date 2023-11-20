@@ -141,10 +141,11 @@
  .right-scroll {
   position: absolute;
   left: $yearWidth;
+  transform: translateY(-40%);
   width: calc(100% - #{$yearWidth});
   // transform: translateY(-25%);
   overflow: scroll;
-  max-height: calc(100vh - 200px);
+  max-height: calc(100vh - 140px);
  }
 
 //  .scroll-spacer {
@@ -161,6 +162,10 @@
     font-weight: bold;
     font-size: 18px;
   }
+ }
+
+ .scroll-tracker {
+  margin-bottom: 50vh;
  }
 
  .step {
