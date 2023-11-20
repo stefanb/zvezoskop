@@ -45,7 +45,7 @@ $: xScale = scaleTime()
   .timeline-container {
     max-width: $max-width;
     width: calc(100% - 40px);
-    margin: 0 auto;
+    margin: 0 auto 30px;
     padding: 0 20px 20px;
   }
   .section-title {

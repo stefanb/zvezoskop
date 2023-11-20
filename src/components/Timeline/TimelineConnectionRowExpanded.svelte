@@ -14,7 +14,7 @@
  export let xTransform
  export let xEnd;
 
- const { xScale, xRange } = getContext('LayerCake');
+ const { xScale, xRange, xDomain } = getContext('LayerCake');
 
  let labelWidth;
 
@@ -22,7 +22,7 @@
  const minStartVal = min(items, i => new Date(i.startDisplayDate));
  const maxEndVal = max(items, i => new Date(i.endDisplayDate));
 
- $: startX = $xScale(minStartVal)
+ $: startX = $xScale(minStartVal) < $xRange[0] ? $xRange[0] + labelWidth : $xScale(minStartVal)
  $: endX = $xScale(Math.min(new Date(maxEndVal), new Date()))
 
  $: personDetails = items[0] || {};
@@ -44,7 +44,7 @@
    </div>
    <div class="bars">
     {#each items as item}
-     <TimelineConnectionExpanded {item} refX={startX} />
+     <TimelineConnectionExpanded {item} refX={startX} {labelWidth} />
     {/each}
    </div>
   </div>

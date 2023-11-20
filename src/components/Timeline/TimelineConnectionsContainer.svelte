@@ -25,7 +25,6 @@
  // $: startX = start_year ? $xScale(start_year) : $xRange[0]
 //  $: endX = connections.map()
 
-//  console.log('portal!', connection)
 </script>
 
 
