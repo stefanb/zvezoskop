@@ -157,7 +157,6 @@ $: console.log(background)
     }
   }
 
-
   &__back-button {
     .collapsed & {
       display: none;
@@ -165,16 +164,22 @@ $: console.log(background)
   }
 
   &__secondary {
-   gap: 15px;
+    gap: 50px;
    align-items: normal;
    align-self: center;
    justify-content: space-between;
+   padding-right: 40px;
 
+   @media (max-width: 800px) {
+    gap: 25px;
+    padding-right: 20px;
+   }
    
    @media (max-width: $mobile) {
       flex-wrap: wrap;
       justify-content: space-between;
       width: 100%;
+      padding-left: 40px;
 
       .collapsed & {
         display: none;
@@ -224,9 +229,9 @@ $: console.log(background)
 
   &__detail {
    font-size: 13px;
-   flex-grow: 1;
-   flex-basis: 0;
-   min-width: 130px;
+  //  flex-grow: 1;
+  //  flex-basis: 0;
+  //  min-width: 167px;
    transition: font-size $transition-duration linear;
    overflow-y: hidden;
   

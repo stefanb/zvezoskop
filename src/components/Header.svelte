@@ -38,7 +38,7 @@
 			<LocalizedLink component="a" href="/about">{$translate('header.about')}</LocalizedLink>
 		</div>
 		<div style:margin-top="-1px">
-			<a href="//ostro.si/si/zgodbe/zvezoskop">{$translate('header.stories')}</a>
+			<a target="_blank" href="//ostro.si/si/zgodbe/zvezoskop">{$translate('header.stories')}</a>
 		</div>
 		<div>
 			{#if searchOpen}
@@ -70,7 +70,7 @@
 	<div class="header__right mobile-hide">
 		<div>
 			<span use:tooltip={[$translate('header.asset_tracker_help_text')]}>
-				<a href="//detektorpremozenja.si/">{$translate('header.asset_tracker')}</a>
+				<a target="_blank" href="//detektorpremozenja.si/">{$translate('header.asset_tracker')}</a>
 			</span>
 		</div>
 		{#if $locale === 'en'}
@@ -99,11 +99,11 @@
 		</Item>
 		<Separator />
 		<Item>
-			<a class="mobile-link" href="//ostro.si/si/zgodbe/zvezoskop">{$translate('header.stories')}</a>
+			<a target="_blank" class="mobile-link" href="//ostro.si/si/zgodbe/zvezoskop">{$translate('header.stories')}</a>
 		</Item>
 		<Separator />
 		<Item>
-				<a class="mobile-link" href="//detektorpremozenja.si/">{$translate('header.asset_tracker')}</a>
+				<a target="_blank" class="mobile-link" href="//detektorpremozenja.si/">{$translate('header.asset_tracker')}</a>
 		</Item>
 		<Separator />
 		<Item>

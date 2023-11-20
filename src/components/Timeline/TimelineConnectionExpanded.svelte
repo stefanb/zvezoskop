@@ -13,6 +13,8 @@
 
  $: startX = $xScale(new Date(item.startDisplayDate)) < $xRange[0] ? $xRange[0] + labelWidth : $xScale(new Date(item.startDisplayDate))
  $: endX = $xScale(Math.min(new Date(item.endDisplayDate), new Date()))
+
+ $: console.log(item.position, getColor(item.position))
 </script>
 
 <div
