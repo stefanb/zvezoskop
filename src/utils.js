@@ -194,3 +194,15 @@ export const getPositionLabel = (position, gender, locale) => {
   }
   return position;
 }
+
+export const sortNames = (list) => {
+  return list.sort((a, b) => {
+    return a.name.split(/[, ]+/).pop() > b.name.split(/[, ]+/).pop() ? 1 : -1;
+  })
+}
+
+export const sortInstitutions = (list) => {
+  return list.sort((a, b) => {
+    return a.label > b.label ? 1 : -1;
+  })
+}

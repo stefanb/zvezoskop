@@ -1,7 +1,7 @@
 <script>
  import { translate } from '$lib/translations';
  import Accordion, { Panel, Header, Content } from '@smui-extra/accordion';
- import { groupBy, getColor, getTextColor } from '../../utils';
+ import { groupBy, getColor, getTextColor, sortNames } from '../../utils';
  import PersonLabel from '../PersonLabel.svelte';
  import Icon from '../Icon.svelte';
 
@@ -10,11 +10,13 @@
  const panels = [
   { key: 'pm', text: $translate('Prime minister'), open: true},
   { key: 'minister', text: $translate('Ministers'), open: true},
-  { key: 'secretary', text: $translate('Secretaries'), open: true},
+  { key: 'secretary', text: $translate('Secretaries'), open: false},
   { key: 'mp', text: $translate('MPs'), open: true},
  ]
 
  $: grouped = groupBy(people, 'position')
+
+ $: console.log(panels)
 </script>
 
 
@@ -36,7 +38,7 @@
       </Header>
       <Content>
       {#if key in grouped}
-        {#each grouped[key] as person}
+        {#each sortNames(grouped[key]) as person}
           <div class="item">
               <PersonLabel
                 id={person.id}

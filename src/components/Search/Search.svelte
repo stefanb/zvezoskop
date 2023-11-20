@@ -9,7 +9,7 @@
   import people from '$lib/data/people.json';
   import institutions from '$lib/data/institutions.json';
   import parties from '$lib/data/parties.json';
-  import { slugify, tField } from "../../utils";
+  import { slugify, tField, sortNames, sortInstitutions } from "../../utils";
 	import { goto } from '$app/navigation';
   import { page } from '$app/stores';  
   import { base } from '$app/paths';
@@ -25,13 +25,14 @@
   let value;
 
   $: options = [
-   ...people.map(({ name, ...rest }) => ({ type: 'person', label: name, name, ...rest })),
+   ...sortNames(people.map(({ name, ...rest }) => ({ type: 'person', label: name, name, ...rest }))),
 
-   ...Object.entries(institutions).map(([slug, affiliations]) => ({ 
-    slug, 
-    type: !!parties.find(({ id }) => id === slug) ? 'party' : 'institution', 
-    label: tField(affiliations[0], 'institution', $locale),
-  }))
+   ...sortInstitutions(
+    Object.entries(institutions).map(([slug, affiliations]) => ({ 
+      slug, 
+      type: !!parties.find(({ id }) => id === slug) ? 'party' : 'institution', 
+      label: tField(affiliations[0], 'institution', $locale),
+    })))
   ]
 
   $: {
