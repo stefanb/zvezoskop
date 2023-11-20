@@ -27,6 +27,7 @@ $: sorted = items
   .sort((a, b) => a.endDisplayDate < b.endDisplayDate ? -1 : 1)
   .sort((a, b) => a.startDisplayDate < b.startDisplayDate ? -1 : 1)
 
+$: console.log(sorted)
 
 </script>
 
@@ -124,7 +125,7 @@ $: sorted = items
 
  .department {
   color:$black;
-  font-size: 11px;
+  font-size: $timeline-font-size;
   font-style: normal;
   font-weight: 500;
   line-height: 16px;
@@ -132,7 +133,7 @@ $: sorted = items
 
  .position {
   color:$black;
-  font-size: 11px;
+  font-size: $timeline-font-size;
   font-style: normal;
   font-weight: 400;
   line-height: 15px;
@@ -147,7 +148,7 @@ $: sorted = items
 
  .notes {
   color: $light-grey;
-  font-size: 11px;
+  font-size: $timeline-font-size;
   font-style: normal;
   font-weight: 400;
   line-height: 15px;

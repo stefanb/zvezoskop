@@ -104,9 +104,7 @@ export const getInitials = name => {
 export const formatDate = (item, prefix, locale) => {
   moment.locale(locale === 'en' ? 'en' : 'sl')
 
-
-  const date = moment([item[`${prefix}_year`], item[`${prefix}_month`], item[`${prefix}_day`]].filter(d => !!d))
-
+  const date = moment([item[`${prefix}_year`], item[`${prefix}_month`] === 0 ? '0' : item[`${prefix}_month`], item[`${prefix}_day`]].filter(d => !!d))
 
   if (item[`${prefix}MonthUncertain`]) {
     return date.format('YYYY')

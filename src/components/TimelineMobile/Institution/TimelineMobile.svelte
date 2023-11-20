@@ -55,6 +55,7 @@
  $: currYear = minYear + scrollSectionIndex
  $: currYearItems = byYear[currYear]
 
+
 </script>
 <div class="scroll-tracker">
   <Scrolly bind:value={scrollSectionIndex}>

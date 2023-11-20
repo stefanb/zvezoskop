@@ -253,7 +253,7 @@ $: collapsed = scrollY && scrollY !== 0;
   height: 60px;
   background: #E6E6F0;
   width: calc(100% - 40px);
-  font-size: 11px;
+  font-size: $timeline-font-size;
   font-family: IBM Plex Sans;
   font-style: normal;
   font-weight: 400;

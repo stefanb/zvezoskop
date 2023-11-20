@@ -79,7 +79,7 @@
   {/if}
 </g>
 
-<style>
+<style lang="scss">
   .tick {
     font-size: 0.725em;
     font-weight: 200;
@@ -95,7 +95,7 @@
     fill: #6E7382;
     text-align: center;
     font-family: Noe Display;
-    font-size: 10px;
+    font-size: $timeline-font-size;
     font-style: normal;
     font-weight: 700;
     line-height: normal;

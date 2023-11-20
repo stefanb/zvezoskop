@@ -174,7 +174,7 @@ $: {
   margin: 0;
   // padding: 2px 0;
   font-weight: normal;
-  font-size: 10px;
+  font-size: $timeline-font-size;
   // background: white;
  }
 

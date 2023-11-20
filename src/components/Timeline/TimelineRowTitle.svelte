@@ -57,7 +57,7 @@
   /* max-width: 200px; */
   font-weight: 600;
   // font-family: Arial, Helvetica, sans-serif;
-  font-size: 10px;
+  font-size: $timeline-font-size;
   color: $grey;
 
  }

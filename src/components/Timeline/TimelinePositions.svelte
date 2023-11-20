@@ -93,7 +93,7 @@ $: combinedLabelShift = Math.min(labelLeftShift, deptLabelLeftShift)
     margin: 0;
     padding-bottom: 2px;
     font-weight: normal;
-    font-size: 10px;
+    font-size: $timeline-font-size;
     position: relative;
     display: table-row-group;
     color: $light-grey;
