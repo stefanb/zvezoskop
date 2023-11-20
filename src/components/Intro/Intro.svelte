@@ -33,9 +33,9 @@
   let stepHeight;
 
   const sections = [
-    { 
-      id: '0',
-    },
+    // { 
+    //   id: '0',
+    // },
     // { 
     //   id: '1',
     //   background: slide1,
@@ -176,7 +176,7 @@
         {/each}
       {/if}
 
-      <div style:margin-top="60px">
+      <div>
         <slot />
       </div>
     </Scrolly>
@@ -193,10 +193,10 @@
     </LayerCake>
   </div>
 {/if} -->
-
+<!-- 
   <div class="skip-ahead" on:click={() => skipAhead()}>
     <span class="skip-ahead__text">{$translate('Skip')}</span>
-  </div>
+  </div> -->
 
   <!-- <a use:scrollto={'#scroll-element'}> Scroll to element </a> -->
 
