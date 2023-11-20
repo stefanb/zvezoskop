@@ -10,7 +10,7 @@
  const panels = [
   { key: 'pm', text: $translate('Prime minister'), open: true},
   { key: 'minister', text: $translate('Ministers'), open: true},
-  { key: 'secretary', text: $translate('Secretaries'), open: false},
+  { key: 'secretary', text: $translate('State secretaries'), open: true},
   { key: 'mp', text: $translate('MPs'), open: true},
  ]
 

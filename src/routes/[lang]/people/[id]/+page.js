@@ -183,7 +183,7 @@ export async function load({ params }) {
 		(id === '158' && (await import('$lib/data/cv/158.json')).default) ||
 		(id === '159' && (await import('$lib/data/cv/159.json')).default) ||
 		(id === '160' && (await import('$lib/data/cv/160.json')).default) ||
-		(id === '161' && (await import('$lib/data/cv/161.json')).default) ||
+		// (id === '161' && (await import('$lib/data/cv/161.json')).default) ||
 		(id === '162' && (await import('$lib/data/cv/162.json')).default)
 
  if (!bio) {
