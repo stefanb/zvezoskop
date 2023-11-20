@@ -165,7 +165,7 @@
 	}
 
 	:global(.mdc-deprecated-list.mobile-menu) {
-			max-width: 1000px !important;
+			max-width: $max-width !important;
 			width: 100%;
 			transform: translateY(60px);
 			position: fixed !important;
