@@ -11,6 +11,7 @@
 	import IconButton from '@smui/icon-button';
 	import List, { Item, Separator, Text } from '@smui/list';
 	
+	import { selected } from '../stores'
 	import logo from '$lib/images/icon-network.svg';
 	import languageEn from '$lib/images/language-en.svg';
 	import languageSi from '$lib/images/language-si.svg';
@@ -30,7 +31,7 @@
 
 <header class="header">
 	<div class="header__left mobile-hide">
-		<LocalizedLink href="/">
+		<LocalizedLink href="/" onClick={() => { $selected = [] }}>
 			<img src={logo} alt="Home" />
 		</LocalizedLink>
 		<div>
