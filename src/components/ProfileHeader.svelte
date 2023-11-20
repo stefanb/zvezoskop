@@ -84,7 +84,7 @@ $: console.log(background)
       {/if}
     </div>
   </div>
-  <div class="legend" style:background={background === "#E6E6EB" ? "#f9f9f9" : "#E6E6EB"}>
+  <div class="legend">
     <div class="legend__content">
       <div class="legend__title">
         {$translate('legend')}
@@ -258,6 +258,7 @@ $: console.log(background)
 
  .legend {
   height: 60px;
+  background: #E6E6EB;
   width: calc(100% - 40px);
   font-size: $timeline-font-size;
   font-family: IBM Plex Sans;

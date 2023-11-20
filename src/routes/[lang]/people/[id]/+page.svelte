@@ -12,6 +12,8 @@ import LocalizedLink from '../../../../components/LocalizedLink.svelte';
 //  $: console.log($translations)
 //  $: console.log(data)
 
+$: party = tField(data, 'party', $locale);
+
 </script>
 
 <ProfileHeader
@@ -23,10 +25,9 @@ import LocalizedLink from '../../../../components/LocalizedLink.svelte';
  details={[
   {
    label: $translate("Party"),
-   component: LocalizedLink,
-   componentInner: tField(data, 'party', $locale),
+   component: party ? LocalizedLink : null,
+   componentInner: party,
    componentProps: { href: `/institutions/${slugify(data.party_si)}`, component: 'a'}
-  
   //  
   },
   {
