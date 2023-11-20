@@ -13,7 +13,7 @@
  import Point from './Point.svelte';
 	import { getColor } from '../../utils';
 	import Link from './Link.svelte';
-  import { hovered, selected } from '../../stores'
+  import { hovered, selected, showAlert } from '../../stores'
   import { locale, translate } from '$lib/translations';
 
 
@@ -327,10 +327,9 @@ const tick = () => {
  const onClick = id => {
   if ($selected.includes(id)) {
     $selected = $selected.filter(sId => sId !== id)
+  } else if ($selected.length > 1) {
+    $showAlert = true;
   } else {
-    if ($selected.length > 1) {
-      $selected.shift()
-    }
     $selected = [...$selected, id]
   }
  }

@@ -3,9 +3,11 @@
 	import '../app.scss';
 	import '../app.scss';
 	import Header from '../components/Header.svelte';
+	import Alert from '../components/Alert.svelte';
 	import './styles.css';
 	import { base } from '$app/paths';
 	import { page } from '$app/stores';
+	import { showAlert } from '../stores';
 	// import { currentPage, previousPage } from '../stores'
 	import MediaQuery, { platform } from '../components/MediaQuerySsr.svelte';
 
@@ -41,7 +43,8 @@
 		<input id="password" bind:value={password} type="password" />
 	</div>
 {:else}
-	<div class="app">
+	<div class="app" class:noscroll={$showAlert}>
+		<Alert />
 		<!-- {#if $platform === 'mobile'}
 			<MobileHeader />
 		{:else} -->
@@ -65,11 +68,15 @@
 	<link rel="stylesheet" href="{base}/smui.css" />
 </svelte:head>
 
-<style>
+<style lang="scss">
 	.app {
 		display: flex;
 		flex-direction: column;
 		min-height: 100vh;
+
+		&.noscroll {
+			overflow: hidden;
+		}
 	}
 
 	main {

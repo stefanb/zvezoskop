@@ -10,5 +10,7 @@ export const hideIntro = writable(false)
 
 export const hist = writable([])
 
+export const showAlert = writable(false)
+
 // export const [currentPage, previousPage] = withPrevious(null);
 
