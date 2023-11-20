@@ -55,7 +55,7 @@
   }
  }
 
- :global(.mdc-button) {
+ :global(.content > .mdc-button) {
   width: 80px;
   background: #00001E;
   border-radius: 10px;
@@ -66,7 +66,7 @@
   }
  }
 
- :global(.mdc-button__label) {
+ :global(.content > .mdc-button__label) {
   text-align: center;
   font-family: IBM Plex Sans !important;
   font-size: 12px !important;

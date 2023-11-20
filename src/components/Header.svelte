@@ -196,9 +196,9 @@
 			}
 	}
 
-	:global(a) {
+	:global(.header a) {
 		color: white !important;
-		font-size: 14px;
+		font-size: 14px !important;
 		font-weight: normal;
 		text-decoration: none !important;
 		padding: 0 8px;
