@@ -26,7 +26,7 @@ $: collapsed = scrollY && scrollY !== 0;
 //   }
 // }
 
-// $: console.log(scrollY, collapsed)
+$: console.log(background)
  
 </script>
 <svelte:window bind:scrollY={scrollY} />
@@ -59,8 +59,8 @@ $: collapsed = scrollY && scrollY !== 0;
       </div>
       {#if details}
         <div class="ProfileHeader__secondary">
-          {#each details as { label, value, component, notes }}
-          {#if value || component}
+          {#each details as { label, value, component, componentInner, componentProps, notes, html }}
+          {#if value || component || html}
             <div class="ProfileHeader__detail">
               <div class="ProfileHeader__detail__label">
                 {label}
@@ -71,8 +71,10 @@ $: collapsed = scrollY && scrollY !== 0;
               <div class="ProfileHeader__detail__value">
               {#if value}
                 {value}
+              {:else if html}
+                {@html html}
               {:else if component}
-                {@html component}
+                <svelte:component this={component} {...componentProps}>{componentInner}</svelte:component>
               {/if}
               </div>
             </div>
@@ -82,7 +84,7 @@ $: collapsed = scrollY && scrollY !== 0;
       {/if}
     </div>
   </div>
-  <div class="legend">
+  <div class="legend" style:background={background === "#E6E6EB" ? "#f9f9f9" : "#E6E6EB"}>
     <div class="legend__content">
       <div class="legend__title">
         {$translate('legend')}
@@ -251,7 +253,6 @@ $: collapsed = scrollY && scrollY !== 0;
 
  .legend {
   height: 60px;
-  background: #E6E6F0;
   width: calc(100% - 40px);
   font-size: $timeline-font-size;
   font-family: IBM Plex Sans;

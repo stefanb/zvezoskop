@@ -5,6 +5,7 @@
  import TimelineMobile from '../../../../components/TimelineMobile/Person/TimelineMobile.svelte';
  import { slugify, getColor, getTextColor, getDateYear, getDate, tField, getPositionLabel } from '../../../../utils';
  import { platform } from '../../../../components/MediaQuerySsr.svelte';
+import LocalizedLink from '../../../../components/LocalizedLink.svelte';
 
  export let data;
 
@@ -22,7 +23,11 @@
  details={[
   {
    label: $translate("Party"),
-   value: tField(data, 'party', $locale)
+   component: LocalizedLink,
+   componentInner: tField(data, 'party', $locale),
+   componentProps: { href: `/institutions/${slugify(data.party_si)}`, component: 'a'}
+  
+  //  
   },
   {
    label: $translate("Birth year"),
@@ -35,7 +40,7 @@
   },
   {
    label: $translate("Assets"),
-   component: data.asset_tracker_link?.includes('http') && `<a rel="external" target="_blank" href=${data.asset_tracker_link}>${$translate('Link')}</a>`
+   html: data.asset_tracker_link?.includes('http') && `<a rel="external" target="_blank" href=${data.asset_tracker_link}>${$translate('Link')}</a>`
   }
  ]}
 
