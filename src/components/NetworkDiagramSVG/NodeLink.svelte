@@ -20,8 +20,6 @@
  const { data, width, height, rGet, zGet, zDomain } = getContext('LayerCake');
 
 
- export let manyBodyStrength = -15;
-
  const initialLinks = $data.links.map((d, i) => ({ ...d, visible: false, id: i }))
  const initialNodes = $data.nodes.map((d) => ({ ...d }))
 
@@ -172,6 +170,8 @@ const forceBoundary = () => {
             whichNodes.find(({ id }) => source === id) && whichNodes.find(({ id }) => target === id)
           )
         })
+
+        console.log('filteredLinks', filteredLinks)
       }
       // let filteredLinks = links.filter(({ visible }) => !!visible)
       // let filteredNodes = $data.nodes
