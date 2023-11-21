@@ -126,7 +126,6 @@ $: console.log(background)
   color: var(--text-color);
   padding: 20px;
   transition: padding $transition-duration linear;
-  border-bottom: 1px solid var(--border-color);
 
   :global(a) {
     text-decoration: underline;
@@ -134,6 +133,7 @@ $: console.log(background)
 
   .collapsed & {
     padding: 0 20px;
+    border-bottom: 1px solid var(--border-color);
   }
 
   .inner-container {
