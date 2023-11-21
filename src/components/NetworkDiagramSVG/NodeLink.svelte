@@ -25,6 +25,8 @@
 
 //  const initialNodes = $data.nodes.map((d) => ({ ...d }))
  const initialLinks = $data.links.map((d, i) => ({ ...d, visible: false, id: i }))
+ const initialNodes = $data.nodes.map((d) => ({ ...d }))
+
  let initialSimulation;
  let simulation;
 
@@ -141,7 +143,6 @@ const selectingForce = () => {
 
  const recenterSimulation = () => {
   if (simulation) {
-    console.log('calling recenter')
     simulation.force('center', forceCenter($width / 2, $height / 2).strength(1))
       .force("boundary", forceBoundary())
       .force('collide', forceCollide().radius(d => $rGet(d)+ 10).strength(2))
@@ -151,9 +152,44 @@ const selectingForce = () => {
   } else if ($width > 100) {
 
     runInitialSimulation();
-
     tick();
   }
+ }
+
+ const onResize = () => {
+  clearFixedNodes();
+
+  if (simulation) {
+    selectItem();
+  } else {
+    runInitialSimulation()
+  }
+  // recenterSimulation();
+ }
+
+ const isConnectedToSelected = (d) => {
+  // console.log('checking connected', d, $selected.length, visibleLinks)
+  if ($selected.length === 1) {
+    if (!!visibleLinks.find(({ source, target }) => source.id === d.id || target.id === d.id)) {
+      // console.log("IS CONNECTED!")
+      return true;
+    }
+  } else {
+    const connectedToFirst = !!visibleLinks.find(({ source, target }) => (source === d.id || target === d.id) && (source === $selected[0] || target === $selected[0]))
+    const connectedToSecond = !!visibleLinks.find(({ source, target }) => (source === d.id || target === d.id) && (source === $selected[1] || target === $selected[1]))
+    return connectedToFirst && connectedToSecond
+  }
+  return false;
+ }
+
+ const fixConnectedNodes = () => {
+  simulation.nodes().forEach((node) => {
+    if (isConnectedToSelected(node)) {
+      node.fx = node.x;
+      node.fy = node.y;
+      // console.log('connected to selected!')
+    }
+  })
  }
 
  const fixSelectedNodes = () => {
@@ -168,10 +204,26 @@ const selectingForce = () => {
       } else if ($selected[1] === node.id) {
         node.fx = $width - 50;
       }
+    // } else if (isConnectedToSelected(node)) {
+    //   node.fx = node.x;
+    //   node.fy = node.y;
+    //   console.log('connected to selected!')
     }
+    //  else {
+      
+    //   //     }
+    //   node.fx = undefined;
+    //   node.fy = undefined;
+    // }
   })
  }
 
+ const clearFixedNodes = () => {
+  simulation?.nodes().forEach((node) => {
+    node.fx = undefined;
+    node.fy = undefined;
+  })
+ }
 
  const selectItem = () => {
   if (simulation) {
@@ -179,27 +231,27 @@ const selectingForce = () => {
     
     if ($selected.length) {
       
-      let filteredLinks = links.filter(({ visible }) => !!visible)
-      let filteredNodes = $data.nodes
-        .map((d) => ({ ...d }))
-        .filter((d) => {
-          if ($selected.includes(d.id)) {
-            return true;
-          }
-          if ($selected.length === 1) {
-            if (!!filteredLinks.find(({ source, target }) => source === d.id || target === d.id)) {
-              return true;
-            }
-          } else {
-            const connectedToFirst = !!filteredLinks.find(({ source, target }) => (source === d.id || target === d.id) && (source === $selected[0] || target === $selected[0]))
-            const connectedToSecond = !!filteredLinks.find(({ source, target }) => (source === d.id || target === d.id) && (source === $selected[1] || target === $selected[1]))
-            return connectedToFirst && connectedToSecond
-          }
+      // let filteredLinks = links.filter(({ visible }) => !!visible)
+      // let filteredNodes = $data.nodes
+      //   .map((d) => ({ ...d }))
+      //   .filter((d) => {
+      //     if ($selected.includes(d.id)) {
+      //       return true;
+      //     }
+      //     if ($selected.length === 1) {
+      //       if (!!filteredLinks.find(({ source, target }) => source === d.id || target === d.id)) {
+      //         return true;
+      //       }
+      //     } else {
+      //       const connectedToFirst = !!filteredLinks.find(({ source, target }) => (source === d.id || target === d.id) && (source === $selected[0] || target === $selected[0]))
+      //       const connectedToSecond = !!filteredLinks.find(({ source, target }) => (source === d.id || target === d.id) && (source === $selected[1] || target === $selected[1]))
+      //       return connectedToFirst && connectedToSecond
+      //     }
           
-          return false;
-        })
+      //     return false;
+      //   })
 
-        console.log('calling select item', $selected, filteredLinks, filteredNodes)
+        // console.log('calling select item', $selected, filteredLinks, filteredNodes)
 
 
         // to set inactive
@@ -224,18 +276,18 @@ const selectingForce = () => {
         // })
 
 
-      filteredLinks = filteredLinks.filter(({ source, target }) => {
-        return (
-          filteredNodes.find(({ id }) => source === id) &&  filteredNodes.find(({ id }) => target === id)
-        )
-      })
+      // filteredLinks = filteredLinks.filter(({ source, target }) => {
+      //   return (
+      //     filteredNodes.find(({ id }) => source === id) &&  filteredNodes.find(({ id }) => target === id)
+      //   )
+      // })
 
-      simulation = forceSimulation(filteredNodes)
+      simulation = forceSimulation(initialNodes)
         // .force('select', selectingForce())
         .force('collide', forceCollide().radius(d => $rGet(d)+ 10).strength(3))
         .force('charge', forceManyBody().strength(-100))
         // .force('charge', forceManyBody().strength(d => d.inactive ? 0 : -100))
-        .force("link", forceLink(filteredLinks).id(d => d.id).strength(0.3).distance(({ source, target }) => { 
+        .force("link", forceLink(visibleLinks).id(d => d.id).strength(0.3).distance(({ source, target }) => { 
           if ($selected.includes(source.id) && $selected.includes(target.id)) {
             return 500;
           } else {
@@ -250,13 +302,23 @@ const selectingForce = () => {
         // .alpha(0.8)
         // .restart()
 
-      tick()
+        fixSelectedNodes();
+
+        tick()
+
+        fixConnectedNodes()
+
+
         // .alpha(0.8)
         // .restart()
+
+      recenterSimulation()
+      recenterSimulation()
           
     } else {
       console.log('removing selection, resetting', $selected)
 
+      clearFixedNodes()
       runInitialSimulation()
       tick()
     }
@@ -279,7 +341,7 @@ const selectingForce = () => {
   }
  }
 
- $: $width, $height, recenterSimulation()
+ $: $width, $height, onResize()
  $: $selected, selectItem()
  $: $hovered, setLinkVisibility()
  $: visibleLinks = links.filter(({ visible }) => !!visible)
@@ -305,7 +367,7 @@ const selectingForce = () => {
 // }
 
 const tick = () => {
-  fixSelectedNodes();
+  // fixSelectedNodes();
   for ( let i = 0,
     n = Math.ceil(Math.log(simulation.alphaMin()) / Math.log(1 - simulation.alphaDecay()));
     i < n;
@@ -333,6 +395,8 @@ const tick = () => {
     $selected = [...$selected, id]
   }
  }
+
+ $: console.log('fixed nodes', simulation?.nodes().filter(({ fx }) => !!fx))
 
 //  $: console.log(links)
 
