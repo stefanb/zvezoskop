@@ -13,11 +13,10 @@
 	import { goto } from '$app/navigation';
   import { page } from '$app/stores';  
   import { base } from '$app/paths';
-  import { hovered, selected } from '../../stores'
+  import { hovered, selected, showAlert } from '../../stores'
   import personIcon from '$lib/images/person.svg';
 	import institutionIcon from '$lib/images/institution.svg';
   import partyIcon from '$lib/images/party.svg';
-
 
 
   export let searchOpen = true;
@@ -45,11 +44,12 @@
           if ($selected.includes(value.id)) {
             $selected = $selected.filter(sId => sId !== value.id)
           } else {
-            $hovered = value.id
             if ($selected.length > 1) {
-              $selected.shift()
+              $showAlert = true;
+            } else {
+              $hovered = value.id
+              $selected = [...$selected, value.id]
             }
-            $selected = [...$selected, value.id]
           }
 
           // if ($page.url.pathname !== `${base}/${$locale}`) {

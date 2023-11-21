@@ -226,11 +226,21 @@ const forceBoundary = () => {
         .force('charge', forceManyBody().strength(-100))
         // .force('charge', forceManyBody().strength(d => d.inactive ? 0 : -100))
         .force("link", forceLink(filteredLinks).id(d => d.id).strength(0.3).distance(({ source, target }) => { 
-          if ($selected.includes(source.id) && $selected.includes(target.id)) {
-            return 500;
+          // return 250;
+          if ($selected.length > 1) {
+            if ($selected.includes(source.id) && $selected.includes(target.id)) {
+              return 250;
+            } else {
+              return 500
+            }
           } else {
-            return 250
+            if ($selected.includes(source.id) && $selected.includes(target.id)) {
+              return 500;
+            } else {
+              return 250
+            }
           }
+         
         }))
         .force('center', forceCenter($width / 2, $height / 2).strength(1))
         .force("boundary", forceBoundary())
