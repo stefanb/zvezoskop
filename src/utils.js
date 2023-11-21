@@ -47,9 +47,7 @@ export const getDateYear = dateString => {
 export const getDate = dateString => {
   if (!dateString) return;
 
-  const pieces = dateString.split("/")
-  const date = new Date(pieces[2], pieces[1], pieces[0]);
-  return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`
+  return dateString.replaceAll("/", ".")
 }
 
 export const getTimeSince = dateString => {

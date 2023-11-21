@@ -11,6 +11,7 @@ import Image from '../components/Image.svelte'
  export let notes = undefined;
  export let details = undefined;
  export let background = undefined;
+ export let border = undefined;
  export let textColor = undefined;
 
 
@@ -31,7 +32,7 @@ $: console.log(background)
 </script>
 <svelte:window bind:scrollY={scrollY} />
 
-<div class="outer-container" style="--background-color: {background}; --text-color: {textColor}" class:collapsed={collapsed} class:mobile={$platform === 'mobile'} bind:clientHeight={h}>
+<div class="outer-container" style="--background-color: {background}; --text-color: {textColor}; --border-color: {border}" class:collapsed={collapsed} class:mobile={$platform === 'mobile'} bind:clientHeight={h}>
   <div class="ProfileHeader">
     <div class="ProfileHeader__back-button">
       <!-- <BackButton /> -->
@@ -48,7 +49,7 @@ $: console.log(background)
             <h5 class="ProfileHeader__title__heading">
               <span>{title}</span>
               {#if notes?.length}
-                <NotesTooltip {notes} />
+                <NotesTooltip {notes} size="18px"/>
               {/if}
             </h5>
             {#if subheading}
@@ -65,7 +66,7 @@ $: console.log(background)
               <div class="ProfileHeader__detail__label">
                 {label}
                 {#if notes}
-                  <NotesTooltip {notes} />
+                  <NotesTooltip {notes} size="16px" />
                 {/if}
               </div>
               <div class="ProfileHeader__detail__value">
@@ -125,7 +126,7 @@ $: console.log(background)
   color: var(--text-color);
   padding: 20px;
   transition: padding $transition-duration linear;
-  
+  border-bottom: 1px solid var(--border-color);
 
   :global(a) {
     text-decoration: underline;

@@ -29,6 +29,7 @@ import ProfileHeader from '../../../../components/ProfileHeader.svelte';
   title={tField(data.affiliations?.[0], 'institution', $locale)}
   notes={notes}
   background={$platform === 'mobile' ? '#E6E6EB' : '#FFF'}
+  border={$platform === 'mobile' ? '#FFF' : '#6E7382'}
  />
   {#if data.partyData}
     <InstitutionBreakdown affiliations={data.partyData.affiliations} peopleLookup={data.associatedPeople} />

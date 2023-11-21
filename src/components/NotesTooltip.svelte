@@ -4,10 +4,11 @@
 	import { tooltip } from './tooltip';
 
  export let notes;
+ export let size;
 
 </script>
 
-<span class="notes-tooltip" use:tooltip={notes.join('<br><br>')}>
+<span style="--size: {size}" class="notes-tooltip" use:tooltip={notes.join('<br><br>')}>
  <IconButton class="material-icons" disabled size="mini">
   info
  </IconButton>
@@ -15,13 +16,13 @@
 
 <style lang="scss">
  :global(.notes-tooltip > .mdc-icon-button.smui-icon-button--size-mini) {
-  font-size: 18px !important;
+  font-size: var(--size) !important;
   height: 0 !important;
   transform: translateY(2.5px);
  }
 
  :global(.notes-tooltip  .mdc-icon-button__ripple) {
-  height: 18px !important;
-  width: 18px !important;
+  height: var(--size) !important;
+  width: var(--size) !important;
  }
 </style>

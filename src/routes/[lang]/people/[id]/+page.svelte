@@ -13,6 +13,7 @@ import LocalizedLink from '../../../../components/LocalizedLink.svelte';
 //  $: console.log(data)
 
 $: party = tField(data, 'party', $locale);
+$: console.log(data.time_in_office)
 
 </script>
 
