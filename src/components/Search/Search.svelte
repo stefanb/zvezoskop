@@ -42,10 +42,10 @@
           searchOpen = false
           goto(`${base}/${$locale}/people/${value.id}`)
         } else {
-          $hovered = value.id
           if ($selected.includes(value.id)) {
             $selected = $selected.filter(sId => sId !== value.id)
           } else {
+            $hovered = value.id
             if ($selected.length > 1) {
               $selected.shift()
             }

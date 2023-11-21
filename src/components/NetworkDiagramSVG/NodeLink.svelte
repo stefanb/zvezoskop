@@ -65,6 +65,7 @@ const forceBoundary = () => {
 
  let nodes = [];
  let links = []
+ let visibleLinks = []
 
  const recenterSimulation = () => {
   console.log("recenterSimulation", $selected, visibleLinks)
@@ -249,6 +250,9 @@ const forceBoundary = () => {
       target,
       ...rest
     }))
+    if (!visibleLinks.length) {
+      visibleLinks = links.filter(({ visible }) => !!visible)
+    }
     // console.log('links', links.filter(({ visible }) => !!visible))
   } else {
     links = initialLinks
