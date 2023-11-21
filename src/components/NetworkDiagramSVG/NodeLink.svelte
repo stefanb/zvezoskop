@@ -49,14 +49,18 @@
 const forceBoundary = () => {
   simulation?.nodes().forEach((node) => {
     const radius = $rGet(node);
-    if (node.y < 0 || node.y > ($height - radius)) {
-      node.y = Math.random() * ($height - radius)
+    if (node.y < 0) {
+      node.y = Math.random() * ($height/5)
+    } else if (node.y > ($height - radius)) {
+      node.y = Math.random() * (4 * $height/5)
     }
     // const y = Math.max(radius + 50, Math.min($height - 50 - radius, node.y));
     // node.y = y;
 
-    if (node.x < 0 || node.x > ($width - radius)) {
-      node.x = Math.random() * ($width - radius)
+    if (node.x < 0) {
+      node.x = Math.random() * ($width/5)
+    } else if(node.x > ($width - radius)) {
+      node.x = Math.random() * (3 * $width/5)
     }
     // const x = Math.max(radius + 50, Math.min($width - 50 - radius, node.x));
     // node.x = x
