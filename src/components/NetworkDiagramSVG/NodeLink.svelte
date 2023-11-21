@@ -147,7 +147,28 @@ const forceBoundary = () => {
     setLinkVisibility()
     
     if ($selected.length) {
-      
+      let whichNodes = initialNodes;
+      let filteredLinks = visibleLinks;
+
+      if ($selected.length === 2) {
+        whichNodes = $data.nodes
+          .map((d) => ({ ...d }))
+          .filter((d) => {
+            if ($selected.includes(d.id)) {
+              return true;
+            } else if (isConnectedToSelected(d)) {
+              return true;
+            } else {
+              return false;
+            }
+          })
+
+        filteredLinks = filteredLinks.filter(({ source, target }) => {
+          return (
+            whichNodes.find(({ id }) => source === id) && whichNodes.find(({ id }) => target === id)
+          )
+        })
+      }
       // let filteredLinks = links.filter(({ visible }) => !!visible)
       // let filteredNodes = $data.nodes
       //   .map((d) => ({ ...d }))
@@ -199,12 +220,12 @@ const forceBoundary = () => {
       //   )
       // })
 
-      simulation = forceSimulation(initialNodes)
+      simulation = forceSimulation(whichNodes)
         // .force('select', selectingForce())
         .force('collide', forceCollide().radius(d => $rGet(d)+ 10).strength(3))
         .force('charge', forceManyBody().strength(-100))
         // .force('charge', forceManyBody().strength(d => d.inactive ? 0 : -100))
-        .force("link", forceLink(visibleLinks).id(d => d.id).strength(0.3).distance(({ source, target }) => { 
+        .force("link", forceLink(filteredLinks).id(d => d.id).strength(0.3).distance(({ source, target }) => { 
           if ($selected.includes(source.id) && $selected.includes(target.id)) {
             return 500;
           } else {
@@ -215,19 +236,12 @@ const forceBoundary = () => {
         .force("boundary", forceBoundary())
         
         .stop()
-        // .force('charge', forceManyBody().strength(-20))
-        // .alpha(0.8)
-        // .restart()
 
-        fixSelectedNodes();
+      fixSelectedNodes();
 
-        tick()
+      tick()
 
-        fixConnectedNodes()
-
-
-        // .alpha(0.8)
-        // .restart()
+      fixConnectedNodes()
 
       recenterSimulation()
       recenterSimulation()
