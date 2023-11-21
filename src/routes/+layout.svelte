@@ -9,6 +9,8 @@
 	import { page } from '$app/stores';
 	import { showAlert } from '../stores';
 	import { translate, locale } from '$lib/translations';
+	import Analytics from '$lib/analytics.svelte'
+
 	// import { currentPage, previousPage } from '../stores'
 	import MediaQuery, { platform } from '../components/MediaQuerySsr.svelte';
 
@@ -37,6 +39,8 @@
 
 	// $: console.log($currentPage, $previousPage)
 </script>
+
+<Analytics />
 
 <MediaQuery />
 {#if passwordProtected}
