@@ -19,39 +19,16 @@
 
  const { data, width, height, rGet, zGet, zDomain } = getContext('LayerCake');
 
-//  console.log($zdata.nodes)
 
  export let manyBodyStrength = -15;
 
-//  const initialNodes = $data.nodes.map((d) => ({ ...d }))
  const initialLinks = $data.links.map((d, i) => ({ ...d, visible: false, id: i }))
  const initialNodes = $data.nodes.map((d) => ({ ...d }))
 
- let initialSimulation;
  let simulation;
 
- // const simulation = forceSimulation(initialNodes)
- const dragger = (el, node) => {
-   const d = drag()
-     .on('drag', ({x, y}) => {
-       node.fx = x;
-       node.fy = y;
-     })
-     .on('end', () => {
-       node.fx = null;
-       node.fy = null;
-     });
-   select(el).call(d);
- }
-
-//  onMount(() => {
-// 		runInitialSimulation()
-//     // recenterSimulation()
-//     tick()
-// });
-
  const runInitialSimulation = () => {
-  console.log('running initial simulation', $width, $height)
+  console.log("runInitialSimulation", $selected, visibleLinks)
   let initialNodes = $data.nodes.map((d) => ({ ...d }))
   simulation = forceSimulation(initialNodes)
 
@@ -66,20 +43,7 @@
   recenterSimulation()
   recenterSimulation()
   recenterSimulation()
-    
-
-    // .alpha(0.8)
-    // .restart()
-
-  // simulation.on("tick", () => {
-  //   nodes = simulation.nodes()
-  //   // links = links
-  // })
-
  }
-
-//  onMount(() => runInitialSimulation())
-
  
 
 const forceBoundary = () => {
@@ -97,51 +61,14 @@ const forceBoundary = () => {
     // const x = Math.max(radius + 50, Math.min($width - 50 - radius, node.x));
     // node.x = x
   });
-
-  // nodes = simulation?.nodes()
-}
-
-const selectingForce = () => {
-  simulation.nodes().forEach((node) => {
-    if ($selected?.includes(node.id)) {
-      node.y = $height/2;
-      if ($selected.length === 1) {
-        node.x = $width/2;
-        return;
-      } else if ($selected[0] === node.id) {
-        node.x = 50;
-      } else if ($selected[1] === node.id) {
-        node.x = $width - 50;
-      }
-    }
-    // const isLinked = links.find(({sourceNode, targetNode}) => targetNode.id === node.id || sourceNode.id === node.id)
-    
-    // if (isLinked) {
-    //   node.x = 200;
-    //   return;
-    // } 
-
-    // node.x = 300;
-  })
-
-  // nodes = nodes;
-  // const selectedNode = nodes.find(({ id }) => {
-  //   return id === selected;
-  // })
-
-  // if (selectedNode) {
-  //   selectedNode.x = 100;
-
-  // }
-
-
-  // console.log(selectedNode)
 }
 
  let nodes = [];
  let links = []
 
  const recenterSimulation = () => {
+  console.log("recenterSimulation", $selected, visibleLinks)
+
   if (simulation) {
     simulation.force('center', forceCenter($width / 2, $height / 2).strength(1))
       .force("boundary", forceBoundary())
@@ -168,10 +95,8 @@ const selectingForce = () => {
  }
 
  const isConnectedToSelected = (d) => {
-  // console.log('checking connected', d, $selected.length, visibleLinks)
   if ($selected.length === 1) {
     if (!!visibleLinks.find(({ source, target }) => source.id === d.id || target.id === d.id)) {
-      // console.log("IS CONNECTED!")
       return true;
     }
   } else {
@@ -187,7 +112,6 @@ const selectingForce = () => {
     if (isConnectedToSelected(node)) {
       node.fx = node.x;
       node.fy = node.y;
-      // console.log('connected to selected!')
     }
   })
  }
@@ -204,17 +128,7 @@ const selectingForce = () => {
       } else if ($selected[1] === node.id) {
         node.fx = $width - 50;
       }
-    // } else if (isConnectedToSelected(node)) {
-    //   node.fx = node.x;
-    //   node.fy = node.y;
-    //   console.log('connected to selected!')
     }
-    //  else {
-      
-    //   //     }
-    //   node.fx = undefined;
-    //   node.fy = undefined;
-    // }
   })
  }
 
@@ -226,6 +140,8 @@ const selectingForce = () => {
  }
 
  const selectItem = () => {
+  console.log("selectItem", $selected, visibleLinks)
+
   if (simulation) {
     setLinkVisibility()
     
@@ -316,8 +232,6 @@ const selectingForce = () => {
       recenterSimulation()
           
     } else {
-      console.log('removing selection, resetting', $selected)
-
       clearFixedNodes()
       runInitialSimulation()
       tick()
@@ -326,7 +240,7 @@ const selectingForce = () => {
  }
 
  const setLinkVisibility = () => {
-  console.log('setting link visibility', $selected)
+  console.log("setLinkVisibility", $selected, visibleLinks)
   if ($hovered || $selected.length) {
     links = initialLinks.map(({ source, target, visible, ...rest }) => ({ 
       visible: (source === $hovered || target === $hovered || $selected.includes(source) || $selected.includes(target)),
@@ -345,26 +259,6 @@ const selectingForce = () => {
  $: $selected, selectItem()
  $: $hovered, setLinkVisibility()
  $: visibleLinks = links.filter(({ visible }) => !!visible)
-
-//  $: console.log(visibleLinks)
-//  $: {
-//   console.log('running simulation')
-//   simulation
-//     // .force("link", forceLink(links).id(d => d.id).strength(0.2))
-   
-//   //  .force("boundary", () => {
-//   //     nodes.forEach((node) => {
-//   //       const radius = 5;
-//   //       const y = Math.max(radius, Math.min(Math.max(...$yRange) - offsetY - radius * 2, node.y));
-//   //       node.y = y;
-
-//   //       const x = Math.min($width - offsetXBoundary, node.x);
-//   //       node.x = x
-//   //     });
-//   //   })
-//     .alpha(0.8)
-//     .restart()
-// }
 
 const tick = () => {
   // fixSelectedNodes();
@@ -396,28 +290,9 @@ const tick = () => {
   }
  }
 
- $: console.log('fixed nodes', simulation?.nodes().filter(({ fx }) => !!fx))
+//  $: console.log('fixed nodes', simulation?.nodes().filter(({ fx }) => !!fx))
 
-//  $: console.log(links)
 
-//  $: {
-  // console.log('hovered', hovered, links, initialLinks)  // if (hovered) {
-  //  links = initialLinks
-  //   .filter(({ source, target }) => source === selected || target === selected)
-    // .map(({ source, target }, i) => ({
-    //   id: i,
-    //   sourceNode: simulation.nodes().find(d => d.id === source),
-    //   targetNode: simulation.nodes().find(d => d.id === target)
-    // }))
-
-  // console.log(links)
-  // }
-  // simulation
-  //   .force("link", forceLink(links).id(d => d.id))
- // }
-
-//  $: console.log(links.find(({source, target}) => target === '5' || source === '5'))
-// $: console.log($selected, hovered)
 </script>
 
 {#each links as { index, source, target, visible, id, showLabel, institutions } (id)}
