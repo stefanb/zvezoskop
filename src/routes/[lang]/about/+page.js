@@ -9,6 +9,13 @@ import { dev } from '$app/environment';
 export const prerender = true;
 
 
+export async function load() {
+ const title_si = "O projektu"
+	const title_en = "About the project"
+
+ return ({ title_si, title_en })
+}
+
 // export function entries() {
 //  return [
 //      { lang: 'en' },

@@ -12,4 +12,9 @@ export function load({ params }) {
  if (lang !== 'si' && lang !== 'en') {
   throw redirect(302, `${base}/si`);
  }
+
+ const title_si = "Zvezoskop"
+	const title_en = "Relatoscope"
+
+ return ({ title_si, title_en })
 }

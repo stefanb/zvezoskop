@@ -1,5 +1,6 @@
 {
  "app_title": "Relatoscope",
+ "app_description": "Relatoscope is an interactive visualization of career paths of current Slovenian political office holders – cabinet ministers, state secretaries and National Assembly deputies.",
  "header": {
   "home": "Home",
   "about": "About",

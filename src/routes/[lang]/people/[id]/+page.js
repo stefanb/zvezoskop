@@ -1,6 +1,10 @@
 
 import { error } from '@sveltejs/kit';
 import people from '$lib/data/people.json';
+import { translate, locale } from '$lib/translations';
+import { getPositionLabel } from '../../../../utils';
+import { page } from '$app/stores';
+
 
 function readJsonFile(file) {
 	const reader = new FileReader();
@@ -190,10 +194,13 @@ export async function load({ params }) {
 		// throw redirect(302, `/${lang}`);
 	}
 
-	const title = bio.name
+	const title_si = bio.name
+	const title_en = bio.name
 
+	const description_en = `${title_en} is a ${bio.position} in the ${bio.institution_en}`;
+	const description_si = `${title_si} je ${getPositionLabel(bio.position, bio.gender, "si")} na ${bio.institution_si}`
  // console.log(cv[id], bio)
- return ({ ...bio, cv, title  })
+ return ({ ...bio, cv, title_si, title_en, description_si, description_en })
 }
 
 // export function entries() {

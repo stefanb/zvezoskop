@@ -8,6 +8,7 @@
 	import { base } from '$app/paths';
 	import { page } from '$app/stores';
 	import { showAlert } from '../stores';
+	import { translate, locale } from '$lib/translations';
 	// import { currentPage, previousPage } from '../stores'
 	import MediaQuery, { platform } from '../components/MediaQuerySsr.svelte';
 
@@ -27,6 +28,7 @@
 
 	$: passwordProtected = process.env.NODE_ENV === 'production' && hash(password) !== -1258221729;
 
+	$: console.log($page.data)
 	// $: {
 	// 	if ($currentPage?.data?.route !== $page.data.route) {
 	// 		$currentPage = $page
@@ -66,6 +68,8 @@
 	<link rel="stylesheet" href="fonts/roboto-mono.css" />
 	<link rel="stylesheet" href="mdc.typography.14.0.0.css" /> -->
 	<link rel="stylesheet" href="{base}/smui.css" />
+	<title>{`${$page.data[$locale === 'en' ? 'title_en' : 'title_si']} • ${$translate('app_title')}`}</title>
+	<meta name="description" content={$page.data[$locale === 'en' ? 'description_en' : 'description_si'] || $translate('app_description')} />
 </svelte:head>
 
 <style lang="scss">

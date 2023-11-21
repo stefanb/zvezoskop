@@ -14,11 +14,6 @@ import { groupBy } from '../../utils';
 
 </script>
 
-<svelte:head>
-	<title>Home</title>
-	<meta name="description" content="GNI KPP" />
-</svelte:head>
-
 <Intro {people}>
 	{#if $platform}
 		{#if $platform === 'mobile'}

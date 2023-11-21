@@ -13,11 +13,6 @@
 	import icon7 from '$lib/images/about/7.svg';
 </script>
 
-<svelte:head>
-	<title>About</title>
-	<meta name="description" content="About" />
-</svelte:head>
-
 {#if $locale === 'si'}
 	<div>
 		<div class="section">

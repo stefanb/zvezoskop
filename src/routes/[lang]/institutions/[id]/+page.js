@@ -13,12 +13,10 @@ export async function load({ params }) {
 
  const partyData = parties.find(({ id:partyId }) => id === partyId)
 
- return ({ affiliations, associatedPeople, partyData });
-}
+ const institutionData = affiliations[0];
 
-// export function entries() {
-//  return [
-//      { lang: 'en' },
-//      { lang: 'si' }
-//  ];
-// }
+ const title_si = institutionData.institution_si
+	const title_en = institutionData.institution_en
+
+ return ({ affiliations, associatedPeople, partyData, title_si, title_en })
+}
