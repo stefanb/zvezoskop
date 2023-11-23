@@ -14,7 +14,7 @@ import { groupBy } from '../../utils';
 
 </script>
 
-<Intro {people}>
+<!-- <Intro {people}> -->
 	{#if $platform}
 		{#if $platform === 'mobile'}
 			<Directory {people} />
@@ -22,7 +22,7 @@ import { groupBy } from '../../utils';
 				<NetworkDiagram {people} {connections} />
 		{/if}
 	{/if}
-</Intro>
+<!-- </Intro> -->
 
 
 
