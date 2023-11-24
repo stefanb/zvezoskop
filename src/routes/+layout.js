@@ -2,6 +2,7 @@ import { setLocale, setRoute } from '$lib/translations';
 import { base } from '$app/paths';
 
 export const prerender = true
+export const trailingSlash = 'never';
 
 export const load = async ({ url }) => {
   const { pathname } = url;
