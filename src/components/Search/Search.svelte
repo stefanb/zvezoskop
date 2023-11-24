@@ -151,6 +151,10 @@
 
  }
 
+ :global(.mdc-text-field) {
+  border-radius: 4px;
+ }
+
  :global(.mdc-text-field__input) {
   font-family: IBM Plex Sans;
 

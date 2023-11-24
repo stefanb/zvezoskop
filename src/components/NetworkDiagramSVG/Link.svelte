@@ -43,14 +43,14 @@
     >
       <tspan
         class="link__label"
-        on:click={() => goto(`${base}/${$locale}/institutions/${slugify(institutions[0])}`)}
+        on:click={() => goto(`${base}/${$locale}/institutions/${slugify(institutions.si[0])}`)}
       >
-        {institutions[0]}
+        {institutions[$locale][0]}
       </tspan>
     </textPath>
   </text>
   
-  {#if institutions.length > 1}
+  {#if institutions[$locale].length > 1}
     <text
       dy="8"
     >
@@ -58,19 +58,19 @@
         xlink:href={`#link-${id}`}
         startOffset="50%"
       >
-        {#if institutions.length > 2}
+        {#if institutions[$locale].length > 2}
           <tspan
             class="link__label"
             style:pointer-events="none"
           >
-            {`+${institutions.length - 1} more`}
+            {`+${institutions[$locale].length - 1} more`}
           </tspan>
         {:else}
           <tspan
             class="link__label"
-            on:click={() => goto(`${base}/${$locale}/institutions/${slugify(institutions[1])}`)}
+            on:click={() => goto(`${base}/${$locale}/institutions/${slugify(institutions.si[1])}`)}
           >
-            {institutions[1]}
+            {institutions[$locale][1]}
           </tspan>
         {/if}
       </textPath>

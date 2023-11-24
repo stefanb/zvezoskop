@@ -332,7 +332,7 @@ const tick = () => {
     {id}
     {showLabel}
     {visible}
-    institutions={institutions[$locale]}
+    institutions={institutions}
     sourceNode={nodes.find(({ id }) => source === id)}
     targetNode={nodes.find(({ id }) => target === id)}
   />

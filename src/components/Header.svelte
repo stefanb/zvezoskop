@@ -44,9 +44,9 @@
 			{#if searchOpen}
 				<Search bind:searchOpen />
 			{:else}
-				<Button on:click={toggleSearch}>
+				<a style:cursor="pointer" on:click={toggleSearch}>
 					<Label>{$translate('header.search')}</Label>
-				</Button>
+				</a>
 			{/if}
 		</div>
 	</div>
@@ -69,9 +69,11 @@
 	{/if}
 	<div class="header__right mobile-hide">
 		<div>
-			<span use:tooltip={[$translate('header.asset_tracker_help_text')]}>
-				<a target="_blank" href="//detektorpremozenja.si/">{$translate('header.asset_tracker')}</a>
-			</span>
+			{#key $locale}
+				<span use:tooltip={[$translate('header.asset_tracker_help_text')]}>
+					<a target="_blank" href="//detektorpremozenja.si/">{$translate('header.asset_tracker')}</a>
+				</span>
+			{/key}
 		</div>
 		{#if $locale === 'en'}
 			<Button on:click={() => { setLocale('si'); goto(`${base}/si${$page.data.route}`) }}>
