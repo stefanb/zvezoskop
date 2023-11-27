@@ -1,34 +1,30 @@
 <script>
-  import { getContext } from 'svelte';
-  import { scaleCanvas } from 'layercake';
   import IntroPoint from './IntroPoint.svelte';
   import { getColor } from '../../utils';
-
-  const { width, height, rGet, zGet, zDomain } = getContext('LayerCake');
 
   // const { ctx } = getContext('canvas');
 
   const N = 119;
 
-  export let settings;
+  export let groups;
 
   export let h;
 
 
-  let r, padding, acrossCount, downCount, unaccountedCount;
+  // let r, padding, acrossCount, downCount, unaccountedCount;
 
   
-  $: {
-    r = $width > 600 ? 10 : 7;
-    padding = r / 2
-    acrossCount = Math.floor($width / ((r + padding)*2)) - 2
-    acrossCount = acrossCount - (settings.groups.length - 1)
-    downCount = Math.floor(N / acrossCount);
-    unaccountedCount = N - acrossCount*downCount
-    h = (downCount + 1)*(r + padding)*2
+  // $: {
+  //   r = $width > 600 ? 10 : 7;
+  //   padding = r / 2
+  //   acrossCount = Math.floor($width / ((r + padding)*2)) - 2
+  //   acrossCount = acrossCount - (settings.groups.length - 1)
+  //   downCount = Math.floor(N / acrossCount);
+  //   unaccountedCount = N - acrossCount*downCount
+  //   h = (downCount + 1)*(r + padding)*2
 
-    console.log(acrossCount, downCount, unaccountedCount, settings.groups?.length)
-  }
+  //   console.log(acrossCount, downCount, unaccountedCount, settings.groups?.length)
+  // }
 
 
   // $: {
@@ -60,52 +56,65 @@
   //    }
   //  }
 
-  let itemGroups = {}
+  // let itemGroups = {}
 
-  const reCalculateItems = () => {
-    itemGroups = {}
-  settings.groups.forEach(({ id, count }) => {
-    const { all, pm, minister, secretary, mp } = count;
+  // const reCalculateItems = () => {
+  //   itemGroups = {}
+  // settings.groups.forEach(({ id, count }) => {
+  //   const { all, pm, minister, secretary, mp } = count;
     
-    itemGroups[id] = [
-      ...Array(all).fill('all'),
-      ...Array(pm).fill('pm'),
-      ...Array(minister).fill('minister'),
-      ...Array(secretary).fill('secretary'),
-      ...Array(mp).fill('mp'),
-    ]
-  })
+  //   itemGroups[id] = [
+  //     ...Array(all).fill('all'),
+  //     ...Array(pm).fill('pm'),
+  //     ...Array(minister).fill('minister'),
+  //     ...Array(secretary).fill('secretary'),
+  //     ...Array(mp).fill('mp'),
+  //   ]
+  // })
 
-  }
+  // }
 
-  $: settings, reCalculateItems()
+  // $: settings, reCalculateItems()
 
-  $: console.log(itemGroups)
+  // $: console.log(itemGroups)
 
   // r = 10;
   // padding = 5;
   // downCount = 5;
 
+  const r = 20;
+  const padding = 5;
+
 </script>
 
-{#if itemGroups}
-  {#each Object.entries(itemGroups) as [key, items]}
-    <g>
-      {#each items as item, i}
-        {#key item}
-          <IntroPoint 
-            cy={i%downCount * r * 3 + padding}
-            cx={Math.floor(i/downCount) * r * 3 + padding}
-            r={r}
-            color={getColor(item)}
-          />
-        {/key}
-      {/each}
-    </g>
+<div class="outer-container">
+  {#each groups as group}
+    <div class="group" style:min-width={`${(group.count / 8)*(r + padding) }px`}>
+        {#each Array(group.count) as pt, i}
+          <IntroPoint color={group.color} {r} />
+        {/each}
+    </div>
   {/each}
-{/if}
+</div>
 
 
-
+<style lang="scss">
+  .outer-container {
+    display: flex;
+    width: 80%;
+    justify-content: space-around;
+    margin: auto;
+    padding: 10vh 0;
+    gap: 30px;
+    align-items: flex-start;
+  }
+  .group {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    max-height: 200px;
+    gap: 5px;
+  }
+</style>
 
 

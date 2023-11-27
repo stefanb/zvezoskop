@@ -16,26 +16,85 @@
 
   import IntroPoints from './IntroPoints.svelte';
   import Scrolly from '../TimelineMobile/Scrolly.svelte';
-  import { colors, groupBy } from '../../utils'
+  import { colors, getColor, groupBy } from '../../utils'
   import Typewriter from 'svelte-typewriter'
   import { hideIntro } from '../../stores';
 
   import { scaleOrdinal } from 'd3-scale'
+    import IntroInner from './IntroInner.svelte';
 
-  const defaultColor = '#E6E6F0'
-  
-  export let people;
+  let activeSection;
 
-  let scrollSectionIndex = 0;
-  let sectionProgress;
-  let typing = false;
-
-  let stepHeight;
 
   const sections = [
-    // { 
-    //   id: '0',
-    // },
+    { 
+      id: 'intro',
+    },
+    {
+      id: '1',
+      showPoints: true,
+      groups: [
+        { count: 180, color: "#E6E6F0"},
+      ],
+      text: {
+        left: "There are 158 members of government currently in office.",
+      }
+    },
+    {
+      id: '2',
+      showPoints: true,
+      groups: [
+        { count: 1, color: getColor('pm') },
+        { count: 17, color: getColor('minister') },
+        { count: 50, color: getColor('secretary') },
+        { count: 90, color: getColor('mp') },
+      ],
+      text: {
+        left: "1 prime minister, 17 ministers, 50 state secretaries, and 90 members of parliament"
+      }
+    },
+    {
+      id: '3',
+      showPoints: true,
+      groups: [
+        { count: 74, color: "#00D732"},
+        { count: 84, color: "#E6E6F0"},
+      ],
+      text: {
+        left: "74 are newcomers",
+        right: "while XY have been part of the political establishment since the 90s"
+      }
+    },
+    {
+      id: '4',
+      showPoints: true,
+      groups: [
+        { count: 63, color: "#00D732"},
+        { count: 95, color: "#E6E6F0"},
+      ],
+      text: {
+        left: "There are 63 women",
+        right: "and 95 men"
+      },
+      textSecondary: {
+        left: [
+          "6 ministers",
+          "23 state secretaries",
+          "34 members of parliament"
+        ],
+        right: [
+          "11 ministers",
+          "27 state secretaries",
+          "56 members of parliament"
+        ]
+      }
+
+    },
+    { 
+      id: 'outro',
+    },
+
+
     // { 
     //   id: '1',
     //   background: slide1,
@@ -91,174 +150,90 @@
     // },
   ]
 
-  $: activeSection = sections[scrollSectionIndex] || sections[0]
-  $: scrollSectionIndex, typing = true;
-  // $: {
-  //   if ($page.url.hash === '#skip-intro' || (scrollSectionIndex > 0 && scrollSectionIndex === sections.length)) {
-  //     $hideIntro = true
-  //   }
-  // }
+  let typing = false;
+  let showSecondaryText = false;
+  $: activeSection, typing = true, showSecondaryText = activeSection?.id === 'outro';
 
-  let colorCounts;
-  let h;
 
-  $: console.log(activeSection)
 
-//  $: {
-//   const varGroupings = groupBy(people, activeSection.variable)
-
-//   colorCounts = activeSection.domain?.map((key, i) => {
-//    const grouped = varGroupings[key]
-//    const color = activeSection.range[i]
-//    return Array(grouped.length).fill(color)
-//   }).flat()
-//  }
-
- const skipAhead = () => {
-  window.scrollTo({
-    top: 100000,
-    behavior: 'smooth'
-  })
- }
-
-//  let chartTopPosition = 1000;
-
-//   if (scrollSectionIndex === 0) {
-//     chartTopPosition = sectionProgress * stepHeight;
-//   } else if (scrollSectionIndex === 1) {
-//     chartTopPosition = (1 - sectionProgress) * stepHeight;
-//   } else {
-//     chartTopPosition = 0;
-//   }
-
-//   chartTopPosition += 200;
-//   // chartTopPosition = scrollSectionIndex < 1 ? `${(sectionProgress) * stepHeight}px` : 0;
 </script>
 
-<!-- https://svelte.dev/repl/2bdbf66371a3418e9e3eda076df6e32d?version=3.18.1 -->
-<!-- <svelte:window use:wheel={{disableScroll}} /> -->
-  <div class="scroll-tracker">
-    <Scrolly bind:value={scrollSectionIndex} bind:progress={sectionProgress} >
-      {#if !$hideIntro}
-        {#each sections as { id, background, text }}
-          <div class="step">
-            {#if id === '0'}
-              <IntroFirstSlide />
-            {:else}
-              <img src={background} />
-              {#if text.left}
-                <div>
-                  <div>
-                    {#each text.left as textItem}
-                    <Typewriter disabled={id !== activeSection.id} cursor={false} interval={30} on:done={(i) => { typing = false }}>
-                      <h5>{textItem}</h5>
-                    </Typewriter>
-                    {/each}
-                  </div>
-                  <div>
-                    {#each text.right as textItem}
-                      <Typewriter disabled={id !== activeSection.id} cursor={false} interval={30} on:done={(i) => { typing = false }}>
-                        <h5>{textItem}</h5>
-                      </Typewriter>
-                    {/each}
-                  </div>
+<IntroInner {sections} bind:activeSection>
+  <div slot="points">
+    <IntroPoints groups={activeSection?.groups || sections[1].groups}>
+    </IntroPoints>
+    {#if activeSection?.text}
+      <div class="section-text">
+        <div class="section-text__item">
+          <Typewriter interval={20} cursor={false} on:done={() => typing = false}>
+            {$translate(activeSection.text.left)}
+          </Typewriter>
+          {#if showSecondaryText && activeSection.textSecondary?.left}
+            <div class="section-text__secondary" in:fade={{ delay: 500, duration: 500 }}>
+              {#each activeSection.textSecondary.left as secondaryText}
+                <span >{secondaryText}</span>
+              {/each}
+            </div>
+          {/if}
+        </div>
+        {#if activeSection.text.right}
+          <div class="section-text__item">
+            {#if !typing}
+              <Typewriter delay={300} interval={20} cursor={false} on:done={() => {
+                if (activeSection.id === '4') {
+                  showSecondaryText = true;
+                }
+              }}>
+                {$translate(activeSection.text.right)}
+              </Typewriter>
+            
+              {#if showSecondaryText && activeSection.textSecondary?.right}
+                <div class="section-text__secondary" in:fade={{ delay: 500, duration: 500 }}>
+                  {#each activeSection.textSecondary.right as secondaryText}
+                    <span>{secondaryText}</span>
+                  {/each}
                 </div>
-              {:else}
-                {#each text.center as textItem}
-                  <Typewriter disabled={id !== activeSection.id} cursor={false} interval={30} on:done={(i) => { typing = false }}>
-                    <h5>{textItem}</h5>
-                  </Typewriter>
-                {/each}
               {/if}
-
             {/if}
           </div>
-        {/each}
-      {/if}
-
-      <div>
-        <slot />
+        {/if}
       </div>
-    </Scrolly>
+    {/if}
   </div>
-<!-- 
-{#if activeSection.showPoints}
-  <div class="chart-container" in:fade>
-    <LayerCake
-      data={people}
-    >
-      <Svg>
-        <IntroPoints settings={activeSection.showPoints ? activeSection : sections[1]} bind:h />
-      </Svg>
-    </LayerCake>
+  <div slot="network">
+    <slot />
   </div>
-{/if} -->
-<!-- 
-  <div class="skip-ahead" on:click={() => skipAhead()}>
-    <span class="skip-ahead__text">{$translate('Skip')}</span>
-  </div> -->
-
-  <!-- <a use:scrollto={'#scroll-element'}> Scroll to element </a> -->
-
+</IntroInner>
 
 <style lang="scss">
- .chart-container {
-   width: 100%;
-   height: 300px;
-   position: fixed;
-   background: #fff;
-   padding: 30px;
- }
-
- .step {
-  position: relative;
-  /* top: 60vh; */
-  /* transform: translateY(90vh); */
-  height: calc(100vh - 60px);
-  text-align: center;
+ 
+ .section-text {
+  display: flex;
+  justify-content: space-around;
+  color: var(--Black, #00001E);
   font-family: Noe Display;
-  font-size: 20px;
-  font-style: normal;
+  gap: 20%;
+  // font-size: 24px;
+  // font-style: normal;
   font-weight: 700;
-  line-height: 30px; /* 133.333% */
-
-  &__text {
-   padding: 20px;
-   position: absolute;
-   bottom: 50vh;
-   left: 50%;
-   transform: translateX(-50%);
-   opacity: 0;
-   transition: opacity 800ms ease-in-out;
-
-   .active & {
-    opacity: 1;
-   }
-  }
- }
-
- .skip-ahead {
-  position: fixed;
-  z-index: 10;
-  bottom: 10px;
-  left: 10px;
-  color: #6E7382;
-  border-radius: 100px;
-  border: 1px solid #6E7382;
-  text-transform: uppercase;
-  padding: 35px;
-  cursor: pointer;
+  max-width: 550px;
+  margin: auto;
+  // line-height: 32px; /* 133.333% */
 
 
-  &:hover {
-    background: rgba(#6E7382, 0.1)
+  &__item {
+    flex-basis: 0;
+    min-width: 300px;
+    // max-width: 300px;
+    // text-align: center;
+    flex-grow: 1;
   }
 
-  &__text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  &__secondary {
+    span {
+      display: block;
+      opacity: 0.3;
+    }
   }
  }
 </style>

@@ -1,17 +1,18 @@
 <script>
  import { onMount } from 'svelte';
- import { fade } from 'svelte/transition';
+ import { fade, scale} from 'svelte/transition';
  import { translate, locale } from '$lib/translations';
  import introEnIcon from '$lib/images/about-intro-en.svg';
  import introSiIcon from '$lib/images/about-intro-si.svg';
  import introArrowDown from '$lib/images/intro-arrow-down.svg';
+    import Typewriter from 'svelte-typewriter';
 
 
- // let show = false;
+ let show = false;
 
- // onMount(() => {
- //  show = true;
- // })
+ onMount(() => {
+  show = true;
+ })
 
  // $: console.log('show', show)
 
@@ -19,27 +20,29 @@
 
 <div class="first-slide">
   <div class="content">
-   <div class="logo" in:fade>
+    <div class="logo" >
+      {#if $locale === 'si'}
+        <img class="intro-icon" src={introSiIcon} />
+      {:else}
+        <img class="intro-icon" src={introEnIcon} />
+      {/if}
+    </div>
+  
+   <div class="text">
     {#if $locale === 'si'}
-     <img class="intro-icon" src={introSiIcon} />
+      <p>Karierne in življenjske poti političnih funkcionarjev so v majhni državi, kot je Slovenija, močno prepletene.</p>
+      <p>Dobrodošli v Zvezoskopu, interaktivni vizualizaciji kariernih poti aktualnih slovenskih političnih funkcionarjev.</p>
     {:else}
-     <img class="intro-icon" src={introEnIcon} />
-    {/if}
-   </div>
-
-   <div class="text" in:fade>
-    {#if $locale === 'si'}
-     <p>Karierne in življenjske poti političnih funkcionarjev so v majhni državi, kot je Slovenija, močno prepletene.</p>
-     <p>Dobrodošli v Zvezoskopu, interaktivni vizualizaciji kariernih poti aktualnih slovenskih političnih funkcionarjev.</p>
-    {:else}
-     <p>In a country as small as Slovenia, the career paths and lives of political office holders are deeply intertwined.</p>
-     <p>Welcome to Relatoscope, an interactive visualization of career paths of current Slovenian political office holders.</p>
+      <p>In a country as small as Slovenia, the career paths and lives of political office holders are deeply intertwined.</p>
+      <p>Welcome to Relatoscope, an interactive visualization of career paths of current Slovenian political office holders.</p>
     {/if}
    </div>
   </div>
-  <div class="scroll-prompt">
-   <img src={introArrowDown} />
-  </div>
+  {#if show}
+    <div class="scroll-prompt" transition:fade={{ delay: 300, duration: 700 }}>
+      <img src={introArrowDown} />
+    </div>
+  {/if}
 </div>
 
 <style lang="scss">
@@ -61,6 +64,12 @@
 
  .logo {
   margin-bottom: 40px;
+  // min-height: 120px;
+
+  // @media (max-width: 800px) {
+  //   min-height: 80px;
+  // }
+
   img {
    width: 100%;
   }
@@ -70,7 +79,7 @@
   color: var(--Position, #3C465A);
   text-align: center;
   font-family: Noe Display;
-  font-size: 22px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 700;
   line-height: 32px; /* 133.333% */

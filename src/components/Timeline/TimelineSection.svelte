@@ -13,17 +13,13 @@ import { locale } from '$lib/translations';
  export let getItemLink;
  export let getItemLabel;
 
-//  console.log(items)
 
  const byRow = groupBy(items, rowGroupingVar)
+ const sortedByRow = Object.values(byRow).sort((a, b) => {
+  return new Date(a[0].startCompareDate) < new Date(b[0].startCompareDate) ? -1 : 1
+ })
 
  let h;
-//  $: console.log(w, h)
-
-//  $: console.log(items)
-
-// $: console.log(byRow)
-
 </script>
 
 <div class='chart-container' style:height={`${h}px`}>
@@ -39,7 +35,7 @@ import { locale } from '$lib/translations';
    </Svg>
    <Html>
     <div class="data-container" bind:clientHeight={h}>
-     {#each Object.entries(byRow) as [title, positions],i}
+     {#each sortedByRow as positions, i}
       <TimelineRow title={tField(positions[0], rowGroupingVar.split('_')[0], $locale)} {positions} {getItemLink} {getItemLabel} {rowGroupingVar} {i}/>
      {/each}
     </div>
