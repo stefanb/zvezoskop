@@ -26,7 +26,7 @@
  let simulation;
 
  const runInitialSimulation = () => {
-  console.log("runInitialSimulation", $selected, visibleLinks)
+  // console.log("runInitialSimulation", $selected, visibleLinks)
   let initialNodes = $data.nodes.map((d) => ({ ...d }))
   simulation = forceSimulation(initialNodes)
 
@@ -70,7 +70,7 @@ const forceBoundary = () => {
  let visibleLinks = []
 
  const recenterSimulation = () => {
-  console.log("recenterSimulation", $selected, visibleLinks)
+  // console.log("recenterSimulation", $selected, visibleLinks)
 
   if (simulation) {
     simulation.force('center', forceCenter($width / 2, $height / 2).strength(1))
@@ -143,7 +143,7 @@ const forceBoundary = () => {
  }
 
  const selectItem = () => {
-  console.log("selectItem", $selected, visibleLinks)
+  // console.log("selectItem", $selected, visibleLinks)
 
   if (simulation) {
     setLinkVisibility()
@@ -171,7 +171,7 @@ const forceBoundary = () => {
           )
         })
 
-        console.log('filteredLinks', filteredLinks)
+        // console.log('filteredLinks', filteredLinks)
       }
       // let filteredLinks = links.filter(({ visible }) => !!visible)
       // let filteredNodes = $data.nodes
@@ -269,7 +269,7 @@ const forceBoundary = () => {
  }
 
  const setLinkVisibility = () => {
-  console.log("setLinkVisibility", $selected, visibleLinks)
+  // console.log("setLinkVisibility", $selected, visibleLinks)
   if ($hovered || $selected.length) {
     links = initialLinks.map(({ source, target, visible, ...rest }) => ({ 
       visible: (source === $hovered || target === $hovered || $selected.includes(source) || $selected.includes(target)),

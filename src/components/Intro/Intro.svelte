@@ -121,19 +121,19 @@
 
   let typing = false;
   let showSecondaryText = false;
-  $: activeSection, typing = true, showSecondaryText = activeSection?.id === 'outro';
+  $: activeSection, typing = activeSection?.id !== 'outro', showSecondaryText = activeSection?.id === 'outro';
 
-
+  $: console.log(typing)
 </script>
 
-<IntroInner {sections} bind:activeSection>
-  <div slot="points">
+<IntroInner {sections} bind:activeSection >
+  <div slot="points" let:typingDisabled>
     <IntroPoints groups={activeSection?.groups || sections[1].groups}>
     </IntroPoints>
     {#if activeSection?.text}
       <div class="section-text">
         <div class="section-text__item">
-          <Typewriter interval={20} cursor={false} on:done={() => typing = false}>
+          <Typewriter disabled={typingDisabled} interval={20} cursor={false} on:done={() => typing = false}>
             {$translate(activeSection.text.left)}
           </Typewriter>
           {#if showSecondaryText && activeSection.textSecondary?.left}
@@ -147,7 +147,7 @@
         {#if activeSection.text.right}
           <div class="section-text__item">
             {#if !typing}
-              <Typewriter delay={300} interval={20} cursor={false} on:done={() => {
+              <Typewriter disabled={typingDisabled} delay={300} interval={20} cursor={false} on:done={() => {
                 if (activeSection.id === '4') {
                   showSecondaryText = true;
                 }
@@ -210,6 +210,7 @@
   }
 
   &__secondary {
+    padding-top: 10px;
     span {
       display: block;
       opacity: 0.3;

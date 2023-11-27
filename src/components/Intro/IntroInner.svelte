@@ -7,6 +7,10 @@
   import { page, navigating } from '$app/stores';  
   import IntroFirstSlide from './IntroFirstSlide.svelte';
   import IntroLastSlide from './IntroLastSlide.svelte';
+  import { goto } from '$app/navigation';
+  import { base } from '$app/paths';
+
+
 
   import slide1 from '$lib/images/intro/slide-1.svg';
   import slide2 from '$lib/images/intro/slide-2.svg';
@@ -67,7 +71,7 @@
     behavior: 'smooth'
   })
 
-  $hideIntro = true;
+  goto(`${base}/${$locale}#skip-intro`, { replaceState: true })
  }
 
  let pointsFixed = false;
@@ -100,18 +104,18 @@
     <Scrolly bind:value={scrollSectionIndex} bind:progress={sectionProgress} >
       {#if !$hideIntro}
         {#each sections as { id, groups, text_si, text_en }}
-          <div class="step" class:last={id === 'outro'}>
+          <div class="step" class:last={id === 'outro' || id === '4'}>
             {#if id === 'intro'}
              <IntroFirstSlide />
             {:else if id === 'outro'}
-              <div class="waypoint" style:background={"green"} style:transform="translateY(-80vh)">
+              <div class="waypoint" style:background={"green"} style:transform="translateY(-120vh)">
                 <Waypoint once={false} throttle="500" on:enter={() => pointsFixed = false}></Waypoint>
               </div>
              <IntroLastSlide {skipAhead} />
             {:else if id === '1'}
               {#if !pointsFixed}
                <div class="chart-container">
-                <slot name="points" />
+                <slot name="points" typingDisabled={false} />
                </div>
               {/if}
               <div class="waypoint">
@@ -120,7 +124,7 @@
             {:else if id === '4'}
               {#if !pointsFixed}
                <div class="chart-container">
-                <slot name="points" />
+                <slot name="points" typingDisabled={true} />
                </div>
               {/if}
             {:else}
@@ -137,7 +141,7 @@
       {/if}
       
       <!-- {#if $hideIntro} -->
-      <slot name="network" />
+        <slot name="network" />
       <!-- {/if} -->
       
     </Scrolly>
@@ -145,7 +149,7 @@
 
   {#if pointsFixed}
    <div class="chart-container fixed">
-      <slot name="points" />
+      <slot name="points" typingDisabled={false} />
     </div>
   {/if}
 <!-- 
@@ -223,7 +227,7 @@
   border-radius: 100px;
   border: 1px solid #6E7382;
   text-transform: uppercase;
-  padding: 35px;
+  padding: 43px;
   cursor: pointer;
 
 

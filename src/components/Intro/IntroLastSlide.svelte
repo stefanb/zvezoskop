@@ -91,4 +91,9 @@
 
   }
  }
+
+ :global(.last-slide .mdc-button) {
+  border-radius: 40px !important;
+  background:#00D732 !important;
+ }
 </style>

@@ -38,11 +38,10 @@
     {/if}
    </div>
   </div>
-  {#if show}
-    <div class="scroll-prompt" transition:fade={{ delay: 300, duration: 700 }}>
-      <img src={introArrowDown} />
-    </div>
-  {/if}
+  
+  <div class="scroll-prompt" transition:fade={{ duration: 500 }}>
+    <img src={introArrowDown} />
+  </div>
 </div>
 
 <style lang="scss">
@@ -103,8 +102,7 @@
   transform: translateX(-50%);
 
   img {
-   height: 50px;
-
+   height: 40px;
   }
  }
 </style>
