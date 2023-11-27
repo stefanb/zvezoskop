@@ -7,6 +7,7 @@ import ProfileHeader from '../../../../components/ProfileHeader.svelte';
 	import TimelineMobile from '../../../../components/TimelineMobile/Institution/TimelineMobile.svelte';
  import { platform } from '../../../../components/MediaQuerySsr.svelte';
  import InstitutionBreakdown from '../../../../components/InstitutionBreakdown.svelte';
+ import TimelineLegend from '../../../../components/TimelineLegend.svelte';
  import { tField } from '../../../../utils';
 
  export let data;
@@ -25,14 +26,16 @@ import ProfileHeader from '../../../../components/ProfileHeader.svelte';
 
 
 {#key data.route}
- <ProfileHeader
-  title={tField(data.affiliations?.[0], 'institution', $locale)}
-  notes={notes}
-  background={$platform === 'mobile' ? '#E6E6EB' : '#FFF'}
-  border={$platform === 'mobile' ? '#FFF' : '#6E7382'}
- />
+  <ProfileHeader
+    title={tField(data.affiliations?.[0], 'institution', $locale)}
+    notes={notes}
+    background={$platform === 'mobile' || !!data.partyData ? '#E6E6EB' : '#FFF'}
+    border={$platform === 'mobile' || !!data.partyData ? '#FFF' : '#6E7382'}
+    hideLegend={!!data.partyData}
+  />
   {#if data.partyData}
     <InstitutionBreakdown affiliations={data.partyData.affiliations} peopleLookup={data.associatedPeople} />
+    <TimelineLegend />
   {/if}
   {#if $platform}
     {#if $platform === 'mobile'}

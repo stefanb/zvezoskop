@@ -152,7 +152,7 @@
  }
 
  :global(.mdc-text-field) {
-  border-radius: 4px;
+  border-radius: 4px !important;
  }
 
  :global(.mdc-text-field__input) {
