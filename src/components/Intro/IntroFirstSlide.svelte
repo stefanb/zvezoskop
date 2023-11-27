@@ -87,7 +87,8 @@
   margin: auto;
 
   @media (max-width: $mobile) {
-   font-size: 18px;
+   font-size: 16px;
+   width: 100%;
   }
 
   p {

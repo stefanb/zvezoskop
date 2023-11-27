@@ -69,8 +69,32 @@
       id: '4',
       showPoints: true,
       groups: [
-        { count: 63, color: "#00D732"},
-        { count: 95, color: "#E6E6F0"},
+        { count: 63, getColor: i => {
+          let key;
+          if (i < 6) {
+            key = "minister"
+          } else if (i < 29) {
+            key = "secretary"
+          } else {
+            key = "mp"
+          }
+
+          return getColor(key)
+        }},
+        { count: 95, getColor: i => {
+          let key;
+          if (i < 1) {
+            key = "pm"
+          } else if (i < 12) {
+            key = "minister"
+          } else if (i < 39) {
+            key = "secretary"
+          } else {
+            key = "mp"
+          }
+
+          return getColor(key)
+        }},
       ],
       text: {
         left: "There are 63 women",
@@ -92,68 +116,12 @@
     },
     { 
       id: 'outro',
-    },
-
-
-    // { 
-    //   id: '1',
-    //   background: slide1,
-    //   text: {
-    //     center: [
-    //       $translate("There are 158 members of the government, state secretaries and MPs now in the office.")
-    //     ]
-    //   }
-    // },
-    // { 
-    //   id: '2',
-    //   background: slide2,
-    //   text: {
-    //     left: [
-    //       $translate("1 prime minister + 17 ministers."),
-    //       $translate("50 state secretaries.")
-    //     ],
-    //     right: [
-    //       $translate("90 members of parliament.")
-    //     ]
-    //   }
-    // },
-    // { 
-    //   id: '3',
-    //   background: slide3,
-    //   text: {
-    //     left: [
-    //       $translate("74 are newcomers."),
-    //     ],
-    //     right: [
-    //       $translate("XY were present in the first the national assembly."),
-    //       $translate("XY were part of the political establishment since 90’s.")
-    //     ]
-    //   }
-    // },
-    // { 
-    //   id: '5',
-    //   background: slide5,
-    //   text: {
-    //     left: [
-    //       $translate("There are 63 women"),
-    //       $translate("6 ministers"),
-    //       $translate("23 state secretarie"),
-    //       $translate("34 members of parliament"),
-    //     ],
-    //     right: [
-    //       $translate("and 95 men"),
-    //       $translate("11 ministers"),
-    //       $translate("27 state secretarie"),
-    //       $translate("56 members of parliament"),
-    //     ]
-    //   }
-    // },
+    }
   ]
 
   let typing = false;
   let showSecondaryText = false;
   $: activeSection, typing = true, showSecondaryText = activeSection?.id === 'outro';
-
 
 
 </script>
@@ -200,7 +168,7 @@
       </div>
     {/if}
   </div>
-  <div slot="network">
+  <div slot="network" class="network-container">
     <slot />
   </div>
 </IntroInner>
@@ -220,6 +188,14 @@
   margin: auto;
   // line-height: 32px; /* 133.333% */
 
+  @media (max-width: $mobile) {
+    // flex-direction: column;
+    font-size: 12px;
+    margin: 0 20px;
+    gap: 5px;
+    // max-width: 100px;
+  }
+
 
   &__item {
     flex-basis: 0;
@@ -227,6 +203,10 @@
     // max-width: 300px;
     // text-align: center;
     flex-grow: 1;
+
+    @media (max-width: $mobile) {
+      min-width: 130px;
+    }
   }
 
   &__secondary {
@@ -235,5 +215,10 @@
       opacity: 0.3;
     }
   }
+ }
+
+ .network-container {
+  height: calc(100vh - 60px);
+
  }
 </style>

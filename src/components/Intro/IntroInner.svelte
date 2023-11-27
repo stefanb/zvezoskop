@@ -42,15 +42,13 @@
   $: activeSection = sections[scrollSectionIndex] || sections[0]
   // $: scrollSectionIndex, typing = true, showSecondaryText = false;
 
-  let showSecondaryText = false;
-  //   if ($page.url.hash === '#skip-intro' || (scrollSectionIndex > 0 && scrollSectionIndex === sections.length)) {
-  //     $hideIntro = true
-  //   }
-  // }
-
-  let colorCounts;
-  let h;
-
+  $: {
+    if ($page.url.hash === '#skip-intro' || (scrollSectionIndex > 0 && scrollSectionIndex === sections.length)) {
+      $hideIntro = true
+    }
+  }
+  
+  
   // $: console.log(showSecondaryText)
 
 //  $: {
@@ -68,6 +66,8 @@
     top: 100000,
     behavior: 'smooth'
   })
+
+  $hideIntro = true;
  }
 
  let pointsFixed = false;
@@ -100,14 +100,14 @@
     <Scrolly bind:value={scrollSectionIndex} bind:progress={sectionProgress} >
       {#if !$hideIntro}
         {#each sections as { id, groups, text_si, text_en }}
-          <div class="step">
+          <div class="step" class:last={id === 'outro'}>
             {#if id === 'intro'}
              <IntroFirstSlide />
             {:else if id === 'outro'}
               <div class="waypoint" style:background={"green"} style:transform="translateY(-80vh)">
                 <Waypoint once={false} throttle="500" on:enter={() => pointsFixed = false}></Waypoint>
               </div>
-             <IntroLastSlide bind:showNetwork />
+             <IntroLastSlide {skipAhead} />
             {:else if id === '1'}
               {#if !pointsFixed}
                <div class="chart-container">
@@ -136,9 +136,9 @@
         {/each}
       {/if}
       
-      {#if showNetwork}
-       <slot name="network" />
-      {/if}
+      <!-- {#if $hideIntro} -->
+      <slot name="network" />
+      <!-- {/if} -->
       
     </Scrolly>
   </div>
@@ -161,12 +161,14 @@
   </div>
 {/if} -->
 <!-- 
-  <div class="skip-ahead" on:click={() => skipAhead()}>
-    <span class="skip-ahead__text">{$translate('Skip')}</span>
-  </div> -->
+   -->
 
   <!-- <a use:scrollto={'#scroll-element'}> Scroll to element </a> -->
-
+{#if !$hideIntro}
+  <div class="skip-ahead" on:click={() => skipAhead()}>
+    <span class="skip-ahead__text">{$translate('Skip')}</span>
+  </div>
+{/if}
 
 <style lang="scss">
  .chart-container {
@@ -206,6 +208,10 @@
   //   opacity: 1;
   //  }
   // }
+
+  &.last {
+    height: 120vh;
+  }
  }
 
  .skip-ahead {

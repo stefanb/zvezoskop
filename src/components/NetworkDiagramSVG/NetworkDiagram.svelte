@@ -26,8 +26,12 @@ import Image from '../Image.svelte';
 
 <style>
 	.chart-container {
-		width: 100%;
-		height: calc(100vh - 60px);
+		width: calc(100vw - 70px);
+		height: calc(100vh - 100px);
+		position: relative;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
 	}
 </style>
 

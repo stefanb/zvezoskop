@@ -8,15 +8,8 @@
  import introArrowDown from '$lib/images/intro-arrow-down.svg';
 
 
- export let showNetwork;
+ export let skipAhead;
 
- // let show = false;
-
- // onMount(() => {
- //  show = true;
- // })
-
- // $: console.log('show', show)
 
 </script>
 
@@ -35,7 +28,7 @@
    </div>
   </div>
   <div class="scroll-prompt">
-   <Button on:click={() => showNetwork = true}>
+   <Button on:click={() => skipAhead()}>
      <Label>{$translate("Try it yourself")}</Label>
    </Button>
   </div>
@@ -43,7 +36,7 @@
 
 <style lang="scss">
  .last-slide {
-  height: 100%;
+  height: calc(100vh - 60px);
   width: 100%;
   background: #E6E6F0;
   position: relative;
@@ -76,8 +69,10 @@
   width: 80%;
   margin: auto;
 
+ 
   @media (max-width: $mobile) {
-   font-size: 18px;
+   font-size: 16px;
+   width: 100%;
   }
 
   p {

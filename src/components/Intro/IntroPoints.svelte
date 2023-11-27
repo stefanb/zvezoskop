@@ -1,10 +1,11 @@
 <script>
   import IntroPoint from './IntroPoint.svelte';
+  import { platform } from '../MediaQuerySsr.svelte';
+
   import { getColor } from '../../utils';
 
   // const { ctx } = getContext('canvas');
 
-  const N = 119;
 
   export let groups;
 
@@ -82,16 +83,16 @@
   // padding = 5;
   // downCount = 5;
 
-  const r = 20;
-  const padding = 5;
+  const r = $platform === 'mobile' ? 11 : 20;
+  const padding = $platform === 'mobile' ? 5 : 5;
 
 </script>
 
 <div class="outer-container">
   {#each groups as group}
-    <div class="group" style:min-width={`${(group.count / 8)*(r + padding) }px`}>
+    <div class="group" style:min-width={`${(group.count / ($platform === 'mobile' ? 12 : 8))*(r + padding) }px`}>
         {#each Array(group.count) as pt, i}
-          <IntroPoint color={group.color} {r} />
+          <IntroPoint color={group.color || group.getColor(i)} {r} />
         {/each}
     </div>
   {/each}
@@ -107,6 +108,12 @@
     padding: 10vh 0;
     gap: 30px;
     align-items: flex-start;
+
+
+    @media (max-width: $mobile) {
+      // flex-direction: column;
+      gap: 20px;
+    }
   }
   .group {
     display: flex;
@@ -114,6 +121,12 @@
     flex-direction: column;
     max-height: 200px;
     gap: 5px;
+
+    @media (max-width: $mobile) {
+      gap: 5px;
+      // flex-direction: row;
+      // max-height: 100000px;
+    }
   }
 </style>
 
