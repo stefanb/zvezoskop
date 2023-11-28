@@ -16,11 +16,9 @@
 <div class="last-slide">
   <div class="content">
    <div class="text" in:fade>
-
-
     {#if $locale === 'si'}
-     <p>Relatoscope enables you to track the careers of political office holders, and to identify points where they intersect.</p>
-     <p>Explore the connections on your own in the network view, compare the networks of 2 persons together or explore in details theirs CVs.</p>
+     <p>V Zvezoskopu lahko spremljate karierne poti političnih funkcionarjev in ugotovite, kje se stikajo.</p>
+     <p>Raziščite povezave v omrežnem pogledu, primerjajte omrežja dveh oseb ali preverite njihov življenjepis.</p>
     {:else}
      <p>Relatoscope enables you to track the careers of political office holders, and to identify points where they intersect.</p>
      <p>Explore the connections on your own in the network view, compare the networks of 2 persons together or explore in details theirs CVs.</p>

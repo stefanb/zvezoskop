@@ -14,7 +14,6 @@
   const nodes = $data.map((d) => ({ ...d }));
   const links = connections.map((d) => ({ ...d }));
 
-  $: console.log($height)
 
 
   /** @type {Number} [xStrength=0.95] - The value passed into the `.strength` method on `forceX`. See [the documentation](https://github.com/d3/d3-force#x_strength). */
@@ -40,7 +39,6 @@
   }
 
   const recenterSimulation = () => {
-    console.log('recentering')
     if (simulation) {
       simulation.force('center', forceCenter($width / 2, $height / 2).strength(1))
     }

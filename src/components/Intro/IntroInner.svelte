@@ -82,8 +82,6 @@
   }
  }
 
- $: console.log(pointsFixed)
-
 //  let chartTopPosition = 1000;
 
 //   if (scrollSectionIndex === 0) {

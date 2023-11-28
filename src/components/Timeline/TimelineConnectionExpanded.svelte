@@ -1,20 +1,15 @@
 <script>
  import { getContext } from 'svelte';
- import LocalizedLink from '../LocalizedLink.svelte';
 	import { getColor, getLinearGradient } from '../../utils';
- import { min, max } from 'd3-array'
 
  export let item
  export let refX;
- export let i;
  export let labelWidth;
 
  const { xScale, xRange, xDomain } = getContext('LayerCake');
 
  $: startX = $xScale(new Date(item.startDisplayDate)) < $xRange[0] ? $xRange[0] + labelWidth : $xScale(new Date(item.startDisplayDate))
  $: endX = $xScale(Math.min(new Date(item.endDisplayDate), new Date()))
-
- $: console.log(item.position, getColor(item.position))
 </script>
 
 <div

@@ -29,8 +29,6 @@
 		}, 0);
 
 	$: passwordProtected = process.env.NODE_ENV === 'production' && hash(password) !== -1258221729;
-
-	$: console.log($page.data)
 	// $: {
 	// 	if ($currentPage?.data?.route !== $page.data.route) {
 	// 		$currentPage = $page

@@ -5,7 +5,6 @@
   export let item;
 
   $: label = getYearsLabel(item, $locale, $translate('present'))
-  $: console.log(label, $locale)
 
 </script>
 

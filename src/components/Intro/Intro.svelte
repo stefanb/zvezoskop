@@ -122,8 +122,6 @@
   let typing = false;
   let showSecondaryText = false;
   $: activeSection, typing = activeSection?.id !== 'outro', showSecondaryText = activeSection?.id === 'outro';
-
-  $: console.log(typing)
 </script>
 
 <IntroInner {sections} bind:activeSection >

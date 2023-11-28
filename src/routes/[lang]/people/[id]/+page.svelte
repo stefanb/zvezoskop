@@ -5,16 +5,11 @@
  import TimelineMobile from '../../../../components/TimelineMobile/Person/TimelineMobile.svelte';
  import { slugify, getColor, getTextColor, getDateYear, getDate, tField, getPositionLabel } from '../../../../utils';
  import { platform } from '../../../../components/MediaQuerySsr.svelte';
-import LocalizedLink from '../../../../components/LocalizedLink.svelte';
+ import LocalizedLink from '../../../../components/LocalizedLink.svelte';
 
  export let data;
 
-//  $: console.log($translations)
-//  $: console.log(data)
-
 $: party = tField(data, 'party', $locale);
-$: console.log(data.time_in_office)
-
 </script>
 
 <ProfileHeader

@@ -15,8 +15,6 @@
  ]
 
  $: grouped = groupBy(people, 'position')
-
- $: console.log(panels)
 </script>
 
 

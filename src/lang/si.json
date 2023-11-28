@@ -41,7 +41,12 @@
  "Not exact start and end date": "Ocena datumov začetka in konca",
  "select / deselect": "izberi/odstrani",
  "You can only select a maximum of 2 people. Deselect one first.":"Izberete lahko največ 2 osebi. Najprej eno odstranite.",
- "Got it!":"Razumem"
-
-
+ "Got it!":"Razumem",
+ "There are 158 members of government currently in office.": "Trenutno je na položaju 158 članov vlade in državnega zbora.",
+ "1 prime minister, 17 ministers, 50 state secretaries, and 90 members of parliament": "1 predsednik vlade, 17 ministrov, 50 državnih sekretarjev in 90 poslancev",
+ "74 are newcomers": "Novincev je 74.",
+ "while XY have been part of the political establishment since the 90s": "while XY have been part of the political establishment since the 90s",
+ "There are 63 women": "Na položaju je 63 žensk.",
+ "and 95 men": "and 95 men",
+ "Try it yourself": "Preizkusite sami"
 }

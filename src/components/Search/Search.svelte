@@ -146,9 +146,9 @@
  }
 
  :global(.mdc-deprecated-list-item) {
-  padding: 6px 10px;
-  font-family: IBM Plex Sans;
-
+  padding: 6px 10px !important;
+  font-family: IBM Plex Sans !important;
+  height: auto !important;
  }
 
  :global(.mdc-text-field) {
