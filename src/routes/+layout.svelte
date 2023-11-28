@@ -14,7 +14,7 @@
 	// import { currentPage, previousPage } from '../stores'
 	import MediaQuery, { platform } from '../components/MediaQuerySsr.svelte';
 
-	const images = import.meta.glob('$lib/img/**.png', { 
+	const images = import.meta.glob('$lib/img/**', { 
   query: { w: '100', h: '100', format: 'webp', grayscale: 'true' },
 		eager: true
 	});

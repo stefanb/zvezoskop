@@ -20,5 +20,15 @@
  "strankarska pozicija": "party position",
  "svetovalne in nadzorne funkcije etc.": "advisory and supervisory functions, etc.",
  "prostočasne aktivnosti": "leisure activities",
- "mp": "MP"
+ "mp": "MP",
+ "samostojni podjetnik": "Sole proprietor",
+ "lastnik podjetja": "Company owner",
+ "vodilni v podjetju": "Company manager",
+ "vodilni v javnem podjetju": "Manager at public sector company",
+ "akademik": "Academic",
+ "javni uslužbenec": "Public employee",
+ "zaposleni v zasebnem sektorju": "Private sector employee",
+ "nevladnik": "Member of NGO",
+ "politik": "Politician",
+ "politična stranka": "political party"
 }

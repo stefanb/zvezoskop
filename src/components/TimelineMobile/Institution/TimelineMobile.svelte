@@ -55,6 +55,7 @@
  $: currYear = minYear + scrollSectionIndex
  $: currYearItems = byYear[currYear]
 
+ console.log('in timeline mobile')
 
 </script>
 <div class="scroll-tracker">

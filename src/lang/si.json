@@ -2,7 +2,7 @@
  "app_title": "Zvezoskop",
  "app_description": "Projekt Zvezoskop interaktivno prikazuje poklicne odnose med aktualnimi slovenskimi politiki, njihovimi karierami in podjetji. Novinarji Oštra so v vizualizacijo vključili člane vlade, državne sekretarje in poslance državnega zbora.",
  "header": {
-  "home": "Home",
+  "home": "Domov",
   "about": "O nas",
   "search": "Iskanje",
   "the_project": "O projektu",
@@ -19,7 +19,7 @@
  "Party": "Politična stranka",
  "Birth year": "Leto rojstva",
  "First time in office": "Prvič na politični funkciji",
- "Assets": "Assets",
+ "Assets": "Premoženje",
  "Link": "Povezava",
  "View CV": "Življenjepis",
  "Search for people, political parties, or institutions":"Iskalnik po osebah, političnih strankah ali institucijah",
@@ -27,11 +27,21 @@
  "Skip": "Preskoči",
  "Back to": "Back to",
  "Network view": "Network view",
- "legend": "legend",
+ "legend": "legenda",
  "No matches found": "Ni zadetkov",
  "Prime minister": "Predsednik vlade",
  "Ministers": "Ministri",
  "State secretaries": "Državni sekretarji",
  "MPs": "Poslanci",
- "mp": "MP"
+ "mp": "MP",
+ "DD.MM.YYYY": "Dan, mesec, leto",
+ "The function is ongoing as of 27/11/2023": "Na položaju od 27. 11. 2023",
+ "Exact start and end date": "Točna datuma začetka in konca",
+ "Exact start and not exact end date": "Točen datum začetka in ocena konca",
+ "Not exact start and end date": "Ocena datumov začetka in konca",
+ "select / deselect": "izberi/odstrani",
+ "You can only select a maximum of 2 people. Deselect one first.":"Izberete lahko največ 2 osebi. Najprej eno odstranite.",
+ "Got it!":"Razumem"
+
+
 }

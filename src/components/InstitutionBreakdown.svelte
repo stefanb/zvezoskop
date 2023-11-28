@@ -2,12 +2,10 @@
  import { arrayUniqueById, groupBy } from "../utils";
 	import PersonLabel from "./PersonLabel.svelte";
  import { getInitials } from "../utils";
- import { locale } from '$lib/translations';
+ import { locale, translate } from '$lib/translations';
 
  export let affiliations;
  export let peopleLookup;
-
- console.log(affiliations)
 
  $: sortedAffiliations =  Object.entries(affiliations)
   .map(([type, items]) => ({ type, items: arrayUniqueById(items, 'person_id')}))
@@ -19,7 +17,7 @@
  <div class="outer-container">
   {#each sortedAffiliations as {type, items}}
    {#if !!type}
-    {@const typeLabel = $locale !== 'si' && items[0].affiliation_type_en ? items[0].affiliation_type_en : type}
+    {@const typeLabel = $locale !== 'si' && items[0].affiliation_type_en ? items[0].affiliation_type_en : $translate(type)}
     <div class="container">
      <div class="left">
       {typeLabel}
