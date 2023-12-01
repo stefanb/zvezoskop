@@ -1,5 +1,5 @@
 <script>
-import { currentPage, previousPage } from '../stores';
+import { hist } from '../stores';
 import { translate, locale } from '$lib/translations';
 import { tField } from '../utils';
 import backArrowIcon from '$lib/images/arrow_back.svg';
@@ -8,28 +8,34 @@ import backArrowIcon from '$lib/images/arrow_back.svg';
 // let showButton = false;
 let buttonText = null;
 
+$: currentPage = $hist.length > 0 ? $hist[$hist.length - 1] : null
+$: previousPage = $hist.length > 1 ? $hist[$hist.length - 2] : null
+
 $: {
- if (!!$previousPage?.url?.pathname) {
-  if ($previousPage.url.pathname !== $currentPage.url.pathname) {
-   if ($previousPage.data.name) {
-    buttonText = $previousPage.data.name
-   } else if ($previousPage.data.affiliations?.length) {
-    buttonText = tField($previousPage.data.affiliations[0], 'institution', $locale)
-   } else if ($previousPage.data.route === '/' || $previousPage.data.route === '') {
+ if (!!previousPage?.url?.pathname) {
+  if (previousPage.url.pathname !== currentPage.url.pathname) {
+   if (previousPage.data.name) {
+    buttonText = previousPage.data.name
+   } else if (previousPage.data.affiliations?.length) {
+    buttonText = tField(previousPage.data.affiliations[0], 'institution', $locale)
+   } else if (previousPage.data.route === '/' || previousPage.data.route === '') {
     buttonText = $translate("Network view")
    } else {
     buttonText = null;
    }
+  } else {
+   buttonText = null;
   }
+ } else {
+  buttonText = null;
  }
- 
 }
 
 </script>
 
 {#if buttonText}
  <div class="back-button">
-  <a href={$previousPage.url.href}>
+  <a href={previousPage.url.href}>
    <img src={backArrowIcon} />
    <span>{$translate("Back to")} {buttonText}</span>
   </a>

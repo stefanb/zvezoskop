@@ -11,7 +11,7 @@
 	import { translate, locale } from '$lib/translations';
 	import Analytics from '$lib/analytics.svelte'
 
-	// import { currentPage, previousPage } from '../stores'
+	import { hist } from '../stores'
 	import MediaQuery, { platform } from '../components/MediaQuerySsr.svelte';
 
 	const images = import.meta.glob('$lib/img/**', { 
@@ -29,13 +29,20 @@
 		}, 0);
 
 	$: passwordProtected = process.env.NODE_ENV === 'production' && hash(password) !== -1258221729;
-	// $: {
-	// 	if ($currentPage?.data?.route !== $page.data.route) {
-	// 		$currentPage = $page
-	// 	}
-	// }
+	$: {
+		const histLength = $hist.length;
 
-	// $: console.log($currentPage, $previousPage)
+		if (histLength === 0) {
+			$hist = [$page]
+		} else if (histLength >= 2 && $hist[histLength - 2]?.data?.route === $page.data.route) {
+			$hist.pop()
+			$hist = $hist
+		} else if ($hist[histLength - 1]?.data?.route !== $page.data.route) {
+			$hist = [...$hist, $page]
+		}
+	}
+
+	$: console.log($hist)
 </script>
 
 <Analytics />

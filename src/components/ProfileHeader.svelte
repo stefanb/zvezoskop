@@ -4,7 +4,7 @@ import { platform } from "./MediaQuerySsr.svelte";
 import NotesTooltip from './NotesTooltip.svelte';
 import Image from '../components/Image.svelte'
 import TimelineLegend from './TimelineLegend.svelte';
-// import BackButton from './BackButton.svelte';
+import BackButton from './BackButton.svelte';
 
  export let imageLink = undefined;
  export let title = undefined;
@@ -30,7 +30,7 @@ $: collapsed = !!scrollY && scrollY !== 0 && (pageContentHeight + 100) > windowH
 <div class="outer-container" style="--background-color: {background}; --text-color: {textColor}; --border-color: {border}" class:collapsed={collapsed} class:mobile={$platform === 'mobile'} bind:clientHeight={h}>
   <div class="ProfileHeader">
     <div class="ProfileHeader__back-button">
-      <!-- <BackButton /> -->
+      <BackButton />
     </div>
     <div class="inner-container">
       <div class="ProfileHeader__main">
