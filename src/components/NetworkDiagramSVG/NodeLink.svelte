@@ -111,6 +111,7 @@ const forceBoundary = () => {
  }
 
  const fixConnectedNodes = () => {
+  // console.log('fixing connected nodes')
   simulation.nodes().forEach((node) => {
     if (isConnectedToSelected(node)) {
       node.fx = node.x;
@@ -120,6 +121,8 @@ const forceBoundary = () => {
  }
 
  const fixSelectedNodes = () => {
+  // console.log('fixing selected nodes')
+
   simulation.nodes().forEach((node) => {
     if ($selected?.includes(node.id)) {
       node.fy = $height/2;
@@ -136,6 +139,8 @@ const forceBoundary = () => {
  }
 
  const clearFixedNodes = () => {
+  // console.log('clearing fixed nodes')
+
   simulation?.nodes().forEach((node) => {
     node.fx = undefined;
     node.fy = undefined;
@@ -146,6 +151,7 @@ const forceBoundary = () => {
   // console.log("selectItem", $selected, visibleLinks)
 
   if (simulation) {
+    clearFixedNodes()
     setLinkVisibility()
     
     if ($selected.length) {
@@ -261,7 +267,6 @@ const forceBoundary = () => {
       recenterSimulation()
           
     } else {
-      clearFixedNodes()
       runInitialSimulation()
       tick()
     }
@@ -269,7 +274,7 @@ const forceBoundary = () => {
  }
 
  const setLinkVisibility = () => {
-  // console.log("setLinkVisibility", $selected, visibleLinks)
+  console.log("setLinkVisibility", $selected, visibleLinks)
   if ($hovered || $selected.length) {
     links = initialLinks.map(({ source, target, visible, ...rest }) => ({ 
       visible: (source === $hovered || target === $hovered || $selected.includes(source) || $selected.includes(target)),
@@ -278,9 +283,9 @@ const forceBoundary = () => {
       target,
       ...rest
     }))
-    if (!visibleLinks.length) {
+    // if (!visibleLinks.length) {
       visibleLinks = links.filter(({ visible }) => !!visible)
-    }
+    // }
     // console.log('links', links.filter(({ visible }) => !!visible))
   } else {
     links = initialLinks
@@ -322,7 +327,7 @@ const tick = () => {
   }
  }
 
-//  $: console.log('fixed nodes', simulation?.nodes().filter(({ fx }) => !!fx))
+ $: console.log('fixed nodes', simulation?.nodes().filter(({ fx }) => !!fx))
 
 
 </script>
