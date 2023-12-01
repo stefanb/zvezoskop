@@ -13,6 +13,8 @@ import ProfileHeader from '../../../../components/ProfileHeader.svelte';
  export let data;
 
  let notes;
+ let timelineHeight;
+
  $: {
   const notesRaw = data.affiliations.map(a => tField(a, 'notes_institution', $locale)).filter(note => note?.length > 0)
 
@@ -20,8 +22,6 @@ import ProfileHeader from '../../../../components/ProfileHeader.svelte';
  }
 
 
-
-//  $: console.log(platform, platform === 'mobile')
 </script>
 
 
@@ -32,6 +32,7 @@ import ProfileHeader from '../../../../components/ProfileHeader.svelte';
     background={$platform === 'mobile' || !!data.partyData ? '#E6E6EB' : '#FFF'}
     border={$platform === 'mobile' || !!data.partyData ? '#FFF' : '#6E7382'}
     hideLegend={!!data.partyData}
+    pageContentHeight={timelineHeight}
   />
   {#if data.partyData}
     <InstitutionBreakdown affiliations={data.partyData.affiliations} peopleLookup={data.associatedPeople} />
@@ -43,15 +44,18 @@ import ProfileHeader from '../../../../components/ProfileHeader.svelte';
       items={data.affiliations}
       />
     {:else}
-      <Timeline 
-        items={data.affiliations}
-        rowGroupingVar="person_name"
-        getItemLink={({ person_id }) => `/people/${person_id}`}
-        getItemLabel={({ person_id }) => {
-          const person = data.associatedPeople.find(({ id }) => id === person_id)
-          return person
-        }}
+      <div bind:clientHeight={timelineHeight}>
+        <Timeline 
+          items={data.affiliations}
+          rowGroupingVar="person_name"
+          getItemLink={({ person_id }) => `/people/${person_id}`}
+          getItemLabel={({ person_id }) => {
+            const person = data.associatedPeople.find(({ id }) => id === person_id)
+            return person
+          }}
         />
+      </div>
+      
     {/if}
   {/if}
 {/key}

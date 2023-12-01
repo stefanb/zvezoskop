@@ -15,23 +15,17 @@ import TimelineLegend from './TimelineLegend.svelte';
  export let border = undefined;
  export let textColor = undefined;
  export let hideLegend = false;
+ export let pageContentHeight;
 
 
 let scrollY;
 let h;
-// let prevLink;
+let windowH
 
-$: collapsed = scrollY && scrollY !== 0;
+$: collapsed = !!scrollY && scrollY !== 0 && (pageContentHeight + 100) > windowH;
 
-// $: {
-//   if ($hist.length > 1) {
-//     prevLink = $o
-//   }
-// }
-
- 
 </script>
-<svelte:window bind:scrollY={scrollY} />
+<svelte:window bind:scrollY={scrollY} bind:innerHeight={windowH}/>
 
 <div class="outer-container" style="--background-color: {background}; --text-color: {textColor}; --border-color: {border}" class:collapsed={collapsed} class:mobile={$platform === 'mobile'} bind:clientHeight={h}>
   <div class="ProfileHeader">

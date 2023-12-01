@@ -8,6 +8,8 @@
  import LocalizedLink from '../../../../components/LocalizedLink.svelte';
 
  export let data;
+ let timelineHeight;
+
 
 $: party = tField(data, 'party', $locale);
 </script>
@@ -18,6 +20,7 @@ $: party = tField(data, 'party', $locale);
  imageLink={data.image_link}
  background={getColor(data.position)}
  textColor={getTextColor(data.position)}
+ pageContentHeight={timelineHeight}
  details={[
   {
    label: $translate("Party"),
@@ -51,13 +54,15 @@ $: party = tField(data, 'party', $locale);
         color={getColor(data.position)}
       />
     {:else}
-      <Timeline 
-        items={data.cv}
-        color={getColor(data.position)}
-        sectionGroupingVar="part_of_cv"
-        rowGroupingVar="institution_si"
-        getItemLink={({ institution_si }) => `/institutions/${slugify(institution_si)}`}
-      />
+      <div bind:clientHeight={timelineHeight}>
+        <Timeline 
+          items={data.cv}
+          color={getColor(data.position)}
+          sectionGroupingVar="part_of_cv"
+          rowGroupingVar="institution_si"
+          getItemLink={({ institution_si }) => `/institutions/${slugify(institution_si)}`}
+        />
+      </div>
     {/if}
   {/if}
 {/key}
