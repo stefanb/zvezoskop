@@ -6,7 +6,5 @@ export function entries() {
  const en = Object.keys(institutions).filter(i => !!i).map((id) => ({ id, lang: "en" }));
  const si = Object.keys(institutions).filter(i => !!i).map((id) => ({ id, lang: "si" }));
 
- // console.log('inst', entries)
-
  return [...en, ...si];
 }
