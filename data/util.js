@@ -16,3 +16,9 @@ export const slugify = (str) => {
     .replace(/\s+/g, '-') // replace spaces with hyphens
     .replace(/-+/g, '-'); // remove consecutive hyphens
  }
+
+
+export const arrayUniqueById = (arr, key) => {
+  const map = new Map(arr.map(o => [o[key],o]));
+  return [...map.values()];
+}

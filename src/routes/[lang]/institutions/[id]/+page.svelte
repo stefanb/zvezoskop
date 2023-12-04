@@ -35,7 +35,7 @@ import ProfileHeader from '../../../../components/ProfileHeader.svelte';
     pageContentHeight={timelineHeight}
   />
   {#if data.partyData}
-    <InstitutionBreakdown affiliations={data.partyData.affiliations} peopleLookup={data.associatedPeople} />
+    <InstitutionBreakdown affiliations={data.partyData.affiliations} />
     <TimelineLegend />
   {/if}
   {#if $platform}

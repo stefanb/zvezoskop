@@ -5,10 +5,11 @@
  import { locale, translate } from '$lib/translations';
 
  export let affiliations;
- export let peopleLookup;
+
+ $: console.log(affiliations)
 
  $: sortedAffiliations =  Object.entries(affiliations)
-  .map(([type, items]) => ({ type, items: arrayUniqueById(items, 'person_id')}))
+  .map(([type, items]) => ({ type, items }))
   .sort((a, b) => a.items.length > b.items.length ? -1 : 1)
 
 </script>
@@ -17,19 +18,17 @@
  <div class="outer-container">
   {#each sortedAffiliations as {type, items}}
    {#if !!type}
-    {@const typeLabel = $locale !== 'si' && items[0].affiliation_type_en ? items[0].affiliation_type_en : $translate(type)}
     <div class="container">
      <div class="left">
-      {typeLabel}
+      {$translate(type)}
      </div>
      <div class="right">
-      {#each items as { person_id }}
-       {@const personData = peopleLookup.find(({ id }) => id === person_id)}
+      {#each items as { person_id, image_link, person_name, curr_position }}
        <PersonLabel 
         id={person_id}
-        image_link={personData.image_link}
-        imagePlaceholder={getInitials(personData.person_name)}
-        position={personData.position}
+        image_link={image_link}
+        imagePlaceholder={getInitials(person_name)}
+        position={curr_position}
         size="small"
         clickable
        />

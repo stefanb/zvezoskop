@@ -5,7 +5,7 @@ import {
 import fs from 'fs'
 import moment from 'moment'
 
-import { groupBy, slugify } from './util.js';
+import { groupBy, slugify, arrayUniqueById } from './util.js';
 import { start } from 'repl';
 
 // const spreadsheetId = process.argv[2];
@@ -171,6 +171,16 @@ async function main() {
       delete retObj.institution_standardized_en
       delete retObj.other
       delete retObj.source
+      delete retObj.notes_position_si
+      delete retObj.notes_position_en
+      delete retObj.start_month
+      delete retObj.start_day
+      delete retObj.end_month
+      delete retObj.end_day
+      delete retObj["LEKTORJ KOMENTAR"]
+      delete retObj["PREVAJALEC KOMENTAR"]
+
+      // console.log(retObj)
 
       // Object.keys(retObj).forEach(k => (!retObj[k] && retObj[k] !== undefined) && delete retObj[k]);
 
@@ -215,7 +225,6 @@ async function main() {
   const allCV = {};
 
   Object.entries(cvByPerson).map(([personId, cvItems]) => {
-    let connectionCount = 0
     let allConnections = []
 
     
@@ -239,7 +248,6 @@ async function main() {
 
     let links = {}
     allConnections.forEach(({ person_id, institution_si, institution_en, show_in_network }) => {
-      console.log(show_in_network === "TRUE")
       if (show_in_network === "TRUE" ) {
         const englishValue = !institution_en || institution_en.length === 0 ? institution_si : institution_en
 
@@ -299,7 +307,7 @@ async function main() {
   const keyedInstitutions = {}
 
   Object.entries(cvByInstitution).forEach(([instituion, entries]) => {
-    keyedInstitutions[slugify(instituion)] = entries.map(({ person_id, ...rest }) => {
+    keyedInstitutions[slugify(instituion)] = entries.map(({ person_id, show_in_network, ...rest }) => {
       const person = people.find(({ id }) => id === person_id)
       return ({
         curr_position: person?.position,
@@ -317,27 +325,35 @@ async function main() {
     const cvData = keyedInstitutions[id];
 
     if (cvData) {
-      const personIds = [...new Set(cvData.map(({ person_id }) => person_id))]
+      // const personIds = [...new Set(cvData.map(({ person_id }) => person_id))]
 
-      personIds.forEach((person_id) => {
-        const personCV = allCV[person_id];
+      const personIds = arrayUniqueById(cvData, 'person_id');
+
+      // console.log(personIds.length)
+
+      personIds.forEach((item) => {
+        const justRelevantDetails = {person_id: item.person_id, person_name: item.person_name, image_link: item.image_link, curr_position:item.curr_position }
+        const personCV = allCV[item.person_id];
+
+        // console.log('personCV', personCV)
   
-        const personAffiliations = personCV.map(({ affiliation_type_si, affiliation_type_en }) => ({ affiliation_type_si, affiliation_type_en }))
+        const personAffiliations = personCV.map(({ affiliation_type_si }) => ({ affiliation_type_si }))
   
-        personAffiliations.forEach(({ affiliation_type_si, affiliation_type_en }) => {
+        personAffiliations.forEach(({ affiliation_type_si }) => {
           if (affiliation_type_si !== '') {
-            const item = { person_id, affiliation_type_si, affiliation_type_en };
-            if (affiliation_type_si in affiliations && !affiliations[affiliation_type_si].includes(item)) {
-              affiliations[affiliation_type_si].push(item);
+            if (affiliation_type_si in affiliations) {
+              affiliations[affiliation_type_si].push(justRelevantDetails);
             } else {
-              affiliations[affiliation_type_si] = [item]
+              affiliations[affiliation_type_si] = [justRelevantDetails]
             }
           }
         })
       })
     }
 
-    
+    Object.keys(affiliations).forEach(key => {
+      affiliations[key] = arrayUniqueById(affiliations[key], 'person_id')
+    })
 
     return ({
       id,
@@ -347,10 +363,15 @@ async function main() {
     })
   })
 
+  // CLEANUP
+  people = people.map(({ wikidata_id, is_visible, address, is_first_time_in_office, city, municipality, start_date, end_date, footnote_si, footnote_en, ...rest }) => ({...rest}))
+  
+
+
   writeFile('./src/lib/data/people.json', people);
   writeFile('./src/lib/data/links.json', allLinks);
   writeFile('./src/lib/data/institutions.json', keyedInstitutions);
-  // writeFile('./src/lib/data/cv.json', allCV);
+  // // writeFile('./src/lib/data/cv.json', allCV);
   writeFile('./src/lib/data/parties.json', parties);
 
   Object.entries(allCV).forEach(([id, cvItems]) => {
