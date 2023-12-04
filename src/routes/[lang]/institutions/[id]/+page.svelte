@@ -39,13 +39,13 @@ import ProfileHeader from '../../../../components/ProfileHeader.svelte';
     <TimelineLegend />
   {/if}
   {#if $platform}
-    {#if $platform === 'mobile'}
-      <TimelineMobile
-      items={data.affiliations}
-      />
-    {:else}
-      <div bind:clientHeight={timelineHeight}>
-        <Timeline 
+    <div bind:clientHeight={timelineHeight}>
+      {#if $platform === 'mobile'}
+        <TimelineMobile
+        items={data.affiliations}
+        />
+      {:else}
+        <Timeline
           items={data.affiliations}
           rowGroupingVar="person_name"
           getItemLink={({ person_id }) => `/people/${person_id}`}
@@ -54,8 +54,7 @@ import ProfileHeader from '../../../../components/ProfileHeader.svelte';
             return person
           }}
         />
-      </div>
-      
-    {/if}
+      {/if}
+    </div>
   {/if}
 {/key}

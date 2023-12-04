@@ -51,13 +51,13 @@ $: party = tField(data, 'party', $locale);
 {#key data.id}
   {#if $platform}
     {#if data.cv}
-      {#if $platform === 'mobile'}
-        <TimelineMobile
-          items={data.cv}
-          color={getColor(data.position)}
-        />
-      {:else}
-        <div bind:clientHeight={timelineHeight}>
+      <div bind:clientHeight={timelineHeight}>
+        {#if $platform === 'mobile'}
+          <TimelineMobile
+            items={data.cv}
+            color={getColor(data.position)}
+          />
+        {:else}
           <Timeline 
             items={data.cv}
             color={getColor(data.position)}
@@ -65,8 +65,8 @@ $: party = tField(data, 'party', $locale);
             rowGroupingVar="institution_si"
             getItemLink={({ institution_si }) => `/institutions/${slugify(institution_si)}`}
           />
-        </div>
-      {/if}
+        {/if}
+      </div>
     {:else}
       <div class="placeholder">
         {$translate("This person has no CV items in the database.")}
