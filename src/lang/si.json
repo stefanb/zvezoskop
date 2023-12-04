@@ -27,6 +27,7 @@
  "Skip": "Preskoči",
  "Back to": "Back to",
  "Network view": "Network view",
+ "Directory": "Directory",
  "legend": "legenda",
  "No matches found": "Ni zadetkov",
  "Prime minister": "Predsednik vlade",
@@ -48,5 +49,12 @@
  "while XY have been part of the political establishment since the 90s": "while XY have been part of the political establishment since the 90s",
  "There are 63 women": "Na položaju je 63 žensk.",
  "and 95 men": "and 95 men",
- "Try it yourself": "Preizkusite sami"
+ "6 ministers": "6 ministrov",
+ "23 state secretaries": "23 državnih sekretarjev",
+ "34 members of parliament": "34 poslancev",
+ "11 ministers": "11 ministrov",
+ "27 state secretaries": "27 državnih sekretarjev",
+ "56 members of parliament": "56 poslancev",
+ "Try it yourself": "Preizkusite sami",
+ "This person has no CV items in the database.": "This person has no CV items in the database."
 }

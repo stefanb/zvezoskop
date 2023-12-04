@@ -198,7 +198,7 @@
 			}
 	}
 
-	:global(.header a) {
+	:global(.header a), :global(.mobile-menu a)  {
 		color: white !important;
 		font-size: 14px !important;
 		font-weight: normal;
@@ -206,7 +206,13 @@
 		padding: 0 8px;
 
 		&.mobile-link {
-			padding: 0;
+			padding: 6px 0;
+			color: white !important;
 		}
+	}
+
+	:global(.mobile-menu a) {
+		color: white !important;
+		// padding: 6px 0;
 	}
 </style>

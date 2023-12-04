@@ -3,7 +3,9 @@ import { hist } from '../stores';
 import { translate, locale } from '$lib/translations';
 import { tField } from '../utils';
 import backArrowIcon from '$lib/images/arrow_back.svg';
-    import LocalizedLink from './LocalizedLink.svelte';
+import LocalizedLink from './LocalizedLink.svelte';
+import { platform } from "./MediaQuerySsr.svelte";
+
 
 
 // let showButton = false;
@@ -20,7 +22,7 @@ $: {
    } else if (previousPage.data.affiliations?.length) {
     buttonText = tField(previousPage.data.affiliations[0], 'institution', $locale)
    } else if (previousPage.data.route === '/' || previousPage.data.route === '') {
-    buttonText = $translate("Network view")
+    buttonText = $platform === 'mobile' ? $translate("Directory") : $translate("Network view")
    } else {
     buttonText = null;
    }

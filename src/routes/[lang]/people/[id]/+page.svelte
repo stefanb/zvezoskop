@@ -44,25 +44,42 @@ $: party = tField(data, 'party', $locale);
   }
  ]}
 
+
+
 />
 
 {#key data.id}
-  {#if data.cv && $platform}
-    {#if $platform === 'mobile'}
-      <TimelineMobile
-        items={data.cv}
-        color={getColor(data.position)}
-      />
-    {:else}
-      <div bind:clientHeight={timelineHeight}>
-        <Timeline 
+  {#if $platform}
+    {#if data.cv}
+      {#if $platform === 'mobile'}
+        <TimelineMobile
           items={data.cv}
           color={getColor(data.position)}
-          sectionGroupingVar="part_of_cv"
-          rowGroupingVar="institution_si"
-          getItemLink={({ institution_si }) => `/institutions/${slugify(institution_si)}`}
         />
+      {:else}
+        <div bind:clientHeight={timelineHeight}>
+          <Timeline 
+            items={data.cv}
+            color={getColor(data.position)}
+            sectionGroupingVar="part_of_cv"
+            rowGroupingVar="institution_si"
+            getItemLink={({ institution_si }) => `/institutions/${slugify(institution_si)}`}
+          />
+        </div>
+      {/if}
+    {:else}
+      <div class="placeholder">
+        {$translate("This person has no CV items in the database.")}
       </div>
     {/if}
   {/if}
 {/key}
+
+
+<style lang="scss">
+  .placeholder {
+    margin: 20px;
+    // font-weight: 500;
+    font-style: italic;
+  }
+</style>
