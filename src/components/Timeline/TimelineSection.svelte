@@ -16,7 +16,7 @@ import { locale } from '$lib/translations';
 
  const byRow = groupBy(items, rowGroupingVar)
  const sortedByRow = Object.values(byRow).sort((a, b) => {
-  return new Date(a[0].startCompareDate) < new Date(b[0].startCompareDate) ? -1 : 1
+  return new Date(a[0].startDisplayDate) < new Date(b[0].startDisplayDate) ? -1 : 1
  })
 
  let h;

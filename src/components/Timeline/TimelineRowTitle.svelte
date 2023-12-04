@@ -14,7 +14,7 @@
 
 //  let w;
 //  $: titleLeftShift = (w && startX + w > $width) ? $width - (startX + w) : 0
-
+$: console.log(component, title)
 </script>
 
 

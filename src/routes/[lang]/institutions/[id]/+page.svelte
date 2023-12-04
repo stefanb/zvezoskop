@@ -49,6 +49,7 @@ import ProfileHeader from '../../../../components/ProfileHeader.svelte';
           items={data.affiliations}
           rowGroupingVar="person_name"
           getItemLink={({ person_id }) => `/people/${person_id}`}
+          getItemLabel={({ person_id, person_name, image_link, curr_position }) => ({ id:person_id, image_link, name:person_name, position:curr_position})}
         />
       {/if}
     </div>

@@ -167,12 +167,14 @@ async function main() {
         institution_si: institution_si?.trim(),
       })
 
+      delete retObj.id
       delete retObj.institution_standardized_si
       delete retObj.institution_standardized_en
       delete retObj.other
       delete retObj.source
       delete retObj.notes_position_si
       delete retObj.notes_position_en
+      delete retObj.affiliation_type_en
       delete retObj.start_month
       delete retObj.start_day
       delete retObj.end_month
@@ -307,7 +309,7 @@ async function main() {
   const keyedInstitutions = {}
 
   Object.entries(cvByInstitution).forEach(([instituion, entries]) => {
-    keyedInstitutions[slugify(instituion)] = entries.map(({ person_id, show_in_network, ...rest }) => {
+    keyedInstitutions[slugify(instituion)] = entries.map(({ person_id, ...rest }) => {
       const person = people.find(({ id }) => id === person_id)
       return ({
         curr_position: person?.position,
@@ -366,6 +368,19 @@ async function main() {
   // CLEANUP
   people = people.map(({ wikidata_id, is_visible, address, is_first_time_in_office, city, municipality, start_date, end_date, footnote_si, footnote_en, ...rest }) => ({...rest}))
   
+  Object.keys(keyedInstitutions).forEach(key => {
+    keyedInstitutions[key] = keyedInstitutions[key].map(({ affiliation_type_si, show_in_network, startCompareDate, endCompareDate, institution_si, institution_en, ...rest }, i) => {
+      if (i === 0) {
+        return ({ institution_en, institution_si, ...rest })
+      } else {
+        return ({ ...rest })
+      }
+    })
+  })
+
+  Object.keys(allCV).forEach(key => {
+    allCV[key] = allCV[key].map(({ affiliation_type_si, show_in_network, startCompareDate, endCompareDate, ...rest }, i) => ({ ...rest }))
+  })
 
 
   writeFile('./src/lib/data/people.json', people);
