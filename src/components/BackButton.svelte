@@ -3,6 +3,7 @@ import { hist } from '../stores';
 import { translate, locale } from '$lib/translations';
 import { tField } from '../utils';
 import backArrowIcon from '$lib/images/arrow_back.svg';
+    import LocalizedLink from './LocalizedLink.svelte';
 
 
 // let showButton = false;
@@ -35,16 +36,16 @@ $: {
 
 {#if buttonText}
  <div class="back-button">
-  <a href={previousPage.url.href}>
+  <LocalizedLink component="a" href={previousPage.data.route}>
    <img src={backArrowIcon} />
    <span>{$translate("Back to")} {buttonText}</span>
-  </a>
+  </LocalizedLink>
   
  </div>
 {/if}
 
 <style lang="scss">
- .back-button a {
+ :global(.back-button a) {
   color: #00001E !important;
   font-family: IBM Plex Sans;
   font-size: 12px;

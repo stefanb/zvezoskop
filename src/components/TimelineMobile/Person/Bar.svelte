@@ -2,7 +2,6 @@
  import { getContext } from "svelte";
  import { tweened } from "svelte/motion";
 	import { cubicOut } from "svelte/easing";
- import { LayerCake, Svg } from "layercake";
 
  export let start_year;
  export let end_year;
@@ -12,7 +11,7 @@
  export let color;
 	export let setSelectedIndex;
 
- const { data, xGet, width, zGet, yGet, xScale, yDomain, yRange, rGet, xDomain, xRange, yScale } = getContext('LayerCake');
+ const { yScale } = getContext('LayerCake');
 
  const tweenParameters = {
 			duration: 400,
@@ -21,11 +20,8 @@
 
 	const tX = tweened(index * 10, tweenParameters);
 
-	let hovered = false;
-
  $: $tX = (index - xOffset) * 10 + 5;
  $: height = $yScale(end_year === 2100 ? new Date().getFullYear() : end_year) - $yScale(start_year);
- // $: console.log($data, $yDomain, $yRange, $yScale(2010))
 </script>
 
 <rect 

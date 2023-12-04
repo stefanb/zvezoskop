@@ -91,7 +91,6 @@ $: {
         class="year"
         class:hidden={shouldHideStartYear}
       >
-        <!-- <span>{item.start_year}</span> -->
         <span>{displayDate(item, 'start', locale)}</span>
         {#if item.end_year === 2100 || yearsTransformX < 0}
           <span>-</span>
@@ -99,37 +98,19 @@ $: {
       </div>
     {/if}
    
-    <!-- {#if item.end_year && item.end_year !== item.start_year} -->
       <div
         class="year"
         class:centered={shouldCenterEndYear}
       >
         {#if item.end_year !== 2100}
-         <!-- {item.end_year} -->
           <span>{displayDate(item, 'end', locale)}</span>
         {/if}
       </div>
-    <!-- {/if} -->
   </div>
-  
-  <!-- {#if uniqueConnections}
-    <div class="connections-outer-container">
-      <div class="connections">
-        {#each uniqueConnections.slice(0, numConnectionsToShow) as connection (connection.person_id)}
-          <div class="connection" style={`background-image: url('${connection.image_link}'); border-color: ${getColor(connection.position)}`}></div>
-        {/each}
-        {#if uniqueConnections.length > numConnectionsToShow}
-          <div class="connection-more">{`+${uniqueConnections.length - numConnectionsToShow}`}</div>
-        {/if}
-      </div>
-  </div>
-  {/if} -->
 </div>
 
 <style lang="scss">
-
  .item {
-  // display: inline-flex;
   position: absolute;
   top: 0;
  }
@@ -206,20 +187,12 @@ $: {
   font-size: 9px;
   color: #3CBEAA;
   font-weight: 500;
-  /* padding: 1px; */
-  /* border: 1px solid #3CBEAA;
-  border-radius: 50px; */
+
 }
 
 .connections-expanded {
-  /* position: absolute; */
   top: 0;
   left: 0;
   background-color: white;
-  // z-index: 100;
-
-  &__item {
-    /* position: absolute; */
-  }
 }
 </style>
