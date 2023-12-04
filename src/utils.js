@@ -114,13 +114,13 @@ export const formatDate = (item, prefix, locale) => {
 }
 
 export const displayDate = (item, prefix, locale) => {
-  // console.log(item)
+  const date = new Date(item[`${prefix}DisplayDate`])
   if (item[`${prefix}MonthUncertain`]) {
-    return item[`${prefix}_year`];
+    return date.getFullYear();
   } else if (item[`${prefix}DayUncertain`]) {
-    return (+item[`${prefix}_month`]+1) + '.' + item[`${prefix}_year`];
+    return date.getMonth()+1 + '.' + date.getFullYear();
   } else {
-    return item[`${prefix}_day`] + '.' + (+item[`${prefix}_month`]+1) + '.' + item[`${prefix}_year`];
+    return date.getDate() + '.' + (date.getMonth()+1) + '.' + date.getFullYear();
   }
 }
 

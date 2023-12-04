@@ -49,10 +49,6 @@ import ProfileHeader from '../../../../components/ProfileHeader.svelte';
           items={data.affiliations}
           rowGroupingVar="person_name"
           getItemLink={({ person_id }) => `/people/${person_id}`}
-          getItemLabel={({ person_id }) => {
-            const person = data.associatedPeople.find(({ id }) => id === person_id)
-            return person
-          }}
         />
       {/if}
     </div>

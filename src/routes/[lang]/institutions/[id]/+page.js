@@ -9,8 +9,6 @@ export async function load({ params }) {
 
  const affiliations = institutions[id]
 
- const associatedPeople = affiliations.map(({ person_id }) => people.find(d => d.id === person_id))
-
  const partyData = parties.find(({ id:partyId }) => id === partyId)
 
  const institutionData = affiliations[0];
@@ -18,5 +16,5 @@ export async function load({ params }) {
  const title_si = institutionData.institution_si
 	const title_en = institutionData.institution_en
 
- return ({ affiliations, associatedPeople, partyData, title_si, title_en })
+ return ({ affiliations, partyData, title_si, title_en })
 }
