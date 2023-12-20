@@ -48,7 +48,7 @@ const writeFile = (path, data) => {
     if (err)
       console.log(err);
     else {
-      console.log("File written successfully\n");
+      // console.log("File written successfully\n");
     }
   })
 }
@@ -167,7 +167,6 @@ async function main() {
         institution_si: institution_si?.trim(),
       })
 
-      delete retObj.id
       delete retObj.institution_standardized_si
       delete retObj.institution_standardized_en
       delete retObj.other
@@ -201,6 +200,8 @@ async function main() {
 
   const findConnections = ({ id, person_id, institution_si, institution_department_si, startCompareDate, endCompareDate }) => {
     const institutionConnections = cvByInstitution[institution_si];
+
+    // console.log(institutionConnections, startCompareDate, endCompareDate)
 
     if (!institutionConnections || !startCompareDate || !endCompareDate) {
       return []
@@ -247,6 +248,8 @@ async function main() {
         connections
       });
     })
+
+    // console.log(allConnections)
 
     let links = {}
     allConnections.forEach(({ person_id, institution_si, institution_en, show_in_network }) => {
@@ -369,7 +372,7 @@ async function main() {
   people = people.map(({ wikidata_id, is_visible, address, is_first_time_in_office, city, municipality, start_date, end_date, footnote_si, footnote_en, ...rest }) => ({...rest}))
   
   Object.keys(keyedInstitutions).forEach(key => {
-    keyedInstitutions[key] = keyedInstitutions[key].map(({ affiliation_type_si, show_in_network, startCompareDate, endCompareDate, institution_si, institution_en, ...rest }, i) => {
+    keyedInstitutions[key] = keyedInstitutions[key].map(({ id, affiliation_type_si, show_in_network, startCompareDate, endCompareDate, institution_si, institution_en, ...rest }, i) => {
       if (i === 0) {
         return ({ institution_en, institution_si, ...rest })
       } else {
@@ -379,8 +382,9 @@ async function main() {
   })
 
   Object.keys(allCV).forEach(key => {
-    allCV[key] = allCV[key].map(({ affiliation_type_si, show_in_network, startCompareDate, endCompareDate, ...rest }, i) => ({ ...rest }))
+    allCV[key] = allCV[key].map(({ id, affiliation_type_si, show_in_network, startCompareDate, endCompareDate, ...rest }, i) => ({ ...rest }))
   })
+
 
 
   writeFile('./src/lib/data/people.json', people);
