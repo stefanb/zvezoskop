@@ -167,7 +167,7 @@
 
 	:global(.mdc-button__label) {
 		color: #fff !important;
-		text-transform: capitalize !important;
+		// text-transform: capitalize !important;
   font-family: IBM Plex Sans !important;
 	}
 
