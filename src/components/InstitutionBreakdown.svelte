@@ -68,7 +68,7 @@
  }
 
  .left {
-  text-transform: capitalize;
+  // text-transform: capitalize;
   width: 25%;
  }
 

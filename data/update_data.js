@@ -382,7 +382,7 @@ async function main() {
   })
 
   Object.keys(allCV).forEach(key => {
-    allCV[key] = allCV[key].map(({ id, affiliation_type_si, show_in_network, startCompareDate, endCompareDate, ...rest }, i) => ({ ...rest }))
+    allCV[key] = allCV[key].map(({ affiliation_type_si, show_in_network, startCompareDate, endCompareDate, ...rest }, i) => ({ ...rest }))
   })
 
 

@@ -26,7 +26,7 @@
 <style>
 	:global(.mdc-button__label) {
 			color: #000;
-			text-transform: capitalize;
+			/* text-transform: capitalize; */
 			letter-spacing: 0;
 		}
 
