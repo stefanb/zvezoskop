@@ -40,7 +40,7 @@ import Image from '../Image.svelte';
 			data={{ nodes: people, links: connections }}
 			flatData={people}
 			r="connectionCount"
-			rRange={[4, 25]}
+			rRange={[9, 30]}
 			z="position"
 			zScale={scaleOrdinal()}
    zRange={seriesColors}

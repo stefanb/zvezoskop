@@ -41,6 +41,8 @@
       xlink:href={`#link-${id}`}
       startOffset="50%"
     >
+      <title style:cursor="pointer">{institutions[$locale][0]}</title>
+
       <tspan
         class="link__label"
         on:click={() => goto(`${base}/${$locale}/institutions/${slugify(institutions.si[0])}`)}
@@ -66,12 +68,15 @@
             {`+${institutions[$locale].length - 1} more`}
           </tspan>
         {:else}
+          <title>{institutions[$locale][1]}</title>
+
           <tspan
             class="link__label"
             on:click={() => goto(`${base}/${$locale}/institutions/${slugify(institutions.si[1])}`)}
           >
             {institutions[$locale][1]}
           </tspan>
+
         {/if}
       </textPath>
     </text>

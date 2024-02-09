@@ -274,7 +274,7 @@ const forceBoundary = () => {
  }
 
  const setLinkVisibility = () => {
-  console.log("setLinkVisibility", $selected, visibleLinks)
+  // console.log("setLinkVisibility", $selected, visibleLinks)
   if ($hovered || $selected.length) {
     links = initialLinks.map(({ source, target, visible, ...rest }) => ({ 
       visible: (source === $hovered || target === $hovered || $selected.includes(source) || $selected.includes(target)),

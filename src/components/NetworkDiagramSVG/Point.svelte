@@ -38,7 +38,7 @@
  $: $tX = x;
  $: $tY = y;
 	$: $tR = (allActive || hovered || selected) && !isNaN(r) ? r : 2;
-	$: labelWidth = label.length * 5.5
+	$: labelWidth = label.length * 7
 
 	// $: console.log(r)
 
@@ -69,12 +69,12 @@
 				x={-labelWidth/2}
 				y={-5}
 				width={labelWidth}
-				height="15"
+				height="17"
 				fill={selected ? "#FA0" : stroke} rx="7"
 			/>
 			<text
 				x={0}
-				y={3}
+				y={4}
 				fill={"#fff"}
 			>
 				{label}
@@ -91,17 +91,17 @@
 		on:click={() => goto(`${base}/${$locale}/people/${id}`)}
 		>
 		<rect 
-				x={-25}
+				x={-35}
 				y={-14}
-				width={50}
-				height="15"
+				width={70}
+				height="17"
 				fill="#00001E"
 				stroke={selected ? "#00001E" : stroke} rx="7"
 		/>
 	<text
 			class="label link"
 			x={0}
-			y={-5}
+			y={-4}
 			fill={"#FFF"}
 		>
 			{$translate("View CV")}
@@ -122,6 +122,7 @@
 
 		text {
 		 dominant-baseline: middle;
+			font-size: 11px;
 		}
 	}
 
@@ -129,6 +130,10 @@
 		cursor: pointer;
 		transition: all 100ms ease-in-out;
 		
+		text {
+		 dominant-baseline: middle;
+			font-size: 11px;
+		}
 
 		&:hover {
 			opacity: 0.6
