@@ -10,13 +10,12 @@
  export let data;
  let timelineHeight;
 
-
 $: party = tField(data, 'party', $locale);
 </script>
 
 <ProfileHeader
  title={data.name}
- subheading={getPositionLabel(data.position, data.gender, $locale)}
+ subheading={`${getPositionLabel(data.position, data.gender, $locale)}, ${tField(data, 'institution', $locale)}`}
  imageLink={data.image_link}
  background={getColor(data.position)}
  textColor={getTextColor(data.position)}

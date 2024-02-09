@@ -178,7 +178,7 @@ export const getPositionLabel = (position, gender, locale) => {
     if (position === 'pm') {
       return 'Prime minister'
     }
-    return position;
+    return capitalizeFirstLetter(position);
   }
 
   if (position === 'minister') {
@@ -203,4 +203,8 @@ export const sortInstitutions = (list) => {
   return list.sort((a, b) => {
     return a.label > b.label ? 1 : -1;
   })
+}
+
+export const capitalizeFirstLetter = (str) => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }
