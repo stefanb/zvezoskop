@@ -1,39 +1,42 @@
 <script>
-  import moment from 'moment';
- import AxisX from '../AxisX.svelte';
- import { translate } from '$lib/translations';
- import TimelineSection from './TimelineSection.svelte';
- import { fade } from 'svelte/transition';
- import { groupBy } from '../../utils'
- import { scaleTime } from 'd3-scale'
- import { min } from 'd3-array'
+  import { translate } from '$lib/translations';
+  import TimelineSection from './TimelineSection.svelte';
+  import { fade } from 'svelte/transition';
+  import { groupBy } from '../../utils'
+  import { scaleTime } from 'd3-scale'
+  import { min } from 'd3-array'
 
- export let items;
- export let sectionGroupingVar = undefined;
- export let rowGroupingVar;
- export let getItemLink;
- export let getItemLabel;
- export let color;
+  export let items;
+  export let sectionGroupingVar = undefined;
+  export let rowGroupingVar;
+  export let getItemLink;
+  export let getItemLabel;
+  export let color;
 
- $: sections = groupBy(items, sectionGroupingVar)
- $: flattened = items
-  .map(({ startDisplayDate, endDisplayDate }) => ([{ date: new Date(startDisplayDate) }, { date: Math.min(new Date(), new Date(endDisplayDate)) }]))
-  .flat()
-  .filter(d => !!d.date)
+  const sectionOrder = ["izobraževanje", "delovne izkušnje", "svetovalne in nadzorne funkcije etc.", "strankarska pozicija", "prostočasne aktivnosti"]
 
-$: xScale = scaleTime()
-  .domain([new Date(min(items, d => d.startDisplayDate)), new Date()])
+  $: sections = groupBy(items, sectionGroupingVar)
+  $: flattened = items
+    .map(({ startDisplayDate, endDisplayDate }) => ([{ date: new Date(startDisplayDate) }, { date: Math.min(new Date(), new Date(endDisplayDate)) }]))
+    .flat()
+    .filter(d => !!d.date)
 
-// $: console.log(xScale.domain())
- 
+  $: xScale = scaleTime()
+    .domain([new Date(min(items, d => d.startDisplayDate)), new Date()])
+
+  $: console.log(sections)
 </script>
+
 <div class="timeline-container" style="--theme-color: {color};" in:fade>
   {#if sectionGroupingVar}
-    {#each Object.entries(sections) as [title, sectionItems]}
-      <div class="section-title">
-        <h5 class="section-title__content">{$translate(title)}</h5>
-      </div>
-      <TimelineSection {xScale} data={flattened} items={sectionItems} {rowGroupingVar} {getItemLink} {getItemLabel} />
+    {#each sectionOrder as sectionKey}
+      {@const sectionItems = sections[sectionKey]}
+      {#if sectionItems}
+        <div class="section-title">
+          <h5 class="section-title__content">{$translate(sectionKey)}</h5>
+        </div>
+        <TimelineSection {xScale} data={flattened} items={sectionItems} {rowGroupingVar} {getItemLink} {getItemLabel} />
+      {/if}
     {/each}
   {:else}
     <div class="section-title"></div>

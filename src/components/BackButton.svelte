@@ -57,7 +57,7 @@ $: {
   display: flex;
   align-items: center;
   gap: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
  }
  
 </style>

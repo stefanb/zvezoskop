@@ -167,6 +167,7 @@ $: collapsed = !!scrollY && scrollY !== 0 && (pageContentHeight + 100) > windowH
    // img {
     height: 80px;
     width: 80px;
+    min-width: 80px;
     border-radius: 50px;
     background-size: cover;
     background-color: #c3c3c3;
@@ -179,6 +180,7 @@ $: collapsed = !!scrollY && scrollY !== 0 && (pageContentHeight + 100) > windowH
     height: 35px;
     width: 35px;
     margin-right: 10px;
+    min-width: 35px;
    }
   }
 

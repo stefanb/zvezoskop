@@ -9,7 +9,7 @@
   import { translate } from '$lib/translations';
 
 
-  const { width, height, xScale, yRange } = getContext('LayerCake');
+  const { width, height, xScale, yRange, xRange } = getContext('LayerCake');
 
   /** @type {Boolean} [gridlines=true] - Extend lines from the ticks into the chart space */
   export let gridlines = true;
@@ -34,11 +34,11 @@
 
   $: isBandwidth = typeof $xScale.bandwidth === 'function';
 
-  $: tickVals = $xScale.nice().ticks(5)
+  $: tickVals = [...$xScale.ticks(5), 'present']
 
   $: yearsExtent = moment($xScale.domain()[1]).diff($xScale.domain()[0], "years")
   $: format = yearsExtent < 4 ? 'M.YYYY' : 'YYYY'
-  $: formatTick = d => d > new Date() ? $translate('present') : moment(d).format(format)
+  $: formatTick = d => d === 'present' ? $translate('present') : moment(d).format(format)
 
   function textAnchor(i) {
     // if (i === 0) {
@@ -53,7 +53,7 @@
 
 <g class="axis x-axis" class:snapTicks>
   {#each tickVals as tick, i (tick)}
-      <g class="tick tick-{i}" transform="translate({$xScale(tick)},{Math.max(...$yRange)})">
+      <g class="tick tick-{i}" transform="translate({tick === 'present' ? $xRange[1] : $xScale(tick)},{Math.max(...$yRange)})">
         {#if gridlines !== false}
           <line class="gridline" y1={$height * -1} y2="0" x1="0" x2="0" />
         {/if}

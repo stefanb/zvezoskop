@@ -12,9 +12,6 @@
 
  const { data, xGet, width, height, zGet, xScale, yRange, rGet, xDomain, xRange } = getContext('LayerCake');
 
-//  let w;
-//  $: titleLeftShift = (w && startX + w > $width) ? $width - (startX + w) : 0
-$: console.log(component, title)
 </script>
 
 
