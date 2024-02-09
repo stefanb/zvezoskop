@@ -6,6 +6,9 @@
   import { getContext } from 'svelte';
   import moment from 'moment';
   import { timeMonth } from 'd3-time';
+  import { translate } from '$lib/translations';
+
+
   const { width, height, xScale, yRange } = getContext('LayerCake');
 
   /** @type {Boolean} [gridlines=true] - Extend lines from the ticks into the chart space */
@@ -31,20 +34,18 @@
 
   $: isBandwidth = typeof $xScale.bandwidth === 'function';
 
-  $: tickVals = $xScale.ticks(5)
+  $: tickVals = $xScale.nice().ticks(5)
 
   $: yearsExtent = moment($xScale.domain()[1]).diff($xScale.domain()[0], "years")
   $: format = yearsExtent < 4 ? 'M.YYYY' : 'YYYY'
-  $: formatTick = d => moment(d).format(format);
+  $: formatTick = d => d > new Date() ? $translate('present') : moment(d).format(format)
 
   function textAnchor(i) {
-    if (snapTicks === true) {
-      if (i === 0) {
-        return 'start';
-      }
-      if (i === tickVals.length - 1) {
-        return 'end';
-      }
+    // if (i === 0) {
+    //   return 'start';
+    // }
+    if (i === tickVals.length - 1) {
+      return 'end';
     }
     return 'middle';
   }
@@ -70,7 +71,10 @@
           y={-$height}
           dx=""
           dy={-25}
-          text-anchor={textAnchor(i)}>{formatTick(tick)}</text
+          text-anchor={textAnchor(i)}
+        >
+          {formatTick(tick)}
+        </text
         >
       </g>
   {/each}
