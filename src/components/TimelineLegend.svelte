@@ -9,10 +9,6 @@ import { translate } from '$lib/translations';
     <div class="legend__title">
       {$translate('legend')}
     </div>
-    <div class="legend__item">
-      <span class="legend__item__bold">{$translate('DD.MM.YYYY')} –</span>
-      <span>{$translate('The function is ongoing as of 27/11/2023')}</span>
-    </div>
     <div class="legend__item small-width-hide">
       <div class="legend__item__bar"></div>
       <span>{$translate('Exact start and end date')}</span>
@@ -24,6 +20,10 @@ import { translate } from '$lib/translations';
     <div class="legend__item small-width-hide">
       <div class="legend__item__bar both-uncertain"></div>
       <span>{$translate('Not exact start and end date')}</span>
+    </div>
+    <div class="legend__item">
+      <span class="legend__item__bold">{$translate('Last updated')}: </span>
+      <span>{'19.2.2024'}</span>
     </div>
   </div>
 </div>
@@ -70,13 +70,13 @@ import { translate } from '$lib/translations';
     white-space: nowrap;
 
     &.medium-width-hide {
-      @media (min-width: 740px) and (max-width: 1000px) {
+      @media (min-width: 700px) and (max-width: 900px) {
         display: none;
       }
     }
 
     &.small-width-hide {
-      @media (min-width: $mobile) and (max-width: 740px) {
+      @media (min-width: $mobile) and (max-width: 700px) {
         display: none;
       }
     }

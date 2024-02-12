@@ -126,8 +126,8 @@ export const displayDate = (item, prefix, locale) => {
 
 
 export const getYearsLabel = (item, locale, presentPlaceholder) => {
-  const start = formatDate(item, 'start', locale)
-  const end = item.end_year === 2100 ? presentPlaceholder : formatDate(item, 'end', locale)
+  const start = displayDate(item, 'start', locale)
+  const end = item.end_year === 2100 ? presentPlaceholder : displayDate(item, 'end', locale)
 
 
   // console.log(start)

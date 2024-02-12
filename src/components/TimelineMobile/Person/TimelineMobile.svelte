@@ -5,7 +5,7 @@
   import VerticalTimeBars from "./VerticalTimeBars.svelte";
 	import LocalizedLink from "../../LocalizedLink.svelte";
   import YearsLabel from '../../YearsLabel.svelte';
-  import { arrayUniqueById, getColor, slugify, tField, getInitials, getYearsLabel } from '../../../utils';
+  import { arrayUniqueById, getColor, slugify, tField, getInitials } from '../../../utils';
 
 
  export let items;
