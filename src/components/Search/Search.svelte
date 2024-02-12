@@ -9,7 +9,7 @@
   import people from '$lib/data/people.json';
   import institutions from '$lib/data/institutions.json';
   import parties from '$lib/data/parties.json';
-  import { slugify, tField, sortNames, sortInstitutions } from "../../utils";
+  import { slugify, tField, sortNames, sortInstitutions, normalizeString } from "../../utils";
 	import { goto } from '$app/navigation';
   import { page } from '$app/stores';  
   import { base } from '$app/paths';
@@ -74,7 +74,7 @@
   {options}
   textfield$variant="outlined"
   getOptionLabel={(option) =>
-    option ? `${option.label}` : ''}
+    option ? `${option.label + ' ' + normalizeString(option.label)}` : ''}
   bind:value
  >
   <div slot="match" let:match class="search-option">

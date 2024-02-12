@@ -208,3 +208,9 @@ export const sortInstitutions = (list) => {
 export const capitalizeFirstLetter = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
+export const normalizeString = str => {
+  const ret = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+
+  return ret
+}
