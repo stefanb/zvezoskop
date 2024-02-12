@@ -20,8 +20,9 @@
 <style lang="scss">
  :global(.notes-tooltip > .mdc-icon-button.smui-icon-button--size-mini) {
   font-size: var(--size) !important;
-  height: 0 !important;
+  height: var(--size) !important;
   transform: translateY(2.5px);
+  padding: 0 !important;
  }
 
  :global(.notes-tooltip  .mdc-icon-button__ripple) {

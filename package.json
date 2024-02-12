@@ -41,6 +41,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"material-icons": "^1.13.12",
 		"moment": "^2.29.4",
 		"svelte-waypoint": "^0.1.4",
 		"sveltekit-i18n": "^2.3.2"

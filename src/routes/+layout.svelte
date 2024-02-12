@@ -1,4 +1,6 @@
 <script>
+	import 'material-icons/iconfont/material-icons.css';
+
 	import { setContext } from 'svelte';
 	import '../app.scss';
 	import '../app.scss';
@@ -10,6 +12,7 @@
 	import { showAlert } from '../stores';
 	import { translate, locale } from '$lib/translations';
 	import Analytics from '$lib/analytics.svelte'
+
 
 	import { hist } from '../stores'
 	import MediaQuery, { platform } from '../components/MediaQuerySsr.svelte';
@@ -71,8 +74,8 @@
 
 <svelte:head>
 	<!-- <html lang="en" /> -->
-	<link href="https://fonts.googleapis.com/css2?family=Material+Icons"
-	rel="stylesheet">
+	<!-- <link href="https://fonts.googleapis.com/css2?family=Material+Icons" -->
+	<!-- rel="stylesheet"> -->
 		<!-- <link rel="stylesheet" href="fonts/roboto.css" />
 	<link rel="stylesheet" href="fonts/roboto-mono.css" />
 	<link rel="stylesheet" href="mdc.typography.14.0.0.css" /> -->
