@@ -2,6 +2,7 @@
  import { getContext } from "svelte";
  import { tweened } from "svelte/motion";
 	import { cubicOut } from "svelte/easing";
+	import { DATA_UPDATE_DATE } from '../../utils'
 
  export let start_year;
  export let end_year;
@@ -21,7 +22,7 @@
 	const tX = tweened(index * 10, tweenParameters);
 
  $: $tX = (index - xOffset) * 10 + 5;
- $: height = $yScale(end_year === 2100 ? new Date().getFullYear() : end_year) - $yScale(start_year);
+ $: height = $yScale(end_year === 2100 ? DATA_UPDATE_DATE.getFullYear() : end_year) - $yScale(start_year);
 </script>
 
 <rect 

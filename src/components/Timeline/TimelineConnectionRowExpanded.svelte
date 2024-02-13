@@ -6,6 +6,7 @@
  import { min, max } from 'd3-array'
 	import TimelineConnectionExpanded from './TimelineConnectionExpanded.svelte';
 	import PersonLabel from '../PersonLabel.svelte';
+ import { DATA_UPDATE_DATE } from '../../utils'
 
  export let id;
  export let items;
@@ -23,7 +24,7 @@
  const maxEndVal = max(items, i => new Date(i.endDisplayDate));
 
  $: startX = $xScale(minStartVal) < $xRange[0] ? $xRange[0] + labelWidth : $xScale(minStartVal)
- $: endX = $xScale(Math.min(new Date(maxEndVal), new Date()))
+ $: endX = $xScale(Math.min(new Date(maxEndVal), DATA_UPDATE_DATE))
 
  $: personDetails = items[0] || {};
 

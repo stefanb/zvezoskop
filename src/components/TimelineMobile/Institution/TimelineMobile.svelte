@@ -1,6 +1,6 @@
 <script>
   import { locale, translate } from '$lib/translations';
-  import { arrayUniqueById, getColor, tField } from "../../../utils";
+  import { arrayUniqueById, getColor, tField, DATA_UPDATE_DATE } from "../../../utils";
   import { slide, fly } from 'svelte/transition';
 	import PersonLabel from "../../PersonLabel.svelte";
   import { min, max, range } from 'd3-array';
@@ -47,7 +47,7 @@
   minYear = +min(Object.keys(byYear))
   maxYear = +max(Object.keys(byYear))
 
-  maxYear = Math.min(new Date().getFullYear(), maxYear)
+  maxYear = Math.min(DATA_UPDATE_DATE.getFullYear(), maxYear)
 
   yearsList = range(minYear, maxYear)
  }

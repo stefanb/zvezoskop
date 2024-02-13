@@ -3,7 +3,7 @@
  import { locale, translate } from '$lib/translations';
  import { getContext } from 'svelte';
  import { fade } from 'svelte/transition';
- import { arrayUniqueById, getColor, displayDate, getLinearGradient } from '../../utils'
+ import { arrayUniqueById, getColor, displayDate, getLinearGradient, DATA_UPDATE_DATE } from '../../utils'
  import TimelineConnectionExpanded from './TimelineConnectionExpanded.svelte';
 	import { linear } from 'svelte/easing';
 
@@ -22,7 +22,7 @@
 
 
  $: startX = $xScale(new Date(item.startDisplayDate))
- $: endX = $xScale(Math.min(new Date(item.endDisplayDate), new Date()))
+ $: endX = $xScale(Math.min(new Date(item.endDisplayDate), DATA_UPDATE_DATE))
 
  $: {
   if (item.end_year === positions?.[index + 1]?.start_year) {

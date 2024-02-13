@@ -1,6 +1,6 @@
 <script>
  import { getContext } from 'svelte';
-	import { getColor, getLinearGradient } from '../../utils';
+	import { getColor, getLinearGradient, DATA_UPDATE_DATE } from '../../utils';
 
  export let item
  export let refX;
@@ -9,7 +9,7 @@
  const { xScale, xRange, xDomain } = getContext('LayerCake');
 
  $: startX = $xScale(new Date(item.startDisplayDate)) < $xRange[0] ? $xRange[0] + labelWidth : $xScale(new Date(item.startDisplayDate))
- $: endX = $xScale(Math.min(new Date(item.endDisplayDate), new Date()))
+ $: endX = $xScale(Math.min(new Date(item.endDisplayDate), DATA_UPDATE_DATE))
 </script>
 
 <div

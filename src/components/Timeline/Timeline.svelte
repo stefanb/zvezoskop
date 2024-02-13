@@ -2,7 +2,7 @@
   import { translate } from '$lib/translations';
   import TimelineSection from './TimelineSection.svelte';
   import { fade } from 'svelte/transition';
-  import { groupBy } from '../../utils'
+  import { groupBy, DATA_UPDATE_DATE } from '../../utils'
   import { scaleTime } from 'd3-scale'
   import { min } from 'd3-array'
 
@@ -17,12 +17,12 @@
 
   $: sections = groupBy(items, sectionGroupingVar)
   $: flattened = items
-    .map(({ startDisplayDate, endDisplayDate }) => ([{ date: new Date(startDisplayDate) }, { date: Math.min(new Date(), new Date(endDisplayDate)) }]))
+    .map(({ startDisplayDate, endDisplayDate }) => ([{ date: new Date(startDisplayDate) }, { date: Math.min(DATA_UPDATE_DATE, new Date(endDisplayDate)) }]))
     .flat()
     .filter(d => !!d.date)
 
   $: xScale = scaleTime()
-    .domain([new Date(min(items, d => d.startDisplayDate)), new Date()])
+    .domain([new Date(min(items, d => d.startDisplayDate)), DATA_UPDATE_DATE])
 
   $: console.log(sections)
 </script>

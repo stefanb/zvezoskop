@@ -2,7 +2,8 @@
  import { LayerCake, Svg } from "layercake";
  import { min, max } from 'd3-array'
  import Bars from "./Bars.svelte";
-	import AxisY from "./AxisY.svelte";
+ import AxisY from "./AxisY.svelte";
+ import { DATA_UPDATE_DATE } from '../../utils'
 
  export let items;
  export let selectedIndex;
@@ -14,13 +15,12 @@
 
  $: xOffset = selectedIndex < 4 ? 0 : selectedIndex - 4;
 
-
 </script>
 
 <div class='chart-container'>
  <LayerCake
    data={items}
-   yDomain={[new Date().getFullYear(), yMin]}
+   yDomain={[DATA_UPDATE_DATE.getFullYear(), yMin]}
    let:height
    >
    <Svg>

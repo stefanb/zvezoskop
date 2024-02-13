@@ -1,6 +1,8 @@
 import moment from 'moment'
 import 'moment/locale/sl';
 
+export const DATA_UPDATE_DATE = new Date('2024.2.19')
+
 export const groupBy = function(xs, key) {
  return xs.reduce(function(rv, x) {
    (rv[x[key]] = rv[x[key]] || []).push(x);
@@ -53,7 +55,7 @@ export const getDate = dateString => {
 export const getTimeSince = dateString => {
   if (!dateString) return;
 
-  const difference = new Date() - new Date(dateString);
+  const difference = DATA_UPDATE_DATE - new Date(dateString);
   const days = Math.floor(difference / 86400000)
   const years = days/365
 
