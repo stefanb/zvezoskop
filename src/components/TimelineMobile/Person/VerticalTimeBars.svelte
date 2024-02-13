@@ -3,7 +3,7 @@
  import { min, max } from 'd3-array'
  import Bars from "./Bars.svelte";
  import AxisY from "./AxisY.svelte";
- import { DATA_UPDATE_DATE } from '../../utils'
+ import { DATA_UPDATE_DATE } from '../../../utils'
 
  export let items;
  export let selectedIndex;

@@ -66,6 +66,7 @@
 //  }
 
  const skipAhead = () => {
+  console.log('skipping ahead!')
   window.scrollTo({
     top: 100000,
     behavior: 'smooth'
@@ -104,7 +105,7 @@
         {#each sections as { id, groups, text_si, text_en }}
           <div class="step" class:last={id === 'outro' || id === '4'}>
             {#if id === 'intro'}
-             <IntroFirstSlide />
+             <IntroFirstSlide {skipAhead} />
             {:else if id === 'outro'}
               <div class="waypoint" style:background={"green"} style:transform="translateY(-120vh)">
                 <Waypoint once={false} throttle="500" on:enter={() => pointsFixed = false}></Waypoint>
@@ -221,16 +222,16 @@
   z-index: 10;
   bottom: 10px;
   left: 10px;
-  color: #6E7382;
+  color: #4e566a;
   border-radius: 100px;
-  border: 1px solid #6E7382;
+  border: 1px solid #4e566a;
   text-transform: uppercase;
   padding: 43px;
   cursor: pointer;
 
 
   &:hover {
-    background: rgba(#6E7382, 0.1)
+    background: rgba(#4e566a, 0.1)
   }
 
   &__text {

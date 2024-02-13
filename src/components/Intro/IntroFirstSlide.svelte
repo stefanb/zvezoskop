@@ -5,8 +5,10 @@
  import introEnIcon from '$lib/images/about-intro-en.svg';
  import introSiIcon from '$lib/images/about-intro-si.svg';
  import introArrowDown from '$lib/images/intro-arrow-down.svg';
-    import Typewriter from 'svelte-typewriter';
+ import Button, { Label } from '@smui/button'
 
+
+ export let skipAhead;
 
  let show = false;
 
@@ -40,7 +42,9 @@
   </div>
   
   <div class="scroll-prompt" transition:fade={{ duration: 500 }}>
-    <img src={introArrowDown} />
+    <Button on:click={() => skipAhead()}>
+      <img src={introArrowDown} />
+    </Button>
   </div>
 </div>
 
