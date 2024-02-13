@@ -21,7 +21,7 @@
   import { hideIntro } from '../../stores';
 
   import { scaleOrdinal } from 'd3-scale'
-    import IntroInner from './IntroInner.svelte';
+  import IntroInner from './IntroInner.svelte';
 
   let activeSection;
 
@@ -122,6 +122,7 @@
   let typing = false;
   let showSecondaryText = false;
   $: activeSection, typing = activeSection?.id !== 'outro', showSecondaryText = activeSection?.id === 'outro';
+
 </script>
 
 <IntroInner {sections} bind:activeSection >
@@ -166,9 +167,10 @@
       </div>
     {/if}
   </div>
-  <div slot="network" class="network-container">
+  <div slot="network" class="network-container" style:display={$hideIntro ? 'block' : 'none'}>
     <slot />
   </div>
+ 
 </IntroInner>
 
 <style lang="scss">

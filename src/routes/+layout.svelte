@@ -13,7 +13,6 @@
 	import { translate, locale } from '$lib/translations';
 	import Analytics from '$lib/analytics.svelte'
 
-
 	import { hist } from '../stores'
 	import MediaQuery, { platform } from '../components/MediaQuerySsr.svelte';
 

@@ -45,12 +45,6 @@
 
   $: activeSection = sections[scrollSectionIndex] || sections[0]
   // $: scrollSectionIndex, typing = true, showSecondaryText = false;
-
-  $: {
-    if ($page.url.hash === '#skip-intro' || (scrollSectionIndex > 0 && scrollSectionIndex === sections.length)) {
-      $hideIntro = true
-    }
-  }
   
   
   // $: console.log(showSecondaryText)
@@ -66,7 +60,6 @@
 //  }
 
  const skipAhead = () => {
-  console.log('skipping ahead!')
   window.scrollTo({
     top: 100000,
     behavior: 'smooth'
@@ -212,9 +205,9 @@
   //  }
   // }
 
-  &.last {
-    height: 120vh;
-  }
+  // &.last {
+  //   height: 120vh;
+  // }
  }
 
  .skip-ahead {
