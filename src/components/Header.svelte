@@ -2,11 +2,10 @@
 	import { translate, setLocale, locale, setRoute } from '$lib/translations';
 	import { platform } from "./MediaQuerySsr.svelte";
 
-	import { goto } from '$app/navigation';
+	import { goto, invalidateAll } from '$app/navigation';
 	import { page, navigating } from '$app/stores';  
 	import { base } from '$app/paths';
 	import Button, { Label } from '@smui/button'
-	import Menu from '@smui/menu';
 	import Search from './Search/Search.svelte';
 	import IconButton from '@smui/icon-button';
 	import List, { Item, Separator, Text } from '@smui/list';
@@ -16,9 +15,8 @@
 	import languageEn from '$lib/images/language-en.svg';
 	import languageSi from '$lib/images/language-si.svg';
 	import LocalizedLink from './LocalizedLink.svelte';
-	import NotesTooltip from './NotesTooltip.svelte';
 	import { tooltip } from './tooltip';
-
+	// import { invalidateAll } from '$app/navigation';
 
 	let searchOpen = false;
 	let mobileMenuOpen = false;
@@ -31,7 +29,7 @@
 
 <header class="header">
 	<div class="header__left mobile-hide">
-		<LocalizedLink href="/" onClick={() => { $selected = [] }}>
+		<LocalizedLink href="/#skip-intro" onClick={() => { $selected = [] }}>
 			<img src={logo} alt="Home" />
 		</LocalizedLink>
 		<div>

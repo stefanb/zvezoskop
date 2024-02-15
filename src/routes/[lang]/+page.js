@@ -6,9 +6,9 @@ import { base } from '$app/paths';
 // it so that it gets served as a static asset in production
 export const prerender = true;
 
-export function load(all) {
+export function load({ params }) {
 
- const { lang } = all.params;
+ const { lang } = params;
 
  // console.log(all.url.hash)
 

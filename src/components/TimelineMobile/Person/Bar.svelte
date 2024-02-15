@@ -2,7 +2,7 @@
  import { getContext } from "svelte";
  import { tweened } from "svelte/motion";
 	import { cubicOut } from "svelte/easing";
-	import { DATA_UPDATE_DATE } from '../../utils'
+	import { DATA_UPDATE_DATE } from '../../../utils'
 
  export let start_year;
  export let end_year;
