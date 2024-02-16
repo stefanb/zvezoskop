@@ -75,35 +75,36 @@
 				<p>Podatki, vključeni v interaktivno vizualizacijo, temeljijo na uradnih dokumentih in podatkih, pa tudi na potrditvah posameznih funkcionarjev.</p>
 
 				<h5>
-					<img class="icon" src={icon4} />
 					<span>Začetni in končni datum</span>
 				</h5>
 				<p>V analizo so vključeni le podatki, za katere smo lahko določili datuma vstopa v institucijo in izstopa iz nje (vsaj letnico). Presečišč med posamezniki brez teh spremenljivk ni mogoče predvideti.</p>
 
 				<h5>
-					<img class="icon" src={icon5} />
 					<span>Institucija</span>
 				</h5>
 				<p>Izraz institucija uporabljamo za kraje, kjer se osebe srečujejo zaradi poklicnih zadev pa tudi hobijev, zato njihova imena niso nujno imena pravnih oseb.</p>
 
 				<h5>
-					<img class="icon" src={icon6} />
+					<img class="icon" src={icon5} />
 					<span>Pravica do odgovora</span>
 				</h5>
 				<p>Vse politične funkcionarje smo pravočasno seznanili z zbranimi podatki ter jih prosili za popravke in dopolnitve.</p>
 
 				<h5>
-					<img class="icon" src={icon7} />
+					<img class="icon" src={icon4} />
 					<span>Dvojno preverjanje</span>
 				</h5>
 				<p>Novinarji so vse podatke dvojno preverili, kar pomeni, da sta podatke o kariernih poteh posameznega funkcionarja neodvisno zbirala dva člana ekipe, pri čemer sta uporabljala tehnike preiskovalnega in podatkovnega novinarstva.</p>
 				
 				<h5>
+					<img class="icon" src={icon6} />
+
 					<span>Preverjanje dejstev</span>
 				</h5>
 				<p>Skladno s <a href="//www.ostro.si/si/kodeks" target="_blank">kodeksom</a> Oštra so verodostojnost podatkov pred objavo preverili še člani ekipe, ki niso sodelovali pri njihovem pridobivanju. Vse dokaze smo arhivirali in jih hranimo v uredništvu.</p>
 		
 				<h5>
+					<img class="icon" src={icon7} />
 					<span>Odprte zbirke podatkov</span>
 				</h5>
 				<p>Preverjene podatke bomo po objavi projekta naložili tudi v brezplačni in prosto dostopni podatkovni zbirki Wikidata in OpenSanctions.</p>
@@ -177,7 +178,7 @@
 <div>
 	<div class="section">
 		<div class="section__inner">
-			<img class="intro-icon" src={aboutIntroEnIcon} />
+			<img class="intro-icon" src={aboutIntroSiIcon} />
 			<h1>Exploring Careers of Political Officials</h1>
 			<p>Zvezoskop (roughly translated as Relationscope) is an interactive visualization of careers of government members, ministerial secretaries and Members of Parliament.</p>
 		</div>
@@ -235,13 +236,11 @@
 			<p>Data available in the interactive is sourced from official documents, data and information, and corroboration by individual officials.</p>
 
 			<h5>
-				<img class="icon" src={icon4} />
 				<span>Start and End Date</span>
 			</h5>
 			<p>Only data for which we could verify the start and end dates (at least the year) is included in the analysis. These parameters are crucial for predicting intersections between individuals.</p>
 
 			<h5>
-				<img class="icon" src={icon5} />
 				<span>Institution</span>
 			</h5>
 			<p>The term "institution" refers to locations where individuals intermingle and does not necessarily denote actual legal entities.</p>
@@ -253,6 +252,7 @@
 			<p>All political officials were presented with a timely request to reply to the collected data, and invited to provide corrections and additions, if necessary.</p>
 		
 			<h5>
+				<img class="icon" src={icon4} />
 				<span>Double-checking</span>
 			</h5>
 			<p>To ensure accuracy, all data underwent double-checking by journalists. Two team members independently collected information on career trajectories of each official by utilizing investigative and data journalism techniques.</p>
@@ -381,9 +381,9 @@
 		font-family: IBM Plex Sans;
 		font-size: 30px;
 		font-style: normal;
-		font-weight: 300;
+		font-weight: 200;
 		line-height: 40px;
-		margin-top: 20px;
+		margin-top: 60px;
 		margin-bottom: 25px;
 
 	}

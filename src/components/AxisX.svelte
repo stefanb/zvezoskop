@@ -38,7 +38,7 @@
 
   $: yearsExtent = moment($xScale.domain()[1]).diff($xScale.domain()[0], "years")
   $: format = yearsExtent < 4 ? 'M.YYYY' : 'YYYY'
-  $: formatTick = d => d === 'present' ? $translate('present') : moment(d).format(format)
+  $: formatTick = d => d === 'present' ? $translate('Feb 2024') : moment(d).format(format)
 
   function textAnchor(i) {
     // if (i === 0) {

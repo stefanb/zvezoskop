@@ -1,7 +1,7 @@
 import moment from 'moment'
 import 'moment/locale/sl';
 
-export const DATA_UPDATE_DATE = new Date('2024.2.19')
+export const DATA_UPDATE_DATE = new Date('2024.2.1')
 
 export const groupBy = function(xs, key) {
  return xs.reduce(function(rv, x) {
@@ -179,6 +179,9 @@ export const getPositionLabel = (position, gender, locale) => {
   if (locale === 'en') {
     if (position === 'pm') {
       return 'Prime minister'
+    }
+    if (position === 'mp') {
+      return 'MP'
     }
     return capitalizeFirstLetter(position);
   }
