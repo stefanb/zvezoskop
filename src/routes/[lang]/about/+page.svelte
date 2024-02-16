@@ -189,7 +189,7 @@
 			<h1>Why Zvezoskop?</h1>
 			<p>Slovenia is a small country with a population of 2 million and a widespread belief that personal relationships and loyalty outweigh competence in staffing choices. This perception undermines public trust in government and the Parliament and perpetuates perceived or actual conflicts of interest in the legislative and executive branches.</p>
 			<p>Zvezoskop provides the public with information about career trajectories of political officials while enabling it to conduct independent research. A decade ago, the German newspaper Die Zeit introduced a similar, albeit simpler, visual representation of government ministers' careers. In Slovenia, this approach is entirely novel.			</p>
-			<p>Following the last four national elections in Slovenia, political parties that were formed (roughly) prior to the elections came to power. The proportional system prevents voters from directly electing their representatives and affords novices the chance to ascend to political office.</p>
+			<p>Following the last four national elections in Slovenia, political parties that were formed (roughly) prior to the elections came to power.</p>
 			<p>Among the officials featured in Zvezoskop, 40% had never been elected in a general election or appointed as ministers or ministerial secretaries before the 2022 parliamentary elections.</p>
 
 			<h2>The interactive shows:</h2>

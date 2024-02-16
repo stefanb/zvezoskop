@@ -34,7 +34,7 @@
       id: '1',
       showPoints: true,
       groups: [
-        { count: 180, color: "#E6E6F0"},
+        { count: 160, color: "#E6E6F0"},
       ],
       text: {
         left: "There are currently 160 government members, ministerial secretaries and MPs in office.",
@@ -45,9 +45,9 @@
       showPoints: true,
       groups: [
         { count: 1, color: getColor('pm') },
-        { count: 17, color: getColor('minister') },
+        { count: 20, color: getColor('minister') },
         { count: 50, color: getColor('secretary') },
-        { count: 90, color: getColor('mp') },
+        { count: 89, color: getColor('mp') },
       ],
       text: {
         left: "1 Prime Minister, 20 Ministers, 50 ministerial secretaries, and 89 MPs"
@@ -57,8 +57,8 @@
       id: '3',
       showPoints: true,
       groups: [
-        { count: 74, color: "#00D732"},
-        { count: 84, color: "#E6E6F0"},
+        { count: 65, color: "#00D732"},
+        { count: 18, color: "#E6E6F0"},
       ],
       text: {
         left: "65 are newcomers.",
@@ -69,11 +69,11 @@
       id: '4',
       showPoints: true,
       groups: [
-        { count: 63, getColor: i => {
+        { count: 64, getColor: i => {
           let key;
-          if (i < 6) {
+          if (i < 7) {
             key = "minister"
-          } else if (i < 29) {
+          } else if (i < 30) {
             key = "secretary"
           } else {
             key = "mp"
@@ -81,13 +81,13 @@
 
           return getColor(key)
         }},
-        { count: 95, getColor: i => {
+        { count: 96, getColor: i => {
           let key;
           if (i < 1) {
             key = "pm"
-          } else if (i < 12) {
+          } else if (i < 14) {
             key = "minister"
-          } else if (i < 39) {
+          } else if (i < 41) {
             key = "secretary"
           } else {
             key = "mp"
@@ -102,14 +102,15 @@
       },
       textSecondary: {
         left: [
-          "6 ministers",
+          "7 ministers",
           "23 ministerial secretaries",
           "34 members of parliament"
         ],
         right: [
-          "11 ministers",
+          "1 prime minister",
+          "13 ministers",
           "27 ministerial secretaries",
-          "56 members of parliament"
+          "55 members of parliament"
         ]
       }
 

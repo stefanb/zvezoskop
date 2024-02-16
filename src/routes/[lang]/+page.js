@@ -12,9 +12,9 @@ export function load({ params }) {
 
  // console.log(all.url.hash)
 
- if (lang !== 'si' && lang !== 'en') {
-  throw redirect(302, `${base}/si`);
- }
+ // if (lang !== 'si' && lang !== 'en') {
+ //  throw redirect(302, `${base}/si`);
+ // }
 
  const title_si = "Zvezoskop"
 	const title_en = "Zvezoskop"
