@@ -16,7 +16,7 @@
 	import languageSi from '$lib/images/language-si.svg';
 	import LocalizedLink from './LocalizedLink.svelte';
 	import { tooltip } from './tooltip';
-    import TutorialDialog from './TutorialDialog.svelte';
+ import TutorialDialog from './TutorialDialog.svelte';
 	// import { invalidateAll } from '$app/navigation';
 
 	let searchOpen = false;
@@ -28,10 +28,12 @@
 	$: if($navigating) mobileMenuOpen = false
 	
 	$: if($navigating) searchOpen = false;	
+
+	$: console.log($platform)
 </script>
 
 <header class="header">
-	<div class="header__left mobile-hide">
+	<div class="header__left header-mobile-hide">
 		<LocalizedLink href="/#skip-intro" onClick={() => { $selected = [] }}>
 			<img src={logo} alt="Home" />
 		</LocalizedLink>
@@ -51,7 +53,7 @@
 			{/if}
 		</div>
 	</div>
-	<div class="header__left mobile-show">
+	<div class="header__left header-mobile-show">
 		<div class="search-container">
 			{#if searchOpen}
 				<Search bind:searchOpen />
@@ -68,7 +70,7 @@
 			<h3 class="header__title">{$translate('app_title')}</h3>
 		</LocalizedLink>
 	{/if}
-	<div class="header__right mobile-hide">
+	<div class="header__right header-mobile-hide">
 		<Button on:click={() => (tutorialOpen = true)}>
 			<Label>{$translate('header.tutorial')}</Label>
 		</Button>
@@ -89,13 +91,13 @@
 			</Button>
 		{/if}
 	</div>
-	<div class="material-icons mobile-show mobile-menu-toggle">
+	<div class="material-icons header-mobile-show mobile-menu-toggle">
 		<IconButton class="material-icons" on:click={() => mobileMenuOpen = !mobileMenuOpen}>{mobileMenuOpen ? 'close' : 'menu'}</IconButton>
 	</div>
 </header>
 
 {#if mobileMenuOpen}
-	<List class="mobile-menu mobile-show">
+	<List class="mobile-menu header-mobile-show">
 		<Item>
 			<LocalizedLink href="/">{$translate('header.home')}</LocalizedLink>
 		</Item>
@@ -232,5 +234,17 @@
 	:global(.mobile-menu a) {
 		color: white !important;
 		// padding: 6px 0;
+	}
+
+	.header-mobile-hide {
+		@media (max-width: 824px) {
+			display: none !important;
+		}
+	}
+
+	.header-mobile-show {
+		@media (min-width: 825px) {
+			display: none !important;
+		}
 	}
 </style>
