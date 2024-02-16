@@ -1,6 +1,6 @@
 {
- "app_title": "Relatoscope",
- "app_description": "Relatoscope is an interactive visualization of career paths of current Slovenian political office holders – cabinet ministers, state secretaries and National Assembly deputies.",
+ "app_title": "Zvezoskop",
+ "app_description": "Zvezoskop is an interactive visualization of career paths of current Slovenian political office holders – cabinet ministers, ministerial secretaries and National Assembly deputies.",
  "header": {
   "home": "Home",
   "about": "About",
@@ -9,26 +9,28 @@
   "methodology": "Methodology",
   "stories": "Stories",
   "asset_tracker": "Asset Detector",
-  "asset_tracker_help_text": "The Asset Detector is a project by Oštro that presents information about the assets of political office holders."
+  "asset_tracker_help_text": "Oštro’s Asset Detector showcases data on assets of political officials."
  },
  "help_text": {
-  "time_in_office": "The date on which the person was initially elected in a general election or appointed as a member of the government or as state secretary."
+  "time_in_office": "Date of first election in general elections or appointment to the position of minister or secretary."
  },
  "izobraževanje": "education",
  "delovne izkušnje": "work experience",
  "lastništvo podjetja": "company ownership",
- "strankarska pozicija": "party position",
- "svetovalne in nadzorne funkcije etc.": "advisory and supervisory functions, etc.",
- "prostočasne aktivnosti": "leisure activities",
+ "politične stranke": "party position",
+ "svetovalne in nadzorne funkcije": "advisory and supervisory functions",
+ "prostočasne dejavnosti": "leisure activities",
  "mp": "MP",
  "samostojni podjetnik": "Sole proprietor",
  "lastnik podjetja": "Company owner",
  "vodilni v podjetju": "Company manager",
- "vodilni v javnem podjetju": "Manager at public sector company",
+ "vodstvo podjetja": "Company manager",
+ "vodilni v javnem podjetju": "Manager at a state-owned company",
+ "vodstvo javnega podjetja": "Manager at a state-owned company",
  "akademik": "Academic",
  "javni uslužbenec": "Public employee",
  "zaposleni v zasebnem sektorju": "Private sector employee",
- "nevladnik": "Member of NGO",
+ "nevladnik": "NGO member",
  "politik": "Politician",
  "politična stranka": "political party"
 }

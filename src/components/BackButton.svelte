@@ -22,7 +22,7 @@ $: {
    } else if (previousPage.data.affiliations?.length) {
     buttonText = tField(previousPage.data.affiliations[0], 'institution', $locale)
    } else if (previousPage.data.route === '/' || previousPage.data.route === '') {
-    buttonText = $platform === 'mobile' ? $translate("Directory") : $translate("Network view")
+    buttonText = $platform === 'mobile' ? $translate("Directory") : $translate("Main view")
    } else {
     buttonText = null;
    }

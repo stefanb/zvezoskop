@@ -13,7 +13,7 @@
   export let getItemLabel;
   export let color;
 
-  const sectionOrder = ["izobraževanje", "delovne izkušnje", "svetovalne in nadzorne funkcije etc.", "strankarska pozicija", "prostočasne aktivnosti"]
+  const sectionOrder = ["izobraževanje", "delovne izkušnje", "lastništvo podjetja", "svetovalne in nadzorne funkcije", "politične stranke", "prostočasne dejavnosti"]
 
   $: sections = groupBy(items, sectionGroupingVar)
   $: flattened = items

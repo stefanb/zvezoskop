@@ -17,7 +17,7 @@ export function load({ params }) {
  }
 
  const title_si = "Zvezoskop"
-	const title_en = "Relatoscope"
+	const title_en = "Zvezoskop"
 
  return ({ title_si, title_en })
 }

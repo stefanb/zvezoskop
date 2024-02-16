@@ -37,7 +37,7 @@
         { count: 180, color: "#E6E6F0"},
       ],
       text: {
-        left: "There are 158 members of government currently in office.",
+        left: "There are currently 160 government members, ministerial secretaries and MPs in office.",
       }
     },
     {
@@ -50,7 +50,7 @@
         { count: 90, color: getColor('mp') },
       ],
       text: {
-        left: "1 prime minister, 17 ministers, 50 state secretaries, and 90 members of parliament"
+        left: "1 Prime Minister, 20 Ministers, 50 ministerial secretaries, and 89 MPs"
       }
     },
     {
@@ -61,8 +61,8 @@
         { count: 84, color: "#E6E6F0"},
       ],
       text: {
-        left: "74 are newcomers",
-        right: "while XY have been part of the political establishment since the 90s"
+        left: "65 are newcomers.",
+        right: "18 have been a part of the political establishment since the 90s."
       }
     },
     {
@@ -97,18 +97,18 @@
         }},
       ],
       text: {
-        left: "There are 63 women",
-        right: "and 95 men"
+        left: "64 are women",
+        right: "and 96 men."
       },
       textSecondary: {
         left: [
           "6 ministers",
-          "23 state secretaries",
+          "23 ministerial secretaries",
           "34 members of parliament"
         ],
         right: [
           "11 ministers",
-          "27 state secretaries",
+          "27 ministerial secretaries",
           "56 members of parliament"
         ]
       }

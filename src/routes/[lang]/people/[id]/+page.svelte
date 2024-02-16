@@ -22,14 +22,14 @@ $: party = tField(data, 'party', $locale);
  pageContentHeight={timelineHeight}
  details={[
   {
-   label: $translate("Party"),
+   label: $translate("Political party"),
    component: party ? LocalizedLink : null,
    componentInner: party,
    componentProps: { href: `/institutions/${slugify(data.party_si)}`, component: 'a'}
   //  
   },
   {
-   label: $translate("Birth year"),
+   label: $translate("Year of birth"),
    value: getDateYear(data.birth_date)
   },
   {
@@ -68,7 +68,7 @@ $: party = tField(data, 'party', $locale);
       </div>
     {:else}
       <div class="placeholder">
-        {$translate("This person has no CV items in the database.")}
+        {$translate("There are no CV items in the database.")}
       </div>
     {/if}
   {/if}

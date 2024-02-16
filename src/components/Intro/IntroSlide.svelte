@@ -33,7 +33,7 @@
      <p>Dobrodošli v Zvezoskopu, interaktivni vizualizaciji kariernih poti aktualnih slovenskih političnih funkcionarjev.</p>
     {:else}
      <p>In a country as small as Slovenia, the career paths and lives of political office holders are deeply intertwined.</p>
-     <p>Welcome to Relatoscope, an interactive visualization of career paths of current Slovenian political office holders.</p>
+     <p>Welcome to Zvezoskop, an interactive visualization of career paths of current Slovenian political office holders.</p>
     {/if}
    </div>
   </div>

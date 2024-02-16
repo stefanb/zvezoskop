@@ -19,11 +19,11 @@ import { translate } from '$lib/translations';
     </div>
     <div class="legend__item small-width-hide">
       <div class="legend__item__bar both-uncertain"></div>
-      <span>{$translate('Not exact start and end date')}</span>
+      <span>{$translate('Not exact start and end dates')}</span>
     </div>
     <div class="legend__item">
-      <span class="legend__item__bold">{$translate('Last updated')}: </span>
-      <span>{'19.2.2024'}</span>
+      <span class="legend__item__bold">{$translate('Valid as of:')} </span>
+      <span>{$translate('1 February 2024')}</span>
     </div>
   </div>
 </div>

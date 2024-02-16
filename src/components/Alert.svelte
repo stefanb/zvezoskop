@@ -10,7 +10,7 @@
   <div class="content">
    <h5 class="content__title">{$translate("select / deselect")}</h5>
    <p class="content__body">
-    {$translate("You can only select a maximum of 2 people. Deselect one first.")}
+    {$translate("You can select a maximum of 2 people. Deselect one by clicking the icon.")}
    </p>
    <Button on:click={() => $showAlert = false}>
     <Label>{$translate('Got it!')}</Label>

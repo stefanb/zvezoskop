@@ -17,17 +17,21 @@
   <div class="content">
    <div class="text" in:fade>
     {#if $locale === 'si'}
-     <p>V Zvezoskopu lahko spremljate karierne poti političnih funkcionarjev in ugotovite, kje se stikajo.</p>
-     <p>Raziščite povezave v omrežnem pogledu, primerjajte omrežja dveh oseb ali preverite njihov življenjepis.</p>
+      <p>V Zvezoskopu lahko brskate po kariernih poteh političnih funkcionarjev ter samostojno raziskujete, kje, kdaj in zakaj so se križale.</p>
+      <p>Osnovni pogled prikazuje posamezne karierne povezave.</p>
+      <p>Z izborom dveh oseb lahko primerjate njuni omrežji.</p>
+      <p>Ob ikonah posameznih funkcionarjev so spletne povezave na njihove življenjepise, ki jih lahko samostojno pregledujete.</p>
     {:else}
-     <p>Relatoscope enables you to track the careers of political office holders, and to identify points where they intersect.</p>
-     <p>Explore the connections on your own in the network view, compare the networks of 2 persons together or explore in details theirs CVs.</p>
+      <p>With Zvezoskop, you can independently track and explore careers of political officials, and identify the points of intersection.</p>
+      <p>Explore the connections on your own in the main view.</p>
+      <p>You can compare the networks of two persons by selecting them.</p>
+      <p>Next to the icons you will find links to their CVs that you can browse independently.</p>
    {/if}
    </div>
   </div>
   <div class="scroll-prompt">
    <Button on:click={() => skipAhead()}>
-     <Label>{$translate("Try it yourself")}</Label>
+     <Label>{$translate("Explore Zvezoskop!")}</Label>
    </Button>
   </div>
 </div>

@@ -23,20 +23,20 @@
 <div class="first-slide">
   <div class="content">
     <div class="logo" >
-      {#if $locale === 'si'}
+      <!-- {#if $locale === 'si'} -->
         <img class="intro-icon" src={introSiIcon} />
-      {:else}
+      <!-- {:else}
         <img class="intro-icon" src={introEnIcon} />
-      {/if}
+      {/if} -->
     </div>
   
    <div class="text">
     {#if $locale === 'si'}
-      <p>Karierne in življenjske poti političnih funkcionarjev so v majhni državi, kot je Slovenija, močno prepletene.</p>
-      <p>Dobrodošli v Zvezoskopu, interaktivni vizualizaciji kariernih poti aktualnih slovenskih političnih funkcionarjev.</p>
+      <p>V majhni državi, kot je Slovenija, so življenjske in karierne poti političnih funkcionarjev močno prepletene.</p>
+      <p>Dobrodošli v Zvezoskopu, interaktivni vizualizaciji kariernih poti aktualnih slovenskih političnih funkcionarjev!</p>
     {:else}
-      <p>In a country as small as Slovenia, the career paths and lives of political office holders are deeply intertwined.</p>
-      <p>Welcome to Relatoscope, an interactive visualization of career paths of current Slovenian political office holders.</p>
+      <p>In a small country like Slovenia, life and career paths of politicians are deeply intertwined.</p>
+      <p>Welcome to Zvezoskop, an interactive visualization of career paths of active political officials!</p>
     {/if}
    </div>
   </div>

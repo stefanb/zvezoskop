@@ -189,9 +189,20 @@ export const getPositionLabel = (position, gender, locale) => {
     } 
   } else if (position === 'secretary') {
     if (gender === 'F') {
-      return 'sekretarka'
-    } 
+      return 'državna sekretarka'
+    } else {
+      return 'državni sekretar'
+    }
+  } else if (position === 'pm') {
+    return 'predsednik vlade'
+  } else if (position === 'mp') {
+    if (gender === 'F') {
+      return 'poslanka'
+    } else {
+      return 'poslanec'
+    }
   }
+
   return position;
 }
 
