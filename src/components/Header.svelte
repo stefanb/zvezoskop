@@ -36,7 +36,7 @@
 			<LocalizedLink component="a" href="/about">{$translate('header.about')}</LocalizedLink>
 		</div>
 		<div style:margin-top="-1px">
-			<a target="_blank" href="//ostro.si/si/zgodbe/zvezoskop">{$translate('header.stories')}</a>
+			<a target="_blank" href="//www.ostro.si/si/zgodbe/tag/zvezoskop">{$translate('header.stories')}</a>
 		</div>
 		<div>
 			{#if searchOpen}
@@ -99,7 +99,7 @@
 		</Item>
 		<Separator />
 		<Item>
-			<a target="_blank" class="mobile-link" href="//ostro.si/si/zgodbe/zvezoskop">{$translate('header.stories')}</a>
+			<a target="_blank" class="mobile-link" href="//www.ostro.si/si/zgodbe/tag/zvezoskop">{$translate('header.stories')}</a>
 		</Item>
 		<Separator />
 		<Item>
