@@ -16,11 +16,14 @@
 	import languageSi from '$lib/images/language-si.svg';
 	import LocalizedLink from './LocalizedLink.svelte';
 	import { tooltip } from './tooltip';
+    import TutorialDialog from './TutorialDialog.svelte';
 	// import { invalidateAll } from '$app/navigation';
 
 	let searchOpen = false;
+	let tutorialOpen = false;
 	let mobileMenuOpen = false;
 	const toggleSearch = () => searchOpen = !searchOpen
+	const toggleTutorial = () => tutorialOpen = !tutorialOpen
 
 	$: if($navigating) mobileMenuOpen = false
 	
@@ -66,6 +69,9 @@
 		</LocalizedLink>
 	{/if}
 	<div class="header__right mobile-hide">
+		<Button on:click={() => (tutorialOpen = true)}>
+			<Label>{$translate('header.tutorial')}</Label>
+		</Button>
 		<div>
 			{#key $locale}
 				<span use:tooltip={[$translate('header.asset_tracker_help_text')]}>
@@ -103,6 +109,12 @@
 		</Item>
 		<Separator />
 		<Item>
+			<Button on:click={() => (tutorialOpen = true)}>
+				<Label>{$translate('header.tutorial')}</Label>
+			</Button>
+		</Item>
+		<Separator />
+		<Item>
 				<a target="_blank" class="mobile-link" href="//detektorpremozenja.si/">{$translate('header.asset_tracker')}</a>
 		</Item>
 		<Separator />
@@ -119,6 +131,8 @@
 		</Item>
 	</List>
 {/if}
+
+<TutorialDialog bind:open={tutorialOpen} />
 
 <style lang="scss">
 	.header {
@@ -196,17 +210,23 @@
 			}
 	}
 
-	:global(.header a), :global(.mobile-menu a)  {
+	:global(.header a), :global(.mobile-menu a), :global(.header .mdc-button__label), :global(.mobile-menu .mdc-button__label)  {
 		color: white !important;
+		font-family: IBM Plex Sans;
 		font-size: 14px !important;
 		font-weight: normal;
 		text-decoration: none !important;
 		padding: 0 8px;
+		text-transform: none !important;
 
 		&.mobile-link {
-			padding: 6px 0;
+			padding: 6px 6px;
 			color: white !important;
 		}
+	}
+
+	:global(.header .mdc-button__label), :global(.mobile-menu .mdc-button__label)  {
+		font-weight: 500 !important;
 	}
 
 	:global(.mobile-menu a) {
