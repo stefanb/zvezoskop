@@ -18,5 +18,5 @@ export function load({ params, url }) {
  const title_si = "Zvezoskop"
 	const title_en = "Zvezoskop"
 
- return ({ title_si, title_en, skipIntro: url.search === '?skip-intro=true' })
+ return ({ title_si, title_en })
 }
