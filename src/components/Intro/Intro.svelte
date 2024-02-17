@@ -204,7 +204,7 @@
     flex-basis: 0;
     min-width: 300px;
     // max-width: 300px;
-    // text-align: center;
+    text-align: center;
     flex-grow: 1;
 
     @media (max-width: $mobile) {
