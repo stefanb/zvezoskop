@@ -29,7 +29,6 @@
 	
 	$: if($navigating) searchOpen = false;	
 
-	$: console.log($platform)
 </script>
 
 <header class="header">
@@ -82,11 +81,11 @@
 			{/key}
 		</div>
 		{#if $locale === 'en'}
-			<Button on:click={() => { setLocale('si'); goto(`${base}/si${$page.data.route}`) }}>
+			<Button on:click={() => { setLocale('si'); goto(`${base}/si${$page.data.route}${$page.url.search}`) }}>
 				<img src={languageSi} alt="Switch language" />
 			</Button>
 		{:else}
-			<Button on:click={() => { setLocale('en'); goto(`${base}/en${$page.data.route}`) }}>
+			<Button on:click={() => { setLocale('en'); goto(`${base}/en${$page.data.route}${$page.url.search}`) }}>
 				<img src={languageEn} alt="Switch language" />
 			</Button>
 		{/if}

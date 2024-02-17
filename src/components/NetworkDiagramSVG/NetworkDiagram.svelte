@@ -93,7 +93,7 @@
 
 		/* opacity: 0.6; */
   border: 2px solid #4600BE !important;
-
+		overflow: hidden !important;
 
  }
 

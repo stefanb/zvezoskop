@@ -148,6 +148,7 @@ const forceBoundary = () => {
  }
 
  const selectItem = () => {
+  // console.log('HERE', $selected, $hovered)
   if ($selected.length) {
     $hovered = $selected
   }
