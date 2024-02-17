@@ -140,9 +140,7 @@
 
  :global(.mdc-icon-button) {
   // padding: 3px !important;
-  width: 30px !important;
-  height: 30px !important;
-
+  
  }
 
  :global(.mdc-deprecated-list-item) {

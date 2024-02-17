@@ -58,6 +58,21 @@
 	on:click={() => {onClick(id)}}
 />
 
+{#if selected}
+	<circle 
+		r=8
+		fill="#FA0"
+		cx={$tX + $tR}
+		cy={$tY - $tR}
+		stroke="#fff"
+		class="close-icon"
+		on:click={() => {onClick(id)}}
+	/>
+	<g class="close-icon__inner" transform={`translate(${$tX + $tR}, ${$tY - $tR})`}>
+		<path stroke="#fff" stroke-width=2 d="M-3 -3 3 3 M3 -3 -3 3" />
+	</g>
+{/if}
+
 
 {#if hovered || selected}
 	<g 
@@ -80,12 +95,12 @@
 				{label}
 			</text>
 	</g>
-	
+
 {/if}
 
 {#if selected}
 	<g 
-		transform={`translate(${$tX}, ${$tY - $tR - 10})`}
+		transform={`translate(${$tX}, ${$tY - $tR - 15})`}
 		in:fade
 		class="label"
 		on:click={() => goto(`${base}/${$locale}/people/${id}`)}
@@ -112,6 +127,9 @@
 <style lang="scss">
 	.Point {
 		cursor: pointer;
+			&:hover {
+				stroke: #ffcd80;
+			}
 	}
 
 	.label {
@@ -119,6 +137,7 @@
 		font-size: 8px;
 		font-weight: 600;
 		background: white;
+		cursor: pointer;
 
 		text {
 		 dominant-baseline: middle;
@@ -140,5 +159,16 @@
 		}
 	}
 
+	.close-icon {
+		cursor: pointer;
+
+		&:hover {
+			fill: #ffcd80;
+		}
+
+		&__inner {
+			pointer-events: none;
+		}
+	}
 
 </style>
