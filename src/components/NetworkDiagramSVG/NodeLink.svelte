@@ -327,7 +327,7 @@ const tick = () => {
   }
  }
 
- $: console.log('fixed nodes', simulation?.nodes().filter(({ fx }) => !!fx))
+//  $: console.log('fixed nodes', simulation?.nodes().filter(({ fx }) => !!fx))
 
 
 </script>

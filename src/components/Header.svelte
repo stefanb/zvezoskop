@@ -65,7 +65,7 @@
 		</div>
 		
 	</div>
-	{#if !searchOpen || $platform === 'desktop'}
+	{#if !searchOpen && $platform === 'desktop'}
 		<LocalizedLink component="a" href="/">		
 			<h3 class="header__title">{$translate('app_title')}</h3>
 		</LocalizedLink>

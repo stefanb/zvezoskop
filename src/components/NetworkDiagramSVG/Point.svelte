@@ -127,9 +127,9 @@
 <style lang="scss">
 	.Point {
 		cursor: pointer;
-			&:hover {
-				stroke: #ffcd80;
-			}
+			// &:hover {
+			// 	stroke: #ffcd80;
+			// }
 	}
 
 	.label {
