@@ -7,6 +7,7 @@
   import moment from 'moment';
   import { timeMonth } from 'd3-time';
   import { translate } from '$lib/translations';
+  import { DATA_UPDATE_DATE } from '../utils'
 
 
   const { width, height, xScale, yRange, xRange } = getContext('LayerCake');
@@ -34,7 +35,7 @@
 
   $: isBandwidth = typeof $xScale.bandwidth === 'function';
 
-  $: tickVals = [...$xScale.ticks(5), 'present']
+  $: tickVals = $xScale.domain()[1].getTime() === DATA_UPDATE_DATE.getTime() ? [...$xScale.ticks(5), 'present'] : $xScale.ticks(5)
 
   $: yearsExtent = moment($xScale.domain()[1]).diff($xScale.domain()[0], "years")
   $: format = yearsExtent < 4 ? 'M.YYYY' : 'YYYY'

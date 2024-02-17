@@ -141,7 +141,7 @@
           {#if showSecondaryText && activeSection.textSecondary?.left}
             <div class="section-text__secondary" in:fade={{ delay: 500, duration: 500 }}>
               {#each activeSection.textSecondary.left as secondaryText}
-                <span >{secondaryText}</span>
+                <span>{$translate(secondaryText)}</span>
               {/each}
             </div>
           {/if}
