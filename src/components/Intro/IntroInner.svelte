@@ -26,7 +26,7 @@
   import Scrolly from '../TimelineMobile/Scrolly.svelte';
   import { colors, groupBy } from '../../utils'
   import Typewriter from 'svelte-typewriter'
-  import { hideIntro } from '../../stores';
+  // import { hideIntro } from '../../stores';
 
   import { scaleOrdinal } from 'd3-scale'
     import { SecondaryText } from '@smui/list';
@@ -35,6 +35,7 @@
   
   export let sections;
   export let activeSection;
+  export let skipIntro;
 
   let showNetwork = false;
 
@@ -65,7 +66,7 @@
     behavior: 'smooth'
   })
 
-  goto(`${base}/${$locale}#skip-intro`, { replaceState: true })
+  goto(`${base}/${$locale}?skip-intro=true`, { replaceState: true })
  }
 
  let pointsFixed = false;
@@ -94,7 +95,7 @@
 <!-- <svelte:window use:wheel={{disableScroll}} /> -->
   <div class="scroll-tracker">
     <Scrolly bind:value={scrollSectionIndex} bind:progress={sectionProgress} >
-      {#if !$hideIntro}
+      {#if !skipIntro}
         {#each sections as { id, groups, text_si, text_en }}
           <div class="step" class:last={id === 'outro' || id === '4'}>
             {#if id === 'intro'}
@@ -160,7 +161,7 @@
    -->
 
   <!-- <a use:scrollto={'#scroll-element'}> Scroll to element </a> -->
-{#if !$hideIntro}
+{#if !skipIntro}
   <div class="skip-ahead" on:click={() => skipAhead()}>
     <span class="skip-ahead__text">{$translate('Skip')}</span>
   </div>

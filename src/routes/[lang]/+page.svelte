@@ -10,21 +10,12 @@ import connections from '$lib/data/links.json';
 import { base } from '$app/paths';
 import { groupBy } from '../../utils';
 import { page, navigating } from '$app/stores';  
-import { hideIntro } from '../../stores';
+// import { hideIntro } from '../../stores';
 
-
-$: {
-	console.log($page.url.hash)
-	if ($page.url.hash === '#skip-intro') {
-			$hideIntro = true
-	}
-}
-
-// console.log(people)
 
 </script>
 
-<Intro {people}>
+<Intro skipIntro={$page.data.skipIntro} {people}>
 	{#if $platform}
 		{#if $platform === 'mobile'}
 			<Directory {people} />

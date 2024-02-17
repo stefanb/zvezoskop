@@ -6,7 +6,7 @@ import { page } from "$app/stores";
 export const selected = writable([]);
 export const hovered = writable(null);
 
-export const hideIntro = writable(false)
+// export const hideIntro = writable(false)
 
 export const hist = writable([])
 

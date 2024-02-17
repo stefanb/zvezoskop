@@ -18,10 +18,12 @@
   import Scrolly from '../TimelineMobile/Scrolly.svelte';
   import { colors, getColor, groupBy } from '../../utils'
   import Typewriter from 'svelte-typewriter'
-  import { hideIntro } from '../../stores';
+  // import { hideIntro } from '../../stores';
 
   import { scaleOrdinal } from 'd3-scale'
   import IntroInner from './IntroInner.svelte';
+
+  export let skipIntro;
 
   let activeSection;
 
@@ -126,7 +128,7 @@
 
 </script>
 
-<IntroInner {sections} bind:activeSection >
+<IntroInner {skipIntro} {sections} bind:activeSection >
   <div slot="points" let:typingDisabled>
     <IntroPoints groups={activeSection?.groups || sections[1].groups}>
     </IntroPoints>
@@ -168,7 +170,7 @@
       </div>
     {/if}
   </div>
-  <div slot="network" class="network-container" style:display={$hideIntro ? 'block' : 'none'}>
+  <div slot="network" class="network-container" style:display={skipIntro ? 'block' : 'none'}>
     <slot />
   </div>
  

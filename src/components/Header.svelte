@@ -34,7 +34,7 @@
 
 <header class="header">
 	<div class="header__left header-mobile-hide">
-		<LocalizedLink href="/#skip-intro" onClick={() => { $selected = [] }}>
+		<LocalizedLink href="?skip-intro=true" onClick={() => { $selected = [] }}>
 			<img src={logo} alt="Home" />
 		</LocalizedLink>
 		<div>

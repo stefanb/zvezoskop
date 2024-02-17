@@ -6,9 +6,8 @@ import { base } from '$app/paths';
 // it so that it gets served as a static asset in production
 export const prerender = true;
 
-export function load({ params }) {
-
- const { lang } = params;
+export function load({ params, url }) {
+ // const { lang } = params;
 
  // console.log(all.url.hash)
 
@@ -19,5 +18,5 @@ export function load({ params }) {
  const title_si = "Zvezoskop"
 	const title_en = "Zvezoskop"
 
- return ({ title_si, title_en })
+ return ({ title_si, title_en, skipIntro: url.search === '?skip-intro=true' })
 }

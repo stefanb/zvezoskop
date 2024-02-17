@@ -54,7 +54,7 @@
 
           // if ($page.url.pathname !== `${base}/${$locale}`) {
             // console.log('navigating', $page.url.pathname, `${base}/${$locale}`)
-          goto(`${base}/${$locale}#skip-intro`)
+          goto(`${base}/${$locale}?skip-intro=true`)
           // }
 
         }
