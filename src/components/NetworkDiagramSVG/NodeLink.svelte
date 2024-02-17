@@ -333,14 +333,16 @@ const tick = () => {
 </script>
 
 {#each links as { index, source, target, visible, id, showLabel, institutions } (id)}
-  <Link
-    {id}
-    {showLabel}
-    {visible}
-    institutions={institutions}
-    sourceNode={nodes.find(({ id }) => source === id)}
-    targetNode={nodes.find(({ id }) => target === id)}
-  />
+  {#if visible}
+    <Link
+      {id}
+      {showLabel}
+      {visible}
+      institutions={institutions}
+      sourceNode={nodes.find(({ id }) => source === id)}
+      targetNode={nodes.find(({ id }) => target === id)}
+    />
+  {/if}
 {/each}
 {#each nodes as point (point.id)}
  <Point

@@ -33,14 +33,11 @@
  const tY = tweened(y, tweenParameters);
 	const tR = tweened(r, tweenParameters);
 
-	// let hovered = false;
 
  $: $tX = x;
  $: $tY = y;
 	$: $tR = (allActive || hovered || selected) && !isNaN(r) ? r : 2;
 	$: labelWidth = label.length * 7
-
-	// $: console.log(r)
 
 </script>
 

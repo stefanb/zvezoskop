@@ -135,7 +135,7 @@
  .close-icon {
   transform: translateX(-33px);
   color: rgb(173, 173, 173);
-  background: #fff;
+  // background: #fff;
  }
 
  :global(.mdc-icon-button) {

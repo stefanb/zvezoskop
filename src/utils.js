@@ -133,7 +133,7 @@ export const getYearsLabel = (item, locale, presentPlaceholder) => {
 
 
   // console.log(start)
-  return start === end ? start : start + ' - ' + end;
+  return start === end ? start : start + ' – ' + end;
   // console.log(item)
 
   // if (item.start_year === item.end_year) {

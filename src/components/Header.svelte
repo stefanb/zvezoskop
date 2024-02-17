@@ -65,7 +65,7 @@
 		</div>
 		
 	</div>
-	{#if !searchOpen && $platform === 'desktop'}
+	{#if !searchOpen}
 		<LocalizedLink component="a" href="/">		
 			<h3 class="header__title">{$translate('app_title')}</h3>
 		</LocalizedLink>
@@ -220,6 +220,7 @@
 		text-decoration: none !important;
 		padding: 0 8px;
 		text-transform: none !important;
+		white-space: nowrap !important;
 
 		&.mobile-link {
 			padding: 6px 6px;

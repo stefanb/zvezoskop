@@ -93,7 +93,7 @@ $: {
       >
         <span>{displayDate(item, 'start', locale)}</span>
         {#if item.end_year === 2100 || yearsTransformX < 0}
-          <span>-</span>
+          <span>–</span>
         {/if}
       </div>
     {/if}
