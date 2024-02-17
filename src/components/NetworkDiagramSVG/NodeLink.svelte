@@ -148,7 +148,9 @@ const forceBoundary = () => {
  }
 
  const selectItem = () => {
-  // console.log("selectItem", $selected, visibleLinks)
+  if ($selected.length) {
+    $hovered = $selected
+  }
 
   if (simulation) {
     clearFixedNodes()
