@@ -23,14 +23,14 @@
 
 	setContext("images", images)
 
-	let password = '';
-	const hash = (s) =>
-		s.split('').reduce((a, b) => {
-			a = (a << 5) - a + b.charCodeAt(0);
-			return a & a;
-		}, 0);
+	// let password = '';
+	// const hash = (s) =>
+	// 	s.split('').reduce((a, b) => {
+	// 		a = (a << 5) - a + b.charCodeAt(0);
+	// 		return a & a;
+	// 	}, 0);
 
-	$: passwordProtected = process.env.NODE_ENV === 'production' && hash(password) !== -1258221729;
+	// $: passwordProtected = process.env.NODE_ENV === 'production' && hash(password) !== -1258221729;
 	$: {
 		const histLength = $hist.length;
 
@@ -44,18 +44,18 @@
 		}
 	}
 
-	$: console.log($hist)
+	// $: console.log($hist)
 </script>
 
 <Analytics />
 
 <MediaQuery />
-{#if passwordProtected}
+<!-- {#if passwordProtected}
 	<div class="password-container">
 		<label for="password">Password:</label>
 		<input id="password" bind:value={password} type="password" />
 	</div>
-{:else}
+{:else} -->
 	<div class="app" class:noscroll={$showAlert}>
 		<Alert />
 		<!-- {#if $platform === 'mobile'}
@@ -69,7 +69,7 @@
 		</main>
 		<!-- <footer /> -->
 	</div>
-{/if}
+<!-- {/if} -->
 
 <svelte:head>
 	<!-- <html lang="en" /> -->
