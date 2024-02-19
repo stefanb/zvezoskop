@@ -184,6 +184,7 @@
   /* top: 60vh; */
   /* transform: translateY(90vh); */
   height: calc(100vh - 60px);
+  // min-height: 700px;
   // min-height: 500px;
   // text-align: center;
   // font-family: Noe Display;

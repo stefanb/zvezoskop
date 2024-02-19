@@ -39,7 +39,7 @@
         { count: 160, color: "#E6E6F0"},
       ],
       text: {
-        left: "There are currently 160 government members, ministerial secretaries and MPs in office.",
+        left: "As of February 1, 2024, there are 160 government members, ministerial secretaries and MPs in office.",
       }
     },
     {
@@ -188,7 +188,7 @@
   color: var(--Black, #00001E);
   font-family: Noe Display;
   gap: 20%;
-  // font-size: 24px;
+  font-size: 18px;
   // font-style: normal;
   font-weight: 700;
   max-width: 550px;

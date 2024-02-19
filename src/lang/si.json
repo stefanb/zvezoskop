@@ -3,7 +3,7 @@
  "app_description": "Projekt Zvezoskop interaktivno prikazuje poklicne odnose med aktualnimi slovenskimi politiki, njihovimi karierami in podjetji. Novinarji Oštra so v vizualizacijo vključili člane vlade, državne sekretarje in poslance državnega zbora.",
  "header": {
   "home": "Domov",
-  "about": "Zakaj Zvezoskop?",
+  "about": "O projektu",
   "search": "Iskanje",
   "the_project": "Zakaj Zvezoskop?",
   "methodology": "Metodologija",
@@ -44,7 +44,7 @@
  "select / deselect": "izberi / odstrani",
  "You can select a maximum of 2 people. Deselect one by clicking the icon.":"Izberete lahko največ 2 osebi. Če želite osebo odstraniti iz izbora, kliknite nanjo.",
  "Got it!":"Razumem",
- "There are currently 160 government members, ministerial secretaries and MPs in office.": "Trenutno je na položaju 160 članov vlade, državnih sekretarjev in poslancev.",
+ "As of February 1, 2024, there are 160 government members, ministerial secretaries and MPs in office.": "1. 2. 2024 je na položaju 160 članov vlade, državnih sekretarjev in poslancev.",
  "1 Prime Minister, 20 Ministers, 50 ministerial secretaries, and 89 MPs": "1 predsednik vlade, 20 ministrov in ministric, 50 državnih sekretarjev in sekretark ter 89 poslancev",
  "65 are newcomers.": "Novincev je 65.",
  "18 have been a part of the political establishment since the 90s.": "18 jih je bilo v politiki že v 90. letih.",

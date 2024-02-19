@@ -42,6 +42,7 @@
   width: 100%;
   background: #E6E6F0;
   position: relative;
+  z-index: 11;
  }
 
  .content {
