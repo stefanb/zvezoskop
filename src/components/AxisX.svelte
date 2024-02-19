@@ -35,7 +35,9 @@
 
   $: isBandwidth = typeof $xScale.bandwidth === 'function';
 
-  $: tickVals = $xScale.domain()[1].getTime() === DATA_UPDATE_DATE.getTime() ? [...$xScale.ticks(5), 'present'] : $xScale.ticks(5)
+  $: showPresentFinalTick = $xScale.domain()[1].getTime() === DATA_UPDATE_DATE.getTime()
+  $: tickVals = showPresentFinalTick ? [...$xScale.ticks(5), 'present'] : $xScale.ticks(5)
+  $: hideLastTick = showPresentFinalTick && ($xScale(DATA_UPDATE_DATE) - $xScale(tickVals[tickVals.length - 2]) < 100)
 
   $: yearsExtent = moment($xScale.domain()[1]).diff($xScale.domain()[0], "years")
   $: format = yearsExtent < 4 ? 'M.YYYY' : 'YYYY'
@@ -73,6 +75,7 @@
           dx=""
           dy={-25}
           text-anchor={textAnchor(i)}
+          class:hidden={i === tickVals.length - 1 && hideLastTick}
         >
           {formatTick(tick)}
         </text
@@ -104,6 +107,10 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+
+    &.hidden {
+      visibility: hidden;
+    }
   }
 
   .tick .tick-mark,
