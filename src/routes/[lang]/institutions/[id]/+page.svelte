@@ -21,37 +21,38 @@ import ProfileHeader from '../../../../components/ProfileHeader.svelte';
   notes = [...new Set(notesRaw)];
  }
 
-
 </script>
 
 
 {#key data.route}
-  <ProfileHeader
-    title={tField(data.affiliations?.[0], 'institution', $locale)}
-    notes={notes}
-    background={$platform === 'mobile' || !!data.partyData ? '#E6E6EB' : '#FFF'}
-    border={$platform === 'mobile' || !!data.partyData ? '#FFF' : '#6E7382'}
-    hideLegend={!!data.partyData}
-    pageContentHeight={timelineHeight}
-  />
-  {#if data.partyData}
-    <InstitutionBreakdown affiliations={data.partyData.affiliations} />
-    <TimelineLegend />
-  {/if}
-  {#if $platform}
-    <div bind:clientHeight={timelineHeight}>
-      {#if $platform === 'mobile'}
-        <TimelineMobile
-        items={data.affiliations}
-        />
-      {:else}
-        <Timeline
+  {#if data.affiliations.length !== 0}
+    <ProfileHeader
+      title={tField(data.affiliations?.[0], 'institution', $locale)}
+      notes={notes}
+      background={$platform === 'mobile' || !!data.partyData ? '#E6E6EB' : '#FFF'}
+      border={$platform === 'mobile' || !!data.partyData ? '#FFF' : '#6E7382'}
+      hideLegend={!!data.partyData}
+      pageContentHeight={timelineHeight}
+    />
+    {#if data.partyData}
+      <InstitutionBreakdown affiliations={data.partyData.affiliations} />
+      <TimelineLegend />
+    {/if}
+    {#if $platform}
+      <div bind:clientHeight={timelineHeight}>
+        {#if $platform === 'mobile'}
+          <TimelineMobile
           items={data.affiliations}
-          rowGroupingVar="person_name"
-          getItemLink={({ person_id }) => `/people/${person_id}`}
-          getItemLabel={({ person_id, person_name, image_link, curr_position }) => ({ id:person_id, image_link, name:person_name, position:curr_position})}
-        />
-      {/if}
-    </div>
+          />
+        {:else}
+          <Timeline
+            items={data.affiliations}
+            rowGroupingVar="person_name"
+            getItemLink={({ person_id }) => `/people/${person_id}`}
+            getItemLabel={({ person_id, person_name, image_link, curr_position }) => ({ id:person_id, image_link, name:person_name, position:curr_position})}
+          />
+        {/if}
+      </div>
+    {/if}
   {/if}
 {/key}

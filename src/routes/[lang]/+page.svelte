@@ -1,5 +1,5 @@
 <script>
-	import { onMount } from 'svelte';
+	import { onMount, beforeUpdate } from 'svelte';
 	// import NetworkDiagram from '../../components/NetworkDiagram/NetworkDiagram.svelte'
 	// import NetworkDiagram from '../../components/NetworkDiagramCanvas/NetworkDiagram.svelte'
 	import { platform } from '../../components/MediaQuerySsr.svelte';

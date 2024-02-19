@@ -7,11 +7,12 @@ import parties from '$lib/data/parties.json';
 export async function load({ params }) {
  const { id } = params;
 
- const affiliations = institutions[id]
+ const affiliations = institutions[id] || []
 
  const partyData = parties.find(({ id:partyId }) => id === partyId)
 
- const institutionData = affiliations[0];
+
+ const institutionData = affiliations?.[0] || {};
 
  const title_si = institutionData.institution_si
 	const title_en = institutionData.institution_en
