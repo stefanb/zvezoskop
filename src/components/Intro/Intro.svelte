@@ -175,13 +175,14 @@
   let showSecondaryText = true;
 
   $: activeSection, typing = activeSection?.id !== 'outro' && activeSection?.id !== 'intro', showSecondaryText = activeSection?.id === 'outro';
+  $: isFirefox = typeof InstallTrigger !== 'undefined';
 
   // $: skipIntro, typing = false
-  $: console.log(activeSection, typing)
+  // $: console.log('firefox', isFirefox)
 
 </script>
 
-{#if typing && $platform !== 'mobile'}
+{#if !isFirefox && typing && $platform !== 'mobile'}
   <Body style="overflow: hidden; height: 100%" />
 {/if}
 
@@ -195,7 +196,7 @@
           <Typewriter disabled={typingDisabled} interval={20} cursor={false} on:done={() => typing = false}>
             {$translate(activeSection.text.left)}
           </Typewriter>
-          {#if showSecondaryText && activeSection.textSecondary?.left}
+          {#if (isFirefox || showSecondaryText) && activeSection.textSecondary?.left}
             <div class="section-text__secondary" in:fade={{ delay: 500, duration: 500 }}>
               {#each activeSection.textSecondary.left as secondaryText}
                 <span>{$translate(secondaryText)}</span>
@@ -205,7 +206,7 @@
         </div>
         {#if activeSection.text.right}
           <div class="section-text__item">
-            {#if !typing}
+            {#if !typing || isFirefox}
               <Typewriter disabled={typingDisabled} delay={300} interval={20} cursor={false} on:done={() => {
                 if (activeSection.id === '4') {
                   showSecondaryText = true;
@@ -214,7 +215,7 @@
                 {$translate(activeSection.text.right)}
               </Typewriter>
             
-              {#if showSecondaryText && activeSection.textSecondary?.right}
+              {#if (isFirefox || showSecondaryText) && activeSection.textSecondary?.right}
                 <div class="section-text__secondary" in:fade={{ delay: 500, duration: 500 }}>
                   {#each activeSection.textSecondary.right as secondaryText}
                     <span>{$translate(secondaryText)}</span>
@@ -280,6 +281,8 @@
 
  .network-container {
   height: calc(100vh - 60px);
-
+  position: relative;
+  background: #fff;
+  z-index: 15;
  }
 </style>

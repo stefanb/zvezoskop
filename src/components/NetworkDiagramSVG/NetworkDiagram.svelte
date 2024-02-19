@@ -82,7 +82,7 @@
 
 	.clear-selected {
 		position: absolute;
-		top: 70px;
+		top: 10px;
 		left: 10px;
 		z-index: 10;
 	}

@@ -71,6 +71,8 @@
 
  let pointsFixed = true;
 
+ $: console.log(scrollSectionIndex)
+
 //  $: {
 //   if (!activeSection.showPoints) {
 //    pointsFixed = false;
@@ -103,9 +105,9 @@
             {#if id === 'intro'}
              <IntroFirstSlide {skipAhead} />
             {:else if id === 'outro'}
-              <div class="waypoint" style:background={"green"} style:transform="translateY(-120vh)">
-                <!-- <Waypoint once={false} throttle="500" on:enter={() => pointsFixed = false}></Waypoint> -->
-              </div>
+              <!-- <div class="waypoint" style:background={"green"} style:transform="translateY(-120vh)">
+                <Waypoint once={false} throttle="500" on:enter={() => pointsFixed = false}></Waypoint>
+              </div> -->
              <IntroLastSlide {skipAhead} />
             <!-- {:else if id === '1'} -->
               <!-- {#if !pointsFixed}
@@ -123,9 +125,9 @@
                </div>
               {/if} -->
             {:else}
-              <div class="waypoint">
+              <!-- <div class="waypoint">
                 <Waypoint once={false} throttle="500" offset="0" on:enter={() => pointsFixed = true}></Waypoint>
-              </div>
+              </div> -->
             <!-- <div class="waypoint">
               <Waypoint once={false} throttle="500" offset="0" on:enter={() => pointsFixed = true}></Waypoint>
              </div> -->
