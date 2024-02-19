@@ -10,9 +10,18 @@
 	import connections from '$lib/data/links.json';
 	import { base } from '$app/paths';
 	import { groupBy } from '../../utils';
-	import { page, navigating } from '$app/stores';  
+	import { page, navigating } from '$app/stores';
 
-	$: skipIntro = $page.url.search === '?skip-intro=true'
+
+	let skipIntro = false;
+
+	onMount(() => {
+		skipIntro = $page.url.search === '?skip-intro=true'
+	})
+
+	beforeUpdate(() => {
+		skipIntro = $page.url.search === '?skip-intro=true'
+	})
 
 </script>
 
