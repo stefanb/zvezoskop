@@ -24,7 +24,6 @@
   $: xScale = scaleTime()
     .domain([new Date(min(items, d => d.startDisplayDate)), DATA_UPDATE_DATE])
 
-  $: console.log(sections)
 </script>
 
 <div class="timeline-container" style="--theme-color: {color};" in:fade>

@@ -27,8 +27,6 @@ $: sorted = items
   .sort((a, b) => a.endDisplayDate < b.endDisplayDate ? -1 : 1)
   .sort((a, b) => a.startDisplayDate < b.startDisplayDate ? -1 : 1)
 
-$: console.log(sorted)
-
 </script>
 
 <div class="outer-container">

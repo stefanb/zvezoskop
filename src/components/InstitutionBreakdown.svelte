@@ -6,7 +6,7 @@
 
  export let affiliations;
 
- $: console.log(affiliations)
+//  $: console.log(affiliations)
 
  $: sortedAffiliations =  Object.entries(affiliations)
   .map(([type, items]) => ({ type, items }))

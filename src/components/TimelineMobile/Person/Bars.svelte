@@ -10,7 +10,6 @@
 
  const { data, xGet, width, zGet, yGet, xScale, yDomain, yRange, rGet, xDomain, xRange } = getContext('LayerCake');
 
- $: console.log($data.filter(d => !!d.id))
 </script>
 
 {#each $data as bar, i (bar.id)}
