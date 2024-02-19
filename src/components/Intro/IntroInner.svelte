@@ -77,6 +77,8 @@
   }
  }
 
+ $: console.log(activeSection, pointsFixed)
+
 //  let chartTopPosition = 1000;
 
 //   if (scrollSectionIndex === 0) {
@@ -102,7 +104,7 @@
              <IntroFirstSlide {skipAhead} />
             {:else if id === 'outro'}
               <div class="waypoint" style:background={"green"} style:transform="translateY(-120vh)">
-                <Waypoint once={false} throttle="500" on:enter={() => pointsFixed = false}></Waypoint>
+                <!-- <Waypoint once={false} throttle="500" on:enter={() => pointsFixed = false}></Waypoint> -->
               </div>
              <IntroLastSlide {skipAhead} />
             {:else if id === '1'}
@@ -114,16 +116,16 @@
               <div class="waypoint">
                <Waypoint once={false} throttle="500" offset="0" on:enter={() => pointsFixed = true}></Waypoint>
               </div>
-            {:else if id === '4'}
+            <!-- {:else if id === '4'}
               {#if !pointsFixed}
                <div class="chart-container">
                 <slot name="points" typingDisabled={true} />
                </div>
-              {/if}
+              {/if} -->
             {:else}
-            <div class="waypoint">
-              <Waypoint once={false} throttle="500" offset="0" on:enter={() => pointsFixed = true}></Waypoint>
-             </div>
+              <div class="waypoint">
+                <Waypoint once={false} throttle="500" offset="0" on:enter={() => pointsFixed = true}></Waypoint>
+              </div>
             <!-- <div class="waypoint">
               <Waypoint once={false} throttle="500" offset="0" on:enter={() => pointsFixed = true}></Waypoint>
              </div> -->
@@ -207,9 +209,13 @@
   //  }
   // }
 
-  // &.last {
-  //   height: 120vh;
-  // }
+  &.last {
+    min-height: 600px;
+  }
+
+  &:first-child {
+    min-height: 600px;
+  }
  }
 
  .skip-ahead {

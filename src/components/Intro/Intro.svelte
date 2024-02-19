@@ -119,16 +119,63 @@
     },
     { 
       id: 'outro',
+      showPoints: true,
+      groups: [
+        { count: 64, getColor: i => {
+          let key;
+          if (i < 7) {
+            key = "minister"
+          } else if (i < 30) {
+            key = "secretary"
+          } else {
+            key = "mp"
+          }
+
+          return getColor(key)
+        }},
+        { count: 96, getColor: i => {
+          let key;
+          if (i < 1) {
+            key = "pm"
+          } else if (i < 14) {
+            key = "minister"
+          } else if (i < 41) {
+            key = "secretary"
+          } else {
+            key = "mp"
+          }
+
+          return getColor(key)
+        }},
+      ],
+      text: {
+        left: "64 are women",
+        right: "and 96 men."
+      },
+      textSecondary: {
+        left: [
+          "7 ministers",
+          "23 ministerial secretaries",
+          "34 members of parliament"
+        ],
+        right: [
+          "1 prime minister",
+          "13 ministers",
+          "27 ministerial secretaries",
+          "55 members of parliament"
+        ]
+      }
+
     }
   ]
 
   let typing = false;
-  let showSecondaryText = false;
+  let showSecondaryText = true;
 
-  $: activeSection, typing = activeSection?.id !== 'outro' && activeSection?.id !== 'intro', showSecondaryText = activeSection?.id === 'outro';
+  // $: activeSection, typing = activeSection?.id !== 'outro' && activeSection?.id !== 'intro', showSecondaryText = activeSection?.id === 'outro';
 
   // $: skipIntro, typing = false
-  $: console.log(skipIntro, activeSection, typing)
+  // $: console.log(skipIntro, activeSection, typing)
 
 </script>
 
@@ -152,7 +199,7 @@
         </div>
         {#if activeSection.text.right}
           <div class="section-text__item">
-            {#if !typing}
+            <!-- {#if !typing} -->
               <Typewriter disabled={typingDisabled} delay={300} interval={20} cursor={false} on:done={() => {
                 if (activeSection.id === '4') {
                   showSecondaryText = true;
@@ -168,7 +215,7 @@
                   {/each}
                 </div>
               {/if}
-            {/if}
+            <!-- {/if} -->
           </div>
         {/if}
       </div>

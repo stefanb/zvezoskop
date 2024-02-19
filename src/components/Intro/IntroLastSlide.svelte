@@ -39,6 +39,7 @@
 <style lang="scss">
  .last-slide {
   height: calc(100vh - 60px);
+  min-height: 600px;
   width: 100%;
   background: #E6E6F0;
   position: relative;
