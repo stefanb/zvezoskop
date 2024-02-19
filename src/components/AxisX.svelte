@@ -37,7 +37,7 @@
 
   $: showPresentFinalTick = $xScale.domain()[1].getTime() === DATA_UPDATE_DATE.getTime()
   $: tickVals = showPresentFinalTick ? [...$xScale.ticks(5), 'present'] : $xScale.ticks(5)
-  $: hideLastTick = showPresentFinalTick && ($xScale(DATA_UPDATE_DATE) - $xScale(tickVals[tickVals.length - 2]) < 100)
+  $: hideLastTick = showPresentFinalTick && ($xScale(DATA_UPDATE_DATE) - $xScale(tickVals[tickVals.length - 2]) < 80)
 
   $: yearsExtent = moment($xScale.domain()[1]).diff($xScale.domain()[0], "years")
   $: format = yearsExtent < 4 ? 'M.YYYY' : 'YYYY'

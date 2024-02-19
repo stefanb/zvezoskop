@@ -10,7 +10,7 @@
 		"smui-theme": "smui-theme compile static/smui.css -i src/theme",
 		"deploy": "npm run build && npm run copy && npm run build_remote",
 		"build_remote": "gh-pages -d build -t true",
-		"copy": "mkdir -p build/zvezoskop && cp -rf build/smui.css build/zvezoskop/smui.css && cp -rf static/index.html build/index.html",
+		"copy": "mkdir -p build/zvezoskop && cp -rf build/smui.css build/zvezoskop/smui.css && cp -rf build/_app/ build/zvezoskop/_app/ && cp -rf static/index.html build/index.html",
 		"update_data": "node data/update_data.js"
 	},
 	"devDependencies": {

@@ -183,6 +183,9 @@ export const getPositionLabel = (position, gender, locale) => {
     if (position === 'mp') {
       return 'MP'
     }
+    if (position === 'secretary') {
+      return 'Ministerial secretary'
+    }
     return capitalizeFirstLetter(position);
   }
 
