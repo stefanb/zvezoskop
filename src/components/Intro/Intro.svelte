@@ -1,6 +1,8 @@
 <script>
   import { onMount } from 'svelte';
   import { LayerCake, Svg, Html, Canvas } from 'layercake';
+  import { Body } from 'svelte-body';
+  import { platform } from '../MediaQuerySsr.svelte';
   import { fade } from 'svelte/transition';
   import { page, navigating } from '$app/stores';  
   import { translate } from '$lib/translations';
@@ -172,12 +174,16 @@
   let typing = false;
   let showSecondaryText = true;
 
-  // $: activeSection, typing = activeSection?.id !== 'outro' && activeSection?.id !== 'intro', showSecondaryText = activeSection?.id === 'outro';
+  $: activeSection, typing = activeSection?.id !== 'outro' && activeSection?.id !== 'intro', showSecondaryText = activeSection?.id === 'outro';
 
   // $: skipIntro, typing = false
-  // $: console.log(skipIntro, activeSection, typing)
+  $: console.log(activeSection, typing)
 
 </script>
+
+{#if typing && $platform !== 'mobile'}
+  <Body style="overflow: hidden; height: 100%" />
+{/if}
 
 <IntroInner {skipIntro} {sections} bind:activeSection >
   <div slot="points" let:typingDisabled>
@@ -199,7 +205,7 @@
         </div>
         {#if activeSection.text.right}
           <div class="section-text__item">
-            <!-- {#if !typing} -->
+            {#if !typing}
               <Typewriter disabled={typingDisabled} delay={300} interval={20} cursor={false} on:done={() => {
                 if (activeSection.id === '4') {
                   showSecondaryText = true;
@@ -215,7 +221,7 @@
                   {/each}
                 </div>
               {/if}
-            <!-- {/if} -->
+            {/if}
           </div>
         {/if}
       </div>

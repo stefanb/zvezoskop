@@ -50,11 +50,12 @@
 
 <style lang="scss">
  .first-slide {
-  height: 100%;
-  min-height: 600px;
+  height: calc(100vh - 60px);
+  min-height: 500px;
   width: 100%;
   background: #E6E6F0;
   position: relative;
+  z-index: 11;
  }
 
  .content {

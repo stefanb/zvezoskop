@@ -69,15 +69,15 @@
   goto(`${base}/${$locale}?skip-intro=true`, { replaceState: true })
  }
 
- let pointsFixed = false;
+ let pointsFixed = true;
 
- $: {
-  if (!activeSection.showPoints) {
-   pointsFixed = false;
-  }
- }
+//  $: {
+//   if (!activeSection.showPoints) {
+//    pointsFixed = false;
+//   }
+//  }
 
- $: console.log(activeSection, pointsFixed)
+//  $: console.log(activeSection, pointsFixed)
 
 //  let chartTopPosition = 1000;
 
@@ -107,15 +107,15 @@
                 <!-- <Waypoint once={false} throttle="500" on:enter={() => pointsFixed = false}></Waypoint> -->
               </div>
              <IntroLastSlide {skipAhead} />
-            {:else if id === '1'}
-              {#if !pointsFixed}
+            <!-- {:else if id === '1'} -->
+              <!-- {#if !pointsFixed}
                <div class="chart-container">
                 <slot name="points" typingDisabled={false} />
                </div>
               {/if}
               <div class="waypoint">
                <Waypoint once={false} throttle="500" offset="0" on:enter={() => pointsFixed = true}></Waypoint>
-              </div>
+              </div> -->
             <!-- {:else if id === '4'}
               {#if !pointsFixed}
                <div class="chart-container">
@@ -170,6 +170,18 @@
 {/if}
 
 <style lang="scss">
+  // .scroll-mask {
+  //   position: fixed;
+  //   top: 0;
+  //   left: 0;
+  //   height: 100vh;
+  //   width: 100vw;
+  //   background: green;
+  //   overflow: hidden;
+  //   z-index: 11;
+  //   pointer-events: none;
+  // }
+
  .chart-container {
    width: 100%;
    background: #fff;
@@ -214,13 +226,14 @@
   }
 
   &:first-child {
-    min-height: 600px;
+    height: calc(100vh + 300px);
+    min-height: 800px;
   }
  }
 
  .skip-ahead {
   position: fixed;
-  z-index: 10;
+  z-index: 12;
   bottom: 10px;
   left: 10px;
   color: #4e566a;

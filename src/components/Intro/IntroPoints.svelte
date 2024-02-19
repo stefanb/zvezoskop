@@ -83,8 +83,8 @@
   // padding = 5;
   // downCount = 5;
 
-  const r = $platform === 'mobile' ? 11 : 20;
-  const padding = $platform === 'mobile' ? 5 : 5;
+  $: r = $platform === 'mobile' ? 11 : 20;
+  $: padding = $platform === 'mobile' ? 5 : 5;
 
 </script>
 
