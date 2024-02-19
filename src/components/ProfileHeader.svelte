@@ -117,6 +117,7 @@ $: collapsed = !!scrollY && scrollY !== 0 && (pageContentHeight + 100) > windowH
    max-width: $max-width;
    margin: 0 auto;
    width: 100%;
+   gap: 15px;
 
    @media (max-width: $mobile) {
     flex-direction: column;
