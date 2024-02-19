@@ -124,7 +124,11 @@
 
   let typing = false;
   let showSecondaryText = false;
-  $: activeSection, typing = activeSection?.id !== 'outro', showSecondaryText = activeSection?.id === 'outro';
+
+  $: activeSection, typing = activeSection?.id !== 'outro' && activeSection?.id !== 'intro', showSecondaryText = activeSection?.id === 'outro';
+
+  // $: skipIntro, typing = false
+  $: console.log(skipIntro, activeSection, typing)
 
 </script>
 
