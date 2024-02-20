@@ -94,4 +94,11 @@
   height: 9px;
   position: relative;
  }
+
+ .label {
+    position: relative;
+    z-index: 10;
+    background: white;
+    padding-right: 4px;
+ }
 </style>

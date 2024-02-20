@@ -1,8 +1,7 @@
 export function tooltip(element, params) {
 	let div;
-	let title;
 	function mouseOver(event) {
-		title = params
+		const { title, zIndex } = params
 		
 		const rightAlign = event.pageX > 500
 		if (!div) {
@@ -22,7 +21,7 @@ export function tooltip(element, params) {
 			left: ${event.pageY}px;
 			transform: translateX(${rightAlign ? -150 : 0}px);
 			width: ${rightAlign ? '150px' : 'auto'};
-   z-index: 1000;
+   z-index: ${zIndex};
 		`;
 		document.body.appendChild(div);
 	}

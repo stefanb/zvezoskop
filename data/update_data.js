@@ -171,8 +171,8 @@ async function main() {
       delete retObj.institution_standardized_en
       delete retObj.other
       delete retObj.source
-      delete retObj.notes_position_si
-      delete retObj.notes_position_en
+      // delete retObj.notes_position_si
+      // delete retObj.notes_position_en
       delete retObj.affiliation_type_en
       delete retObj.start_month
       delete retObj.start_day

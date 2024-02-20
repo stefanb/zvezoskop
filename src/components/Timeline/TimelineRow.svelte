@@ -16,7 +16,7 @@
  export let rowGroupingVar;
  export let i;
 
- const { data, xGet, width, height, zGet, xScale, yRange, rGet, xDomain, xRange } = getContext('LayerCake');
+ const { xScale } = getContext('LayerCake');
 
 //  let hovered = i === 2 && title === "Univerza v Ljubljani, Fakulteta za družbene vede";
  let hovered = false;
@@ -65,16 +65,25 @@ $: minX = min(positions, d => d.startDisplayDate)
   positionRows.push([position]);
  }
 
- const getItemNotes = affiliations => {
-  if (rowGroupingVar === 'institution_si') {
-    const notes = affiliations.map(a => tField(a, 'notes_institution', $locale)).filter(note => note?.length > 0)
+  
+//  const getNotes = affiliations => {
+//   if (rowGroupingVar === 'institution_si') {
+//     const instNotes = affiliations.map(a => tField(a, 'notes_institution', $locale)).filter(note => note?.length > 0)
+//     const positionNotes = affiliations.map(a => tField(a, 'notes_position', $locale)).filter(note => note?.length > 0)
 
-    return [...new Set(notes)];
-  }
-  return []
- }
+//     return [...new Set([...instNotes, ...positionNotes])];
+//   }
+//   return []
+//  }
+let institutionNotes = []
 
  $: positions, calculatePositionOffsets()
+
+ $: if (rowGroupingVar === 'institution_si') {
+    const institutionNotesRaw = positions.map(a => tField(a, 'notes_institution', $locale)).filter(note => note?.length > 0)
+
+    institutionNotes = [...new Set(institutionNotesRaw)];
+  }
 
 //  $: console.log(positionRows)
 
@@ -95,7 +104,7 @@ $: minX = min(positions, d => d.startDisplayDate)
   style:z-index={hovered ? 10 : 1}
 >
   <div class="left">
-    <TimelineRowTitle {title} href={getItemLink(positions[0])} component={getItemLabel(positions[0])} notes={getItemNotes(positions)} />
+    <TimelineRowTitle {title} href={getItemLink(positions[0])} component={getItemLabel(positions[0])} notes={institutionNotes} />
     {#if Object.keys(connections).length}
       <div class="connections-outer-container">
         <div class="connections">
