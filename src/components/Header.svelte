@@ -65,7 +65,7 @@
 		
 	</div>
 	{#if (!searchOpen || $platform === 'desktop')}
-		<LocalizedLink component="a" href="/">		
+		<LocalizedLink component="a" href="/">
 			<h3 class="header__title">{$translate('app_title')}</h3>
 		</LocalizedLink>
 	{/if}
@@ -107,12 +107,6 @@
 		<Separator />
 		<Item>
 			<a target="_blank" class="mobile-link" href="//www.ostro.si/si/zgodbe/tag/zvezoskop">{$translate('header.stories')}</a>
-		</Item>
-		<Separator />
-		<Item>
-			<Button on:click={() => (tutorialOpen = true)}>
-				<Label>{$translate('header.tutorial')}</Label>
-			</Button>
 		</Item>
 		<Separator />
 		<Item>
