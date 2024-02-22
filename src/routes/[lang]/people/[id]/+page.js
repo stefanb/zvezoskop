@@ -203,8 +203,8 @@ export async function load({ params }) {
 	const title_si = bio.name
 	const title_en = bio.name
 
-	const description_en = `${title_en} is a ${bio.position} in the ${bio.institution_en}`;
-	const description_si = `${title_si} je ${getPositionLabel(bio.position, bio.gender, "si")} na ${bio.institution_si}`
+	const description_en = `${title_en} is a ${bio.position}, ${bio.institution_en}`;
+	const description_si = `${title_si} je ${getPositionLabel(bio.position, bio.gender, "si")}, ${bio.institution_si}`
  // console.log(cv[id], bio)
  return ({ ...bio, cv, title_si, title_en, description_si, description_en, meta_image: `/src/lib/img/${bio.image_link}` })
 }

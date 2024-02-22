@@ -12,7 +12,7 @@
 	import { showAlert } from '../stores';
 	import { translate, locale } from '$lib/translations';
 	import Analytics from '$lib/analytics.svelte'
-	import introSiIcon from '$lib/images/about-intro-si.svg';
+	import defaultSiteImage from '$lib/images/zvezoskop.png';
 
 	import { hist } from '../stores'
 	import MediaQuery, { platform } from '../components/MediaQuerySsr.svelte';
@@ -48,10 +48,10 @@
 	$: metaTitle = `${$page.data[$locale === 'en' ? 'title_en' : 'title_si']} • ${$translate('app_title')}`
 	$: metaDescription = $page.data[$locale === 'en' ? 'description_en' : 'description_si'] || $translate('app_description')
 	
-	let metaImage = introSiIcon
+	let metaImage = defaultSiteImage
 	$: {
 		if ($page.data.meta_image) {
-			metaImage = images?.[$page.data.meta_image]?.default || introSiIcon
+			metaImage = images?.[$page.data.meta_image]?.default || defaultSiteImage
 		}
 	}
 
