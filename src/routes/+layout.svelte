@@ -12,6 +12,7 @@
 	import { showAlert } from '../stores';
 	import { translate, locale } from '$lib/translations';
 	import Analytics from '$lib/analytics.svelte'
+	import introSiIcon from '$lib/images/about-intro-si.svg';
 
 	import { hist } from '../stores'
 	import MediaQuery, { platform } from '../components/MediaQuerySsr.svelte';
@@ -44,8 +45,19 @@
 		}
 	}
 
-	// $: console.log($hist)
+	$: metaTitle = `${$page.data[$locale === 'en' ? 'title_en' : 'title_si']} • ${$translate('app_title')}`
+	$: metaDescription = $page.data[$locale === 'en' ? 'description_en' : 'description_si'] || $translate('app_description')
+	
+	let metaImage = introSiIcon
+	$: {
+		if ($page.data.meta_image) {
+			metaImage = images?.[$page.data.meta_image]?.default || introSiIcon
+		}
+	}
+
+	$: console.log(metaImage)
 </script>
+
 
 <Analytics />
 
@@ -79,8 +91,18 @@
 	<link rel="stylesheet" href="fonts/roboto-mono.css" />
 	<link rel="stylesheet" href="mdc.typography.14.0.0.css" /> -->
 	<link rel="stylesheet" href="{base}/smui.css" />
-	<title>{`${$page.data[$locale === 'en' ? 'title_en' : 'title_si']} • ${$translate('app_title')}`}</title>
-	<meta name="description" content={$page.data[$locale === 'en' ? 'description_en' : 'description_si'] || $translate('app_description')} />
+	<title>{metaTitle}</title>
+
+	<meta name="description" content={metaDescription} />
+	<meta property="og:title" content={metaTitle}>
+	<meta property="og:type" content="website" />
+	<meta property="og:description" content={metaDescription}>
+
+	<meta property="og:image" content={metaImage}>
+	<meta property="og:url" content={$page.url.href}>
+	<meta property="og:site_name" content="Zvezoskop">
+	<meta name="twitter:card" content="summary">
+
 </svelte:head>
 
 <style lang="scss">

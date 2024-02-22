@@ -1,6 +1,6 @@
 {
  "app_title": "Zvezoskop",
- "app_description": "Projekt Zvezoskop interaktivno prikazuje poklicne odnose med aktualnimi slovenskimi politiki, njihovimi karierami in podjetji. Novinarji Oštra so v vizualizacijo vključili člane vlade, državne sekretarje in poslance državnega zbora.",
+ "app_description": "Zvezoskop je interaktivna vizualizacija kariernih presečišča članov vlade, državnih sekretarjev in poslancev državnega zbora.",
  "header": {
   "home": "Domov",
   "about": "O projektu",
