@@ -19,7 +19,7 @@
 			<div class="section__inner">
 				<img class="intro-icon" src={aboutIntroSiIcon} />
 				<h1>Po poklicnih poteh političnih funkcionarjev</h1>
-				<p>Zvezoskop je interaktivna vizualizacija kariernih presečišča članov vlade, državnih sekretarjev in poslancev državnega zbora.</p>
+				<p>Zvezoskop je interaktivna vizualizacija kariernih presečišč članov vlade, državnih sekretarjev in poslancev državnega zbora.</p>
 			</div>
 		</div>
 
@@ -188,7 +188,7 @@
 		<div class="section__inner">
 			<h1>Why Zvezoskop?</h1>
 			<p>Slovenia is a small country with a population of 2 million and a widespread belief that personal relationships and loyalty outweigh competence in staffing choices. This perception undermines public trust in government and the Parliament and perpetuates perceived or actual conflicts of interest in the legislative and executive branches.</p>
-			<p>Zvezoskop provides the public with information about career trajectories of political officials while enabling it to conduct independent research. A decade ago, the German newspaper Die Zeit introduced a similar, albeit simpler, visual representation of government ministers' careers. In Slovenia, this approach is entirely novel.			</p>
+			<p>Zvezoskop provides the public with information about career trajectories of political officials while enabling it to conduct independent research. A decade ago, the German newspaper Die Zeit introduced a similar, albeit simpler, <a target="_blank" href="//driven-by-data.net/2013/09/19/bundeskabinett.html">visual representation</a> of government ministers' careers. In Slovenia, this approach is entirely novel.			</p>
 			<p>Following the last four national elections in Slovenia, political parties that were formed (roughly) prior to the elections came to power.</p>
 			<p>Among the officials featured in Zvezoskop, 40% had never been elected in a general election or appointed as ministers or ministerial secretaries before the 2022 parliamentary elections.</p>
 
@@ -215,7 +215,6 @@
 			<h1>
 				Project methodology
 			</h1>
-			<p>In a small country like Slovenia, career and life paths of various political officials are intricately connected, spanning their educational years, previous employers, political affiliations, and leisure activities.</p>
 			<p>The team behind Zvezoskop began research by utilizing publicly available CVs of active political officials. Then they employed investigative and data journalism techniques to supplement and upgrade this information.</p>
 			<h5>
 				<img class="icon" src={icon1} />
