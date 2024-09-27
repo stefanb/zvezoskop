@@ -31,7 +31,7 @@
 		"gh-pages": "^6.0.0",
 		"googleapis": "^128.0.0",
 		"layercake": "^8.0.2",
-		"moment": "^2.29.4",
+		"moment": "^2.30.1",
 		"sass": "^1.69.5",
 		"smui-theme": "^7.0.0-beta.15",
 		"svelte": "^4.0.5",
@@ -44,7 +44,7 @@
 	"type": "module",
 	"dependencies": {
 		"material-icons": "^1.13.12",
-		"moment": "^2.29.4",
+		"moment": "^2.30.1",
 		"svelte-waypoint": "^0.1.4",
 		"sveltekit-i18n": "^2.3.2"
 	}
